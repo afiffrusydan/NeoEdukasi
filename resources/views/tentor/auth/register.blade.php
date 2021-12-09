@@ -28,7 +28,9 @@
                         @csrf
                         <!-- SECTION 1 -->
                         <h2>
-                            <p class="step-icon"><span>01</span></p>
+                           
+                            <p class="step-icon"  @if($errors->has('first_name' || 'last_name'))  style="background: red  @endif "><span>01</span></p>
+
                             <span class="step-text">Account Infomation</span>
                         </h2>
                         <section>
@@ -77,8 +79,16 @@
                                             <legend>NIK</legend>
                                             <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
                                                 name="NIK" id="NIK" class="form-control" pattern="\d*" maxlength="16"
-                                                minlength="16" placeholder="NIK" required>
+                                                @error('NIK') is-invalid @enderror" value="{{ old('NIK') }}"
+                                                minlength="15" placeholder="NIK" required>
                                         </fieldset>
+                                        @error('NIK')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -105,10 +115,10 @@
                                         <fieldset>
                                             <legend>Phone Number</legend>
                                             <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
-                                                class="form-control" id="phone_number" 
-                                                @error('phone_number') is-invalid @enderror" name="phone_number"
-                                                value="{{ old('phone_number') }}"
-                                                placeholder="Phone Number" required>
+                                                class="form-control" id="phone_number" @error('phone_number')
+                                                is-invalid @enderror" name="phone_number"
+                                                value="{{ old('phone_number') }}" placeholder="Phone Number"
+                                                required>
                                         </fieldset>
                                         @error('phone_number')
                                             <span class="invalid-feedback" role="alert">
@@ -124,9 +134,19 @@
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
                                             <legend>Password</legend>
-                                            <input type="password" class="form-control" id="password" name="password"
+                                            <input type="password" class="form-control" id="password"
+                                            @error('password')
+                                                is-invalid @enderror" name="password"
+                                                value="{{ old('password') }}"
                                                 placeholder="password" required>
                                         </fieldset>
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -150,8 +170,18 @@
                                         <fieldset>
                                             <legend>Address</legend>
                                             <input type="text" name="address" id="address" class="form-control"
-                                                placeholder="Address" required>
+                                            @error('address')
+                                                is-invalid @enderror" name="address"
+                                                value="{{ old('address') }}"    
+                                            placeholder="Address" required>
                                         </fieldset>
+                                        @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -159,8 +189,18 @@
                                         <fieldset>
                                             <legend>Place Of Birth</legend>
                                             <input type="text" name="pob" id="pob" class="form-control"
-                                                placeholder="Place Of Birth" required>
+                                            @error('pob')
+                                            is-invalid @enderror" name="pob"
+                                            value="{{ old('pob') }}"       
+                                            placeholder="Place Of Birth" required>
                                         </fieldset>
+                                        @error('pob')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class="text-danger">
+                                                {{ 'Please insert your place of birth correctly!' }}
+                                            </div>
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -172,11 +212,21 @@
 
                                 <div class="form-group required" style="margin-top: -2em;">
                                     <div class="input-group datepick">
-                                        <input type="text" class="form-control" name="dob" id="dob" required readonly>
+                                        <input type="text" class="form-control" name="dob" id="dob" 
+                                        @error('dob')
+                                        is-invalid @enderror" name="dob"
+                                        value="{{ old('dob') }}" required readonly>
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
                                     </div>
+                                    @error('dob')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div class="text-danger">
+                                            {{ 'Please insert your date of birth correctly!' }}
+                                        </div>
+                                    </span>
+                                @enderror
                                 </div>
 
 
@@ -194,6 +244,13 @@
                                         </select>
                                     </div>
                                 </div>
+                                @error('religion')
+                                <span class="invalid-feedback" role="alert">
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                </span>
+                            @enderror
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
@@ -205,7 +262,13 @@
                                         </select>
                                     </div>
                                 </div>
-
+                                @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                </span>
+                            @enderror
                             </div>
                         </section>
                         <!-- SECTION 3 -->
@@ -232,14 +295,34 @@
                                         </select>
                                     </div>
                                 </div>
+                                @error('job_status')
+                                <span class="invalid-feedback" role="alert">
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                </span>
+                                <br>
+                                 @enderror
+
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
                                             <legend>Highest Education Qualifications</legend>
                                             <input type="text" name="last_education" id="last_education"
                                                 class="form-control" pattern="\d*" maxlength="16" minlength="16"
+                                                @error('last_education')
+                                                is-invalid @enderror" name="last_education"
+                                                value="{{ old('last_education') }}"
                                                 placeholder="Your Highest Education" required>
                                         </fieldset>
+                                        @error('last_education')
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        </span>
+                                        <br>
+                                         @enderror
                                     </div>
                                 </div>
 

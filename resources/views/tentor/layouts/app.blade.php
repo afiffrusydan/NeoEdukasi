@@ -1,4 +1,4 @@
-@include('tentor.layouts.header')
+@include('tentor.layouts.sidebar')
 <main id="main-container">
 @yield('content')
 </main>

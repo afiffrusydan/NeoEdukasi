@@ -39,10 +39,10 @@ class TentorRegisController extends Controller
         $request->validate([
           'first_name' => ['required', 'string', 'max:255'],
           'last_name' => ['required', 'string', 'max:255'],
-          'NIK' => ['required', 'integer','unique:tentors', 'max:16', 'min:16'],
+          'NIK' => ['required', 'numeric','unique:tentors', 'digits:16'],
           'email' => ['required', 'string','email', 'unique:tentors', 'max:255'],
-          'phone_number' => ['required', 'integer', 'unique:tentors', 'max:255'],
-          'password' => ['required', 'string', 'min:8', 'confirmed'],
+          'phone_number' => ['required', 'numeric', 'unique:tentors', 'digits_between:10,13'],
+          'password' => ['required', 'string', 'min:8'],
           'address' => ['required', 'string','max:255'],
           'pob' => ['required', 'string', 'max:255'],
           'dob' => ['required', 'string', 'max:255'],
@@ -51,6 +51,8 @@ class TentorRegisController extends Controller
           'job_status' => ['required', 'string', 'max:255'],
           'last_education' => ['required', 'string', 'max:255'],
         ]);
+
+
            
         $data = $request->all();
         $check = $this->create($data);
