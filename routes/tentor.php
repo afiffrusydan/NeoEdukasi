@@ -6,7 +6,8 @@ Route::namespace('Auth')->group(function () {
   Route::get('login', 'TentorAuthController@getLogin')->name('tentor.login');
   Route::post('login', 'TentorAuthController@postLogin')->name('tentor.loginPost');
   Route::get('logout', 'TentorAuthController@postLogout')->name('tentor.logout');
-  Route::get('register', 'TentorAuthController@register')->name('tentor.register');
+  Route::get('registration', 'TentorRegisController@registration')->name('tentor.register_page');
+  Route::post('post-registration', 'TentorRegisController@postRegistration')->name('register.post'); 
 });
 
 Route::group([

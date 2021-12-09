@@ -17,9 +17,9 @@ body {
 	-ms-align-items: center;
 	-moz-align-items: center;
 	-webkit-align-items: center;
-    background-image: -moz-linear-gradient( 136deg, rgb(116,235,213) 0%, rgb(63,43,150) 100%);
-    background-image: -webkit-linear-gradient( 136deg, rgb(116,235,213) 0%, rgb(63,43,150) 100%);
-    background-image: -ms-linear-gradient( 136deg, rgb(116,235,213) 0%, rgb(63,43,150) 100%);
+    background-image: -moz-linear-gradient( 136deg, #D9D5B7 0%, #D9D5B7 100%);
+    background-image: -webkit-linear-gradient( 136deg, #D9D5B7 0%, #D9D5B7 100%);
+    background-image: -ms-linear-gradient( 136deg, #D9D5B7 0%, #D9D5B7 100%);
 }
 .form-v1-content   {
 	background: #fff;
@@ -48,7 +48,7 @@ body {
     display: block;
     width: 100%;
     overflow: hidden;
-    background: #3e4061;
+	background: #6fa306;
     border-radius: 10px;
     -o-border-radius: 10px;
 	-ms-border-radius: 10px;
@@ -96,6 +96,7 @@ body {
 .form-register .steps li a .title {
 	display: flex;
 	padding: 15px 25px 15px 35px;
+	background: #6fa306;
 }
 .form-register .steps li a .title .step-icon { 
 	width: 40px;
@@ -131,7 +132,7 @@ body {
 .form-register .steps li.current a:active .step-icon,
 .form-register .steps li.done a .step-icon,
 .form-register .steps li.done a:active .step-icon {
-    background: #4fab40;
+    background: #373435;
     color: #fff;
     box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
 	-o-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
@@ -173,6 +174,7 @@ body {
 .form-register .content #form-total-p-2 .wizard-header {
 	text-align: center;
     padding: 37px 30px 30px;
+	
 }
 .form-register .content .inner h3 {
 	font-size: 22px;
@@ -499,6 +501,7 @@ body {
 		-ms-justify-content: space-between;
 		-moz-justify-content: space-between;
 		-webkit-justify-content: space-between;
+		background-color: #6fa306;
 	}
 	.form-register .steps li::after {
 		width: 100%;

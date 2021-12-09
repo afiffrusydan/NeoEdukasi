@@ -1926,7 +1926,11 @@ var defaults = $.fn.steps.defaults = {
      * @default function (event, currentIndex) { return true; }
      * @for defaults
      **/
-    onFinishing: function (event, currentIndex) { return true; },
+    onFinishing: function (event, currentIndex) { 
+
+        return true; 
+    
+    },
 
     /**
      * Fires after completion. 
@@ -1936,7 +1940,9 @@ var defaults = $.fn.steps.defaults = {
      * @default function (event, currentIndex) { }
      * @for defaults
      **/
-    onFinished: function (event, currentIndex) { },
+    onFinished: function (event, currentIndex) { 
+        $('form').submit();
+    },
 
     /**
      * Fires after async content is loaded. 

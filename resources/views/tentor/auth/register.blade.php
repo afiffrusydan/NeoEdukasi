@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tentor Register</title>
+    <title>Tentor Account Registration</title>
     <!-- Mobile Specific Metas -->
+    <link rel="icon" type="image/png" href="{{ asset('images/icons/logo-ne.ico') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Font-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,14 +16,16 @@
         href="{{ asset('fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
     <!-- Main Style Css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
 </head>
 
 <body>
     <div class="page-content">
         <div class="form-v1-content">
             <div class="wizard-form">
-                <form class="form-register" action="#" method="post">
+                <form class="form-register" action={{ route('register.post') }} method="post">
                     <div id="form-total">
+                        @csrf
                         <!-- SECTION 1 -->
                         <h2>
                             <p class="step-icon"><span>01</span></p>
@@ -36,27 +39,45 @@
                                         accounts. </p>
                                 </div>
                                 <div class="form-row">
+
                                     <div class="form-holder">
                                         <fieldset>
                                             <legend>First Name</legend>
-                                            <input type="text" class="form-control" id="first_name" name="first_name"
-                                                placeholder="First Name" required>
+                                            <input type="text" class="form-control" id="first_name"
+                                                @error('first_name') is-invalid @enderror" name="first_name"
+                                                value="{{ old('first_name') }}" placeholder="First Name" required>
                                         </fieldset>
+                                        @error('first_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-holder">
                                         <fieldset>
                                             <legend>Last Name</legend>
-                                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                            <input type="text" class="form-control" id="last_name" @error('last_name')
+                                                is-invalid @enderror" name="last_name" value="{{ old('last_name') }}"
                                                 placeholder="Last Name" required>
                                         </fieldset>
+                                        @error('last_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
                                             <legend>NIK</legend>
-                                            <input type="text" name="NIK" id="NIK" class="form-control" pattern="\d*"
-                                                maxlength="16" minlength="16" placeholder="NIK" required>
+                                            <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+                                                name="NIK" id="NIK" class="form-control" pattern="\d*" maxlength="16"
+                                                minlength="16" placeholder="NIK" required>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -65,10 +86,18 @@
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
                                             <legend>Email</legend>
-                                            <input type="text" name="email" id="email" class="form-control"
+                                            <input type="text" id="email" class="form-control"
                                                 pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="email@email.com"
-                                                required>
+                                                @error('email') is-invalid @enderror" name="email"
+                                                value="{{ old('email') }}" required>
                                         </fieldset>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -76,9 +105,18 @@
                                         <fieldset>
                                             <legend>Phone Number</legend>
                                             <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
-                                                class="form-control" id="phone_number" name="phone_number"
+                                                class="form-control" id="phone_number" 
+                                                @error('phone_number') is-invalid @enderror" name="phone_number"
+                                                value="{{ old('phone_number') }}"
                                                 placeholder="Phone Number" required>
                                         </fieldset>
+                                        @error('phone_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -132,10 +170,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group required" style="margin-top: -6%;">
+                                <div class="form-group required" style="margin-top: -2em;">
                                     <div class="input-group datepick">
-                                        <input type="text" class="form-control" name="frmSaveOffice_startdt"
-                                            id="frmSaveOffice_startdt" required readonly>
+                                        <input type="text" class="form-control" name="dob" id="dob" required readonly>
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -146,7 +183,7 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <label class="special-label">Religion:</label>
-                                        <select name="gender" id="gender">
+                                        <select name="religion" id="religion" required>
                                             <option value="Religion" disabled selected>Religion</option>
                                             <option value="muslim">Muslim</option>
                                             <option value="kristen">Kristen</option>
@@ -230,7 +267,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.datepick').datetimepicker({
-                format: 'L',
+                format: 'yyyy-M-DD',
                 ignoreReadonly: true
             });
         });
