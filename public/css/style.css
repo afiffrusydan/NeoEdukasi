@@ -433,8 +433,7 @@ body {
     -moz-justify-content: space-between;
     -webkit-justify-content: space-between;
 }
-.actions ul li.disabled,
-.actions ul li:first-child {
+.actions ul li.disabled {
 	opacity: 0;
 }
 .actions ul li {
@@ -474,7 +473,7 @@ body {
 /* Responsive */
 @media screen and (max-width: 1199px) {
 	.form-v1-content {
-		margin: 180px 20px;
+		margin: 40px 20px 160px;
 	}
 }
 @media screen and (max-width: 991px) {

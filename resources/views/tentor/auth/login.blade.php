@@ -37,9 +37,18 @@
                     <span class="login100-form-title">
                         Tentor Login
                     </span>
-                    @if ($errors->any())
-                        <h4>{{ $errors->first() }}</h4>
+                    @if (session()->has('msg'))
+                        <div class="alert alert-success">
+                            {{ session()->get('msg') }}
+                        </div>
                     @endif
+
+                    @if (session()->has('errormsg'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('errormsg') }}
+                        </div>
+                    @endif
+
 
                     @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>

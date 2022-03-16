@@ -24,12 +24,94 @@ Route::group([
     'middleware' => ['role:administrator|customerservice'],
 ], function () {
       // users
-      Route::group(['prefix' => 'students', 'as' => 'siswa.',], function () {
-          Route::get('all', 'UserController@index')->name('all');
+      Route::group(['prefix' => '/students', 'as' => 'admin.student.',], function () {
+        Route::group(['prefix' => '/all', 'as' => 'all.'], function () {
+          Route::get('all', 'Customer\Admin_StudentController@index')->name('all');
+          Route::get('addnew', 'Customer\Admin_StudentController@addnew')->name('addnewstudent');
+          Route::post('submit', 'Customer\Admin_StudentController@submit')->name('submit');
+          Route::get('{id}/view', 'Customer\Admin_StudentController@show')->name('view');
+          Route::post('delete', 'Customer\Admin_StudentController@remove')->name('delete');
+          Route::post('update', 'Customer\Admin_StudentController@update')->name('update');
+      });
+          
+
+          Route::group(['prefix' => '/tentored-students', 'as' => 'tentored-students.'], function () {
+            Route::get('index', 'Customer\Admin_TentoredStudentsController@index')->name('index');
+        });
       });
   });
 
+  Route::group([
+    'middleware' => ['role:administrator|academic'],
+], function () {
+      Route::group(['prefix' => '/tentor', 'as' => 'admin.tentor-verification'], function () {
+        Route::get('tentor-verification', 'Academic\Admin_TentorController@tentor_verification')->name('.index');
+        Route::get('tentor-verification-detail/{id}', 'Academic\Admin_TentorController@tentor_verification_detail')->name('.detail');
+        Route::get('get-ktp/{id}', 'Academic\Admin_TentorController@tentor_ktp_get')->name('.get-ktp');
+        Route::get('get-ijazah/{id}', 'Academic\Admin_TentorController@tentor_ijazah_get')->name('.get-ijazah');
+        Route::get('get-transkip/{id}', 'Academic\Admin_TentorController@tentor_transkip_get')->name('.get-transkip');
+        Route::post('submit', 'Academic\Admin_TentorController@verificationSubmit')->name('.verification-submit');
+    });
+  });
+
+  Route::group([
+    'middleware' => ['role:administrator|academic|customerservice'],
+], function () {
+      Route::group(['prefix' => '/vacancy', 'as' => 'admin.vacancy'], function () {
+        Route::group(['prefix' => '/job-vacancy', 'as' => '.job-vacancy'], function () {
+          Route::get('index', 'Admin_VacancyController@index')->name('.index');
+          Route::get('create-step-1', 'Admin_VacancyController@create1')->name('.create1');
+          Route::get('{id}/create-step-2', 'Admin_VacancyController@create2')->name('.create2');
+          Route::post('submit', 'Admin_VacancyController@submit')->name('.submit');
+          Route::get('{id}/view', 'Admin_VacancyController@show')->name('.show');
+          Route::post('/update', 'Admin_VacancyController@update')->name('.update');
+          Route::post('/delete', 'Admin_VacancyController@remove')->name('.delete');
+      });
+      Route::group(['prefix' => '/vacancy-application', 'as' => '.vacancy-application'], function () {
+        Route::get('index', 'Admin_VacancyApplicationController@index')->name('.index');
+        Route::get('{id}/view', 'Admin_VacancyApplicationController@show')->name('.show');
+        Route::get('{id}/view/detail/', 'Admin_VacancyApplicationController@detail')->name('.detail');
+        Route::post('/view/detail/decline', 'Admin_VacancyApplicationController@decline')->name('.decline');
+        Route::post('/view/detail/invite', 'Admin_VacancyApplicationController@inviteInterview')->name('.invite');
+    });
+    Route::group(['prefix' => '/interview', 'as' => '.interview'], function () {
+      Route::get('index', 'Admin_VacancyInterview@index')->name('.index');
+      Route::get('{id}/show', 'Admin_VacancyInterview@show')->name('.show');
+      Route::get('{appId}/detail', 'Admin_VacancyInterview@detail')->name('.detail');
+      Route::get('get-ktp/{id}', 'Admin_VacancyInterview@tentor_ijazah_get')->name('.get-ijazah');
+      Route::get('get-transkip/{id}', 'Admin_VacancyInterview@tentor_transkip_get')->name('.get-transkip');
+      Route::post('/show/decline', 'Admin_VacancyInterview@decline')->name('.decline');
+      Route::post('/show/accept', 'Admin_VacancyInterview@accept')->name('.accept');
+      Route::post('/show/addtoShortlist', 'Admin_VacancyInterview@shortlist')->name('.shortlist');
+  });
+    });
+
+    Route::group(['prefix' => '/submission', 'as' => 'admin.submission'], function () {
+      Route::group(['prefix' => '/student-progress', 'as' => '.student-progress'], function () {
+        Route::get('/index', 'Admin_StudentProgressController@index')->name('.index');
+        Route::get('{id}/detail', 'Admin_StudentProgressController@view')->name('.detail');
+        Route::post('/show/approve', 'Admin_StudentProgressController@approve')->name('.approve');
+        Route::post('/show/decline', 'Admin_StudentProgressController@decline')->name('.decline');
+      });
+      Route::group(['prefix' => '/salary-submission', 'as' => '.salary-submission'], function () {
+        Route::get('/index', 'Admin_SalarySubmissionController@index')->name('.index');
+        Route::get('{id}/detail', 'Admin_SalarySubmissionController@view')->name('.detail');
+        Route::get('get-documentation/{id}', 'Admin_SalarySubmissionController@get_documentation')->name('.get-documentation');
+        Route::get('get-presence/{id}', 'Admin_SalarySubmissionController@get_attendance')->name('.get-presence');
+        Route::get('get-proof/{id}', 'Admin_SalarySubmissionController@get_proof')->name('.get-proof');
+        Route::post('/show/approve', 'Admin_SalarySubmissionController@approve')->name('.approve');
+        Route::post('/show/decline', 'Admin_SalarySubmissionController@decline')->name('.decline');
+      });
+    });
+
+    Route::group(['prefix' => '/student-report', 'as' => 'admin.student-report'], function () {
+      Route::group(['prefix' => '/student-progress', 'as' => '.student-progress'], function () {
+        Route::get('/index', 'Admin_StudentReportController@index')->name('.index');
+        Route::get('{id}/view', 'Admin_StudentReportController@view')->name('.view');
+        Route::get('{id}/detail', 'Admin_StudentReportController@detail')->name('.detail');
+        // Route::get('{id}/pdf', 'Admin_StudentReportController@get_report')->name('.get-report');
+      });
+    });
+
+  });
 });
-
-
-

@@ -30,6 +30,7 @@ class CreateTentorsTable extends Migration
             $table->string('bank_name')->nullable();
             $table->string('job_status')->nullable();
             $table->string('last_education')->nullable();
+            $table->string('major')->nullable();
             $table->tinyInteger('verified_by')->nullable();
             $table->string('branch_id')->nullable();
             $table->string('token')->nullable();

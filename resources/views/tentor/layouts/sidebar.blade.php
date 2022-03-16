@@ -28,7 +28,7 @@ $account_status = Auth::user()->account_status;
             -->
 <nav id="sidebar" aria-label="Main Navigation">
     <!-- Side Header -->
-    <div class="content-header bg-white-5">
+    <div class="content-header bg-ne">
         <!-- Logo -->
         <a class="font-w600 text-dual" href="{{ route('tentor.dashboard') }}">
             <span class="smini-hide">
@@ -46,51 +46,32 @@ $account_status = Auth::user()->account_status;
         <ul class="nav-main">
             <li class="nav-main-item">
                 <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('tentor.dashboard') }}">
-                    <i class="nav-main-link-icon si si-home"></i>
+                    <i class="nav-main-link-icon fa fa-home"></i>
                     <span class="nav-main-link-name">Dashboard</span>
                 </a>
             </li>
-            @if ($account_status == 10)
-                
 
-            <li class="nav-main-heading">Menu</li>
-            <li class="nav-main-item{{ request()->is('examples/*') ? ' open' : '' }}">
-                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                    <i class="nav-main-link-icon si si-bulb"></i>
-                    <span class="nav-main-link-name">Drop Down Menu</span>
-                </a>
-                <ul class="nav-main-submenu">
-                    <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('tentor/pages/plugin-helper') ? ' active' : '' }}" href="/tentor/plugin-helper">
-                            <span class="nav-main-link-name">Plugin with JS Helper</span>
-                        </a>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('tentor/pages/plugin-init') ? ' active' : '' }}" href="/tentor/plugin-init">
-                            <span class="nav-main-link-name">Plugin with JS Init</span>
-                        </a>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('tentor/pages/blank') ? ' active' : '' }}" href="/tentor/blank">
-                            <span class="nav-main-link-name">Blank</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
+            @if ($account_status == 100)
             
+            <li class="nav-main-heading">Menu</li>
+
+
             <li class="nav-main-item">
-                <a class="nav-main-link{{ request()->is('Penjahit') ? ' active' : '' }}" href="{{ route('siswa.all') }}">
-                    <i class="nav-main-link-icon si si-cursor"></i>
-                    <span class="nav-main-link-name">Siswa</span>
+                <a class="nav-main-link{{ request()->is('tentor/vacancy/*') ? ' active' : '' }}" href="{{ route('tentor.vacancy.index') }}">
+                    <i class="nav-main-link-icon fa fa-briefcase"></i>
+                    <span class="nav-main-link-name">Vacancy</span>
                 </a>
             </li>
-
-
             <li class="nav-main-item">
-                <a class="nav-main-link{{ request()->is('Kantin') ? ' active' : '' }}" href="/kantin">
-                    <i class="nav-main-link-icon si si-cursor"></i>
-                    <span class="nav-main-link-name">Other Menu</span>
+                <a class="nav-main-link{{ request()->is('tentor/student-progress-report/*') ? ' active' : '' }}" href="{{ route('tentor.progress-report.index') }}">
+                    <i class="nav-main-link-icon fa fa-file"></i>
+                    <span class="nav-main-link-name">Student Progress Report</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link{{ request()->is('tentor/salary-submission/*') ? ' active' : '' }}" href="{{ route('tentor.salary-submission.index') }}">
+                    <i class="nav-main-link-icon fa fa-book"></i>
+                    <span class="nav-main-link-name">Salary Submission</span>
                 </a>
             </li>
             @endif
@@ -135,17 +116,6 @@ $account_status = Auth::user()->account_status;
             <!-- END Open Search Section -->
 
             <!-- Search Form (visible on larger screens) -->
-            <form class="d-none d-sm-inline-block" action="/dashboard" method="POST">
-                @csrf
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="page-header-search-input2">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-body border-0">
-                            <i class="si si-magnifier"></i>
-                        </span>
-                    </div>
-                </div>
-            </form>
             <!-- END Search Form -->
         </div>
         <!-- END Left Section -->
@@ -198,7 +168,7 @@ $account_status = Auth::user()->account_status;
                         <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
                     </div>
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('tentor.profile') }}">
                             <span>Profile</span>
                             <i class="si si-settings"></i>
                         </a>
@@ -226,22 +196,7 @@ $account_status = Auth::user()->account_status;
     <!-- END Header Content -->
 
     <!-- Header Search -->
-    <div id="page-header-search" class="overlay-header bg-white">
-        <div class="content-header">
-            <form class="w-100" action="/dashboard" method="POST">
-                @csrf
-                <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-danger" data-toggle="layout" data-action="header_search_off">
-                            <i class="fa fa-fw fa-times-circle"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                </div>
-            </form>
-        </div>
-    </div>
+
     <!-- END Header Search -->
 
     <!-- Header Loader -->

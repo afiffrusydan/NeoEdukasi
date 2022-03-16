@@ -2,6 +2,7 @@
 @include('admin.layouts.left_sidebar')
 @include('admin.layouts.header')
 <main id="main-container">
-@yield('content')
+    @include('sweetalert::alert')
+    @yield('content')
 </main>
 @include('admin.layouts.footer')

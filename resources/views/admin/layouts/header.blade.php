@@ -9,42 +9,11 @@
             <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
-            <!-- END Toggle Sidebar -->
 
-            <!-- Toggle Mini Sidebar -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
             <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                 <i class="fa fa-fw fa-ellipsis-v"></i>
             </button>
-            <!-- END Toggle Mini Sidebar -->
 
-            <!-- Apps Modal -->
-            <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
-            <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
-                <i class="si si-grid"></i>
-            </button>
-            <!-- END Apps Modal -->
-
-            <!-- Open Search Section (visible on smaller screens) -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout" data-action="header_search_on">
-                <i class="si si-magnifier"></i>
-            </button>
-            <!-- END Open Search Section -->
-
-            <!-- Search Form (visible on larger screens) -->
-            <form class="d-none d-sm-inline-block" action="/dashboard" method="POST">
-                @csrf
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="page-header-search-input2">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-body border-0">
-                            <i class="si si-magnifier"></i>
-                        </span>
-                    </div>
-                </div>
-            </form>
-            <!-- END Search Form -->
         </div>
         <!-- END Left Section -->
 
@@ -114,9 +83,6 @@
 
             <!-- Toggle Side Overlay -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
-                <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
-            </button>
 
             
             <!-- END Toggle Side Overlay -->
@@ -126,22 +92,7 @@
     <!-- END Header Content -->
 
     <!-- Header Search -->
-    <div id="page-header-search" class="overlay-header bg-white">
-        <div class="content-header">
-            <form class="w-100" action="/dashboard" method="POST">
-                @csrf
-                <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-danger" data-toggle="layout" data-action="header_search_off">
-                            <i class="fa fa-fw fa-times-circle"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                </div>
-            </form>
-        </div>
-    </div>
+
     <!-- END Header Search -->
 
     <!-- Header Loader -->

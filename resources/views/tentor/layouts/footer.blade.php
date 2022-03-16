@@ -5,10 +5,9 @@
                 <div class="content py-1">
                     <div class="row font-size-sm">
                         <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                            Crafted with by <a class="font-w600" href="https://www.instagram.com/wisnumaulanaw/" target="_blank">Udin.</a>
+                            Crafted with by <a class="font-w600" href="https://www.instagram.com/wisnumaulanaw/" target="_blank">Superteam Neo Edukasi.</a>
                         </div>
                         <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-
                         </div>
                     </div>
                 </div>

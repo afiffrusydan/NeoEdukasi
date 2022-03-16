@@ -1,5 +1,6 @@
 @include('tentor.layouts.sidebar')
 <main id="main-container">
-@yield('content')
+    @include('sweetalert::alert')
+    @yield('content')
 </main>
 @include('tentor.layouts.footer')

@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #ff6b6b;
+  color: #6fa306;
 }
 a.link-fx::before {
   background-color: #ff6b6b;
@@ -15,7 +15,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: #373737;
+  color: #373435;
 }
 
 .content-heading {
@@ -173,7 +173,7 @@ a.text-dual:hover, a.text-dual:focus {
 }
 
 .bg-primary {
-  background-color: #ff6b6b !important;
+  background-color: #484d20 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -321,13 +321,13 @@ button.bg-sidebar-dark:focus {
 
 .btn-primary {
   color: #fff;
-  background-color: #ff6b6b;
-  border-color: #ff6b6b;
+  background-color: #6fa306;
+  border-color: #6fa306;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #ff4545;
-  border-color: #ff3838;
+  background-color: #6fa306;
+  border-color: #6fa306;
 }
 .btn-primary:focus, .btn-primary.focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 129, 129, 0.5);
@@ -339,8 +339,8 @@ button.bg-sidebar-dark:focus {
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #ff3838;
-  border-color: #ff2b2b;
+  background-color: #6fa306;
+  border-color: #6fa306;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 129, 129, 0.5);
@@ -374,8 +374,8 @@ button.bg-sidebar-dark:focus {
 .page-header-dark #page-header .btn-dual,
 .sidebar-dark #sidebar .btn-dual {
   color: #fff;
-  background-color: #6c6c6c;
-  border-color: #6c6c6c;
+  background-color: #484d20;
+  border-color: #575c26;
 }
 .page-header-dark #page-header .btn-dual:hover, .page-header-dark #page-header .btn-dual:focus, .page-header-dark #page-header .btn-dual.focus,
 .sidebar-dark #sidebar .btn-dual:hover,
@@ -1131,7 +1131,7 @@ select.form-control:focus::-ms-value {
 
 #page-container.page-header-dark #page-header {
   color: #d6d6d6;
-  background-color: #333333;
+  background-color: #6fa306;
 }
 #page-container.page-header-glass #page-header {
   background-color: transparent;
@@ -1140,11 +1140,11 @@ select.form-control:focus::-ms-value {
   background-color: #fff;
 }
 #page-container.page-header-glass.page-header-fixed.page-header-scroll.page-header-dark #page-header {
-  background-color: #333333;
+  background-color: #6fa306;
 }
 #page-container.sidebar-dark #sidebar {
   color: #ebebeb;
-  background-color: #333333;
+  background-color: #fafafa;
 }
 
 .block-header-default {

@@ -16,31 +16,78 @@
                     </ol>
                 </nav>
             </div>
-       </div>
+        </div>
     </div>
     <!-- END Hero -->
 
     <!-- Page Content -->
     <div class="content">
-        @error('error')
-        <div class="content content-full">
-        <center><div class="alert alert-danger">{{ $message }}</div></center>
-        </div>
+
+        @error('msg')
+            <div class="block content-full">
+                <center>
+                    <div class="alert alert-success">
+                        {{ $message }}
+                    </div>
+                </center>
+            </div>
         @enderror
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-xl-5">
-                <div class="block">
-                    <div class="block-header">
-                        <h3 class="block-title">Welcome to your app</h3>
-                    </div>
-                    <div class="block-content">
-                        <p class="font-size-sm text-muted">
-                            {}
-                        </p>
-                        <p class="font-size-sm text-muted">
-                            Feel free to use any examples you like from the full versions to build your own pages. <strong>Wish you all the best and happy coding!</strong>
-                        </p>
-                    </div>
+        @error('inactive')
+            <div class="block content-full">
+                <center>
+                    <div class="alert alert-danger">{{ $message }}</div>
+                </center>
+            </div>
+        @enderror
+        @error('declinemsg')
+            <div class="block content-full">
+                <div class="alert alert-danger">
+                    <center>
+                        {{ $message }}
+                    </center>
+
+                    @if ($reasons->ktp_status == 0)
+                        <div class="row">
+                            <div class="col-6 col-md-3 tittle-neo">
+                                KTP
+                            </div>
+                            <div class="col-6 col-md-6">
+                                {{ ': ' . $reasons->ktp_decline_reason }}
+                            </div>
+                        </div>
+                    @endif
+                    @if ($reasons->ijazah_status == 0)
+                        <div class="row">
+                            <div class="col-6 col-md-3 tittle-neo">
+                                Ijazah
+                            </div>
+                            <div class="col-6 col-md-6">
+                                {{ ': ' . $reasons->ijazah_decline_reason }}
+                            </div>
+                        </div>
+                    @endif
+                    @if ($reasons->transkip_status == 0)
+                        <div class="row">
+                            <div class="col-6 col-md-3 tittle-neo">
+                                Transkip
+                            </div>
+                            <div class="col-6 col-md-6">
+                                {{ ': ' . $reasons->transkip_decline_reason }}
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        @enderror
+        <div class="block">
+            <div class="block-content block-content-full">
+                <div class="block-header justify-content-center">
+
+                    @error('inactive')
+                        <button type="button" class="btn btn-neo btn-sm">
+                            <a href="{{ route('tentor.verification') }}"
+                                class="btn btn-sm btn-neo pull-right">Verify</a></button>
+                    @enderror
                 </div>
             </div>
         </div>
