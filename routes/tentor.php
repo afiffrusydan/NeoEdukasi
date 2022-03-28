@@ -72,6 +72,7 @@ Route::group([
       Route::post('/add', 'TentorSalarySubmissionController@postCreate')->name('.submit');
       Route::post('/update', 'TentorSalarySubmissionController@update')->name('.update');
       Route::post('/getMonth', 'TentorSalarySubmissionController@getMonth')->name('.get-month');
+      Route::post('/check', 'TentorSalarySubmissionController@check')->name('.check');
   });
 });
 

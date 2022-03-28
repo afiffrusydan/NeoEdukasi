@@ -34,7 +34,7 @@ class Tentor_StudentProgressController extends Controller
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
         ->select('students_progress.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
         ->get()->sortByDesc("month");;
-        return view('tentor.pages.student-progress.index', ['stdProgress' => $studentProgress, 'history'=>$history]);
+        return view('tentor.pages.student-progress.index', ['stdProgress' => $studentProgress]);
     }
 
     public function view($id)

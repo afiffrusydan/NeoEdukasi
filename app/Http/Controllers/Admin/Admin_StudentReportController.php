@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin\TutoredStudents;
+use App\Models\tentor\SalarySubmission;
 use App\Models\tentor\StudentProgress;
 use PDF;
 use Illuminate\Support\Facades\DB;
@@ -79,37 +80,38 @@ class Admin_StudentReportController extends Controller
           
         $pdf = PDF::loadView('template.student-progress', $data)->download('medium.pdf');
 
-        // $pdf1 = PDF::loadView('template.student-progress', $data);
-        // Storage::put('public/invoice.pdf', $pdf1->output());
+        $pdf1 = PDF::loadView('template.student-progress', $data);
+        Storage::put('public/invoice.pdf', $pdf1->output());
 
-        // $key='db63f52c1a00d33cf143524083dd3ffd025d672e255cc688'; //this is demo key please change with your own key
-        // $url='http://45.77.34.32:8000/demo/send_message';
-        // $file_path='';
-        // $data = array(
-        //   "phone_no"  => '+628122971126',
-        //   "key"       => $key,
-        //   "url"       => $file_path
-        // );
-        // $data_string = json_encode($data);
+        $key='866cb2bb28d0f410fedb3893178aa25fafc211e6b8456541'; //this is demo key please change with your own key
+        $url='http://116.203.191.58/api/send_file_url';
+        $file_path = storage_path('public/invoice.pdf');
+        $data = array(
+          "phone_no"  => $studentProgress->parent_phone_number,
+          "key"       => $key,
+          "url"       => $file_path
+        );
+        $data_string = json_encode($data);
         
-        // $ch = curl_init($url);
-        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_VERBOSE, 0);
-        // curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
-        // curl_setopt($ch, CURLOPT_TIMEOUT, 360);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        //     'Content-Type: application/json',
-        //     'Content-Length: ' . strlen($data_string),
-        //     'Authorization: Basic dXNtYW5ydWJpYW50b3JvcW9kcnFvZHJiZWV3b293YToyNjM3NmVkeXV3OWUwcmkzNDl1ZA=='
-        // ));
-        // echo $res=curl_exec($ch);
-        // curl_close($ch);
-        return response($pdf, 200)
-            ->header('Content-Type', 'application/pdf');
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 360);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data_string),
+            'Authorization: Basic dXNtYW5ydWJpYW50b3JvcW9kcnFvZHJiZWV3b293YToyNjM3NmVkeXV3OWUwcmkzNDl1ZA=='
+        ));
+        echo $res=curl_exec($ch);
+        curl_close($ch);
+        return $res;
+        // return response($pdf, 200)
+        //     ->header('Content-Type', 'application/pdf');
 
     }
 }

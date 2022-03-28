@@ -140,8 +140,14 @@
                             <div class="row g-3 col-12">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label tittle-neo">Class</label>
-                                    <input type="text" name="class" class="form-control" placeholder="Class"
-                                        value="{{ old('class') }}" required autofocus>
+                                    <select class="form-select form-control" name="class" id="class">
+                                        <option value="" disabled selected>Class</option>
+                                        @foreach ($class as $class)
+                                            <option value="{{ $class->id }}"
+                                                @if (old('class') == '{{ $class->id }}') {{ 'selected' }}@else {{ '' }} @endif>
+                                                {{ $class->class }} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label tittle-neo">School</label>

@@ -37,7 +37,7 @@
                         </div>
                     @endif
                     <form method="POST" action="{{ route('tentor.salary-submission.submit') }}"
-                        enctype="multipart/form-data">
+                        enctype="multipart/form-data" id="submitForm">
                         @csrf
                         <div class="block-content block-content-full">
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -62,7 +62,8 @@
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <label class="form-label tittle-neo">Month</label>
-                                    <select class="form-control selectpicker" id="monthSelect" name="month" disabled required>
+                                    <select class="form-control selectpicker" id="monthSelect" name="month" disabled
+                                        required>
                                         <option value="0" selected disabled>
                                             Please Select
                                         </option>
@@ -70,17 +71,15 @@
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <label class="form-label tittle-neo">Jumlah Jam Pertemuan</label>
-                                            <input type="number" class="form-control form-control-alt" name="meet_hours"
-                                                id="meet_hours" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
-                                                placeholder="Jumlah Pertemuan">
+                                    <input type="number" class="form-control" name="meet_hours" id="meet_hours"
+                                        onkeyup="this.value=this.value.replace(/[^\d]/,'')" placeholder="Jumlah Pertemuan">
                                 </div>
                                 <div class="col-12 col-md-12">
-                                    <label class="form-label tittle-neo">Tambahan Pertemuan  (Menit)</label>
+                                    <label class="form-label tittle-neo">Tambahan Pertemuan (Menit)</label>
                                     <div class="row">
                                         <div class="col-8 col-md-10">
-                                            <input type="number" class="form-control form-control-alt"
-                                                name="extra_meet_hours" id="extra_meet_hours"
-                                                onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+                                            <input type="number" class="form-control " name="extra_meet_hours"
+                                                id="extra_meet_hours" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
                                                 placeholder="Jumlah Pertemuan (Menit)">
                                         </div>
                                         <div class="col-4 col-md-2">
@@ -106,8 +105,7 @@
                                     <label class="form-label tittle-neo">Aditional Cost</label>
                                     <div class="input-group">
                                         <span class="input-group-text">Rp.</span>
-                                        <input type="text" class="form-control form-control-alt" name="add_cost"
-                                            id="add_cost"
+                                        <input type="text" class="form-control" name="add_cost" id="add_cost"
                                             placeholder="Additional Cost">
                                     </div>
                                 </div>
@@ -119,9 +117,73 @@
                                 </div>
                             </div>
                             <div class="row g-3 col-12 d-flex justify-content-center mt-200" style="margin-top: 5%">
-                                <button class="btn btn-neo" name="submit" type="submit">
-                                    Save Changes
+                                <button type="button" name="check" class="btn btn-sm btn-neo push" id="check">
+                                    Check
                                 </button>
+                            </div>
+                            <div class="modal hide" id="modal-review" tabindex="-1"
+                                aria-labelledby="modal-block-vcenter" style="display: hidden;" aria-modal="true"
+                                role="dialog">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="block block-rounded block-transparent mb-0">
+                                            <div class="block-header block-header-default">
+                                                <h3 class="block-title">Submission Detail</h3>
+                                                <div class="block-options">
+                                                    <button type="button" class="btn-block-option" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <i class="fa fa-fw fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="block-content fs-sm">
+                                                <div class="row g-3">
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label tittle-neo">Gaji Pertemuan</label>
+                                                        <input type="text" class="form-control form-control"
+                                                            id="modal-meet_hours" disabled>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label tittle-neo">Gaji Waktu Tambahan</label>
+                                                        <input type="text" class="form-control form-control"
+                                                            id="modal-extra_meet_hours" disabled>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label tittle-neo">Documentation</label>
+                                                        <input type="text" class="form-control form-control"
+                                                            id="modal-documentation" disabled>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label tittle-neo">Presensi</label>
+                                                        <input type="text" class="form-control form-control"
+                                                            id="modal-attendance" disabled>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label tittle-neo">Additional Cost</label>
+                                                        <input type="text" class="form-control form-control"
+                                                            id="modal-add_cost" disabled>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label class="form-label tittle-neo">Proof</label>
+                                                        <input type="text" class="form-control form-control"
+                                                            id="modal-proof" disabled>
+                                                    </div>
+                                                    <div class="col-12 col-md-12 py-2">
+                                                        <label class="form-label tittle-neo">Total</label>
+                                                        <input type="text" class="form-control"
+                                                            id="modal-total" name="total_salary" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="block-content block-content-full text-end bg-body">
+                                                <button type="button" class="btn btn-sm btn-alt-secondary me-1"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-sm btn-primary"
+                                                    data-bs-dismiss="modal">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -138,10 +200,10 @@
             // tambahkan 'Rp.' pada saat form di ketik
             // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
             rupiah.value = formatRupiah(this.value, "Rp. ");
-            if(rupiah.value == "" || rupiah.value == "0"){
-                $('#proof').prop('required',false);
-            }else{
-                $('#proof').prop('required',true);
+            if (rupiah.value == "" || rupiah.value == "0") {
+                $('#proof').prop('required', false);
+            } else {
+                $('#proof').prop('required', true);
             }
         });
 
@@ -226,7 +288,6 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    console.log(response);
                     let optionList = document.getElementById('monthSelect').options;
                     if (response.length != 0) {
                         $("#monthSelect").prop("disabled", false);
@@ -248,6 +309,59 @@
                     console.log(error);
                 }
             });
+        });
+    </script>
+    <script>
+        $("#check").click(function(event) {
+            event.preventDefault();
+            var isvalidate = $("#submitForm")[0].checkValidity();
+            if (isvalidate) {
+                event.preventDefault();
+                let id = $("#studentId").val();
+                let meet_hours = $("#meet_hours").val();
+                let extra_meet_hours = $("#extra_meet_hours").val();
+                let add_cost = $("#add_cost").val();
+                $.ajax({
+                    url: "{{ route('tentor.salary-submission.check') }}",
+                    type: "POST",
+                    data: {
+                        id: id,
+                        meet_hours: meet_hours,
+                        extra_meet_hours: extra_meet_hours,
+                        add_cost: add_cost,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        var reverse = response.total.toString().split('').reverse().join(''),
+                            ribuan = reverse.match(/\d{1,3}/g);
+                        ribuan = ribuan.join('.').split('').reverse().join('');
+                        var fileInput = '';
+                        var fileInput2 = '';
+                        document.getElementById("modal-total").value = 'Rp. '+ribuan;
+                        if ($('#documentation').get(0).files.length !== 0) {
+                             fileInput= document.getElementById('documentation').files[0].name;
+                        }
+                        if ($('#proof').get(0).files.length !== 0) {
+                            fileInput2 = document.getElementById('proof').files[0].name;
+                        }
+                        var fileInput1 = document.getElementById('attendance').files[0].name;
+                        document.getElementById("modal-meet_hours").value = meet_hours +' x '+response.price+' = '+(meet_hours*response.price);
+                        document.getElementById("modal-add_cost").value = document.getElementById(
+                            'add_cost').value;
+                        document.getElementById("modal-extra_meet_hours").value = parseInt(
+                            extra_meet_hours / 30)+' x '+response.add_price+' = '+(parseInt(
+                            extra_meet_hours / 30)*response.add_price);
+                        document.getElementById("modal-documentation").value = fileInput;
+                        document.getElementById("modal-attendance").value = fileInput1;
+                        document.getElementById("modal-proof").value = fileInput2;
+                        $("#modal-review").modal('show');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
         });
     </script>
 @endsection

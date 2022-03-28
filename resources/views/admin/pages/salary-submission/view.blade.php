@@ -4,10 +4,6 @@
 @section('content')
     <!-- Hero -->
     <title>Laravel Bootstrap Datepicker</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <!-- END Hero -->
     <!-- Page Content -->
     <div class="content">
@@ -33,191 +29,163 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white p-2 push">
-            <div class="d-lg-none">
-                <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
-                    data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
-                    data-class="d-none">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <nav>
-                <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
-                    <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx active" id="nav-home-tab" data-toggle="tab"
-                                href="#nav-vacancyInformation" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-briefcase"></i>
-                                <span class="nav-main-link-name">Information</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-home-tab" data-toggle="tab"
-                                href="#nav-tentorInformation" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-address-card"></i>
-                                <span class="nav-main-link-name">Documentation</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-contact-tab" data-toggle="tab" href="#nav-certificate"
-                                role="tab" aria-controls="nav-contact" aria-selected="false">
-                                <i class="nav-main-link-icon fa fa-certificate"></i>
-                                <span class="nav-main-link-name">Presensi</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-about-tab" data-toggle="tab" href="#nav-transcripts"
-                                role="tab" aria-controls="nav-about" aria-selected="false">
-                                <i class="nav-main-link-icon fa fa-file"></i>
-                                <span class="nav-main-link-name">Bukti</span>
-                            </a>
-                        </li>
-                    </ul>
+        <div class="block block-rounded tab-content py-3 px-3 px-sm-0">
+            <div class="block">
+                <div class="block-content block-content-full">
+                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                    <div class="row g-3 col-12-line1">
+                        <label class="form-label tittle">Tentor Salary</label>
+                    </div>
+                    <div class="row g-3 col-12">
+
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Student Name</label>
+                            <select class="form-control selectpicker" id="studentId" name="student_id"
+                                data-live-search="true" data-size="4" disabled>
+                                <option value="{{ $data->stdId }}" selected>
+                                    {{ $data->stdFirstName . ' ' . $data->stdLastName . '  ( ' . $data->subject . ' )' }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Month</label>
+                            <select class="form-control selectpicker" id="monthSelect" name="month" disabled>
+                                <option value="0" selected disabled>
+                                    {{ date('F Y', strtotime($data->month)) }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Total</label>
+                            <input type="number" class="form-control form-control-alt" name="meet_hours" id="meet_hours"
+                                value="{{ $data->total }}" disabled>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-        </div>
-        <div class="block block-rounded tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-            <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-vacancyInformation" role="tabpanel"
-                aria-labelledby="nav-vacancyInformation-tab">
-                <!-- Dynamic Table Full -->
-                <div class="col-xl-12 order-xl-0">
-                    <!-- Dynamic Table Full -->
-                    <div class="block">
-                            <div class="block-content block-content-full">
-                                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                                <div class="row g-3 col-12-line1">
-                                    <label class="form-label tittle">Tentor Salary</label>
-                                </div>
-                                    <div class="row g-3 col-12">
-    
+            </div>
+            <div class="block">
+                <div class="block-content block-content-full">
+                    <div class="row g-3 col-12-line1">
+                        <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-contact-tab" data-toggle="tab"
+                                    href="#nav-attendance" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    <i class="nav-main-link-icon fa fa-certificate"></i>
+                                    <span class="nav-main-link-name">Presensi</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-home-tab" data-toggle="tab"
+                                    href="#nav-documentation" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-address-card"></i>
+                                    <span class="nav-main-link-name">Documentation</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-about-tab" data-toggle="tab" href="#nav-proof"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">
+                                    <i class="nav-main-link-icon fa fa-file"></i>
+                                    <span class="nav-main-link-name">Bukti</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row g-3 col-12">
+                        <div class="block-content tab-content">
+                            <div class="tab-pane pull-x fs-sm active" id="nav-attendance" role="tabpanel"
+                                aria-labelledby="nav-certificate-tab">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-12">
                                         <div class="col-12 col-md-12">
-                                            <label class="form-label tittle-neo">Student Name</label>
-                                            <select class="form-control selectpicker" id="studentId" name="student_id"
-                                                data-live-search="true" data-size="4" disabled>
-                                                <option value="{{ $data->stdId }}" selected>
-                                                    {{ $data->stdFirstName . ' ' . $data->stdLastName . '  ( ' . $data->subject . ' )' }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 col-md-12">
-                                            <label class="form-label tittle-neo">Month</label>
-                                            <select class="form-control selectpicker" id="monthSelect" name="month" disabled>
-                                                <option value="0" selected disabled>
-                                                    {{ date('F Y', strtotime($data->month)) }}
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 col-md-6">
                                             <label class="form-label tittle-neo">Jumlah Jam Pertemuan</label>
                                             <input type="number" class="form-control form-control-alt" name="meet_hours"
-                                                id="meet_hours" value="{{ $data->meet_hours }}" disabled>
+                                                id="meet_hours" value="{{ $data->meet_hours }}" >
                                         </div>
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-12">
                                             <label class="form-label tittle-neo">Tambahan Jam Pertemuan (Menit)</label>
-                                            <div class="row">
+                                            <div class="row g-3">
                                                 <div class="col-8 col-md-10">
                                                     <input type="text" class="form-control form-control-alt"
                                                         name="extra_meet_hours" id="extra_meet_hours"
                                                         value="{{ $data->extra_meet_hours }} Menit" disabled>
                                                 </div>
                                                 <div class="col-4 col-md-2">
-                                                    <button type="button" id="extra" class="btn btn-light btn-block" disabled>
+                                                    <button type="button" id="extra" class="btn btn-light btn-block"
+                                                        disabled>
                                                         {{ intval($data->extra_meet_hours / 30) }}
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-12">
-                                            <label class="form-label tittle-neo">Aditional Cost</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Rp.</span>
-                                                <input type="text" class="form-control form-control-alt" name="add_cost"
-                                                    id="add_cost"
-                                                    placeholder="Additional Cost" value="{{ $data->add_cost }}" disabled>
+                                            <label class="form-label tittle-neo">Presensi</label>
+                                            <div class='embed-responsive'>
+                                                <img id="zoom"
+                                                    src="{{ route('admin.submission.salary-submission.get-presence', ['id' => $data->id]) }}"
+                                                    data-zoom-image="{{ route('admin.submission.salary-submission.get-presence', ['id' => $data->id]) }}" />
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane pull-x fs-sm" id="nav-documentation" role="tabpanel"
+                                aria-labelledby="nav-documentation-tab">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-12">
+                                        <div class="col-12 col-md-12">
+                                            <label class="form-label tittle-neo">Documentation</label>
+                                            <div class='embed-responsive'>
+                                                <img id="zoom1"
+                                                    src="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}"
+                                                    data-zoom-image="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}" />
+
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </div>
-                    </div>
-    
-                </div>
+                            <div class="tab-pane pull-x fs-sm" id="nav-proof" role="tabpanel"
+                                aria-labelledby="nav-proof-tab">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-12">
+                                        <div class="col-12 col-md-12">
+                                            <label class="form-label tittle-neo">Aditional Cost</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp.</span>
+                                                <input type="number" class="form-control form-control-alt" name="add_cost" id="add_cost"
+                                                    placeholder="Additional Cost" value="{{ $data->add_cost }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <label class="form-label tittle-neo">Bukti</label>
+                                            <div class='embed-responsive'>
+                                                <img id="zoom2"
+                                                    src="{{ route('admin.submission.salary-submission.get-proof', ['id' => $data->id]) }}"
+                                                    data-zoom-image="{{ route('admin.submission.salary-submission.get-proof', ['id' => $data->id]) }}" />
 
-            </div>
-            <div class="col-xl-12 order-xl-0 tab-pane fade show" id="nav-tentorInformation" role="tabpanel"
-                aria-labelledby="nav-tentorInformation-tab">
-                <!-- Dynamic Table Full -->
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Documentation</label>
-                        </div>
-                        <div class="row g-3 col-12">
-                            <div class="col-12 col-md-12 py-1">
-                                <label class="form-label tittle-neo">Documentation</label>
-                                <div class='embed-responsive'>
-                                    <img id="zoom" src="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}" data-zoom-image="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}"/>
-                                    
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-12 order-xl-0 tab-pane fade show" id="nav-certificate" role="tabpanel"
-                aria-labelledby="nav-certificate-tab">
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Presensi</label>
-                        </div>
-                        <div class="row g-3 col-12">
-                            <div class="col-12 col-md-12 py-1">
-                                <label class="form-label tittle-neo">Presensi</label>
-                                <div class='embed-responsive'>
-                                    <img id="zoom" src="{{ route('admin.submission.salary-submission.get-presence', ['id' => $data->id]) }}" data-zoom-image="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}"/>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-12 order-xl-0 tab-pane fade show" id="nav-transcripts" role="tabpanel"
-                aria-labelledby="nav-transcripts-tab">
-                <!-- Dynamic Table Full -->
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Bukti</label>
-                        </div>
-                        <div class="row g-3 col-12">
-                            <div class="col-12 col-md-12 py-1">
-                                <label class="form-label tittle-neo">Bukti</label>
-                                <div class='embed-responsive'>
-                                    <img id="zoom" src="{{ route('admin.submission.salary-submission.get-proof', ['id' => $data->id]) }}" data-zoom-image="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}"/>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @if ($data->status == 0)
+        </div>
+        @if ($data->status == 0)
             <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
                 <div class="mb-4 col-12 text-center">
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-3 mb-3">
-                            <button type="button" id="declineButton"
-                                class="btn btn-sm btn-danger btn-block">
+                            <button type="button" id="declineButton" class="btn btn-sm btn-danger btn-block">
                                 Decline
                             </button>
                         </div>
                         <div class="col-12 col-sm-3">
-                            <button type="button" id="approveButton"
-                                class="btn btn-sm btn-neo btn-block">
+                            <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block">
                                 Approve
                             </button>
                         </div>
@@ -229,8 +197,7 @@
                 <div class="mb-4 col-12 text-center">
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-3 mb-3">
-                            <button type="button" id="declinedButton"
-                                class="btn btn-sm btn-danger btn-block" disabled>
+                            <button type="button" id="declinedButton" class="btn btn-sm btn-danger btn-block" disabled>
                                 Declined
                             </button>
                         </div>
@@ -242,8 +209,7 @@
                 <div class="mb-4 col-12 text-center">
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-3">
-                            <button type="button" id="approveButton"
-                                class="btn btn-sm btn-neo btn-block" disabled>
+                            <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block" disabled>
                                 Approved
                             </button>
                         </div>
@@ -251,17 +217,9 @@
                 </div>
             </div>
         @endif
-        </div>
-        <!-- END Dynamic Table Full -->
     </div>
     <!-- END Page Content -->
-    <script src="{{ asset('jquery.elevateZoom-3.0.8.min.js') }}"></script>
     <script>
-        $("#zoom").elevateZoom({
-            zoomType: "lens",
-            lensShape: "round",
-            lensSize: 100
-        });
 
         $("#declineButton").click(function(event) {
             event.preventDefault();

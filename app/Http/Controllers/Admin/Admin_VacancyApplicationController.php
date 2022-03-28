@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Models\Student;
 use App\Models\admin\Vacancy;
 use App\Models\Tentor;
+use App\Models\admin\TutoredStudents;
 use App\Models\tentor\TentorApplication;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -42,10 +43,20 @@ class Admin_VacancyApplicationController extends Controller
         $tentorDetail = Tentor::find($data->tentor_id);
         $vacancyDetail = Vacancy::find($data->vacancy_id);
         $studentDetail = Student::find($vacancyDetail->student_id);
-        
-        return view('admin.pages.vacancy-application.applicant-detail', ['data' => $data,'tentorData' => $tentorDetail,'vacancyData' => $vacancyDetail,'studentData' => $studentDetail]);
+        $interviewStatus = $this->interviewCheck($data->tentor_id);
+        return view('admin.pages.vacancy-application.applicant-detail', ['data' => $data,'tentorData' => $tentorDetail,'vacancyData' => $vacancyDetail,'studentData' => $studentDetail,'interviewStatus'=>$interviewStatus]);
     }
-
+    private function interviewCheck($id){
+        $datacheck = TentorApplication::where('tentor_id','=',$id)
+        ->where('status','=','100')
+        ->orWhere('status','=','50')
+        ->get(['status']);;
+        if(count($datacheck) != 0){
+            return "1";
+        }else{
+            return "0";
+        }
+    }
     public function decline(Request $request)
     {
         $id = $request->id; 
@@ -58,7 +69,32 @@ class Admin_VacancyApplicationController extends Controller
         $response="Application Status Successfully Updated ";
         return $response;
     }
+    public function accept(Request $request)
+    {
+        $id = $request->id; 
+        $appData = TentorApplication::find($id);
+        if($appData){
+            $appData->status = 100;
+            $appData->save();
+        }
+        $tentor = Tentor::find($appData->tentor_id);
 
+        $vacancy = Vacancy::find($appData->vacancy_id);
+        TutoredStudents::create([
+            'tentor_id'=>$appData->tentor_id,
+            'student_id'=>$vacancy->student_id,
+            'subject'=>$vacancy->subject,
+            'status' => 0,
+        ]);
+        Vacancy::where('id', $appData->vacancy_id)->delete();
+        // TentorApplication::where('vacancy_id', $appData->vacancy_id)->delete();
+        if($tentor){
+            $tentor->account_status=100;
+            $tentor->save();
+        }
+        $response="Application Status Successfully Updated";
+        return $response;
+    }
     public function inviteInterview(Request $request)
     {
         $id = $request->id; 

@@ -8,6 +8,7 @@
 <body>
 <header class="clearfix">
   <div id="logo"> <img src="{{ public_path("images/logo-ne.png") }}"> </div>
+  <div id="logo"> <img src="{{ public_path("storage/invoice.pdf") }}"> </div>
   <div id="company">
     <h2 class="company-name">Neo Edukasi</h2>
     <div>Klodran RT 02/V, Colomadu, Karanganyar</div>

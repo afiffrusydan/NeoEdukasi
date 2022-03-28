@@ -39,6 +39,8 @@ class Tentor extends Authenticatable implements MustVerifyEmail
         'branch_id',
         'token',
         'account_status',
+        'status',
+        'description',
         'account_verif_status',
         'email_verified_at',
     ];

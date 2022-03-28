@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Branch;
+use App\Models\ClassModel;
 use App\Models\Tentor;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -31,7 +32,8 @@ class Admin_StudentController extends Controller
     public function addnew()
     {
         $branchs = Branch::all();
-        return view('admin.pages.students.newstudent',  ['branchs' => $branchs]);
+        $class = ClassModel::all();
+        return view('admin.pages.students.newstudent',  ['branchs' => $branchs,'class' => $class]);
     }
 
     public function submit(Request $request)
@@ -80,8 +82,8 @@ class Admin_StudentController extends Controller
             'phone_number' => $phone_number,
             'parent_phone_number' => $phone_number,
             'religion' => $request->religion,
-            'school' => $request->class,
-            'class' => $request->school,
+            'school' => $request->school,
+            'class_id' => $request->class,
             'curriculum' => $request->curriculum,
             'branch_id' => $request->branch,
             'token'=>$token,
@@ -95,8 +97,9 @@ class Admin_StudentController extends Controller
     public function show($id)
     {
         $data = Student::join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
+        ->join('class','class.id','=','students.class_id')
         ->where('students.id','=', $id)
-        ->get([ 'students.*','branchs.branch_name'])->first();;
+        ->get([ 'students.*','branchs.branch_name','class.class'])->first();;
 
         $branchs = Branch::all();
         

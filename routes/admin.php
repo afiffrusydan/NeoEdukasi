@@ -44,13 +44,18 @@ Route::group([
   Route::group([
     'middleware' => ['role:administrator|academic'],
 ], function () {
-      Route::group(['prefix' => '/tentor', 'as' => 'admin.tentor-verification'], function () {
-        Route::get('tentor-verification', 'Academic\Admin_TentorController@tentor_verification')->name('.index');
-        Route::get('tentor-verification-detail/{id}', 'Academic\Admin_TentorController@tentor_verification_detail')->name('.detail');
-        Route::get('get-ktp/{id}', 'Academic\Admin_TentorController@tentor_ktp_get')->name('.get-ktp');
-        Route::get('get-ijazah/{id}', 'Academic\Admin_TentorController@tentor_ijazah_get')->name('.get-ijazah');
-        Route::get('get-transkip/{id}', 'Academic\Admin_TentorController@tentor_transkip_get')->name('.get-transkip');
-        Route::post('submit', 'Academic\Admin_TentorController@verificationSubmit')->name('.verification-submit');
+      Route::group(['prefix' => '/tentor', 'as' => 'admin.tentor'], function () {
+        Route::get('index', 'Academic\Admin_TentorController@tentor_verification')->name('.index');
+        Route::get('detail/{id}', 'Academic\Admin_TentorController@detail')->name('.detail');
+        Route::post('/update-status', 'Academic\Admin_TentorController@updateStatus')->name('.status_update');
+    });
+      Route::group(['prefix' => '/tentor/verification', 'as' => 'admin.tentor-verification'], function () {
+        Route::get('index', 'Academic\Admin_TentorVerificationController@tentor_verification')->name('.index');
+        Route::get('detail/{id}', 'Academic\Admin_TentorVerificationController@tentor_verification_detail')->name('.detail');
+        Route::get('get-ktp/{id}', 'Academic\Admin_TentorVerificationController@tentor_ktp_get')->name('.get-ktp');
+        Route::get('get-ijazah/{id}', 'Academic\Admin_TentorVerificationController@tentor_ijazah_get')->name('.get-ijazah');
+        Route::get('get-transkip/{id}', 'Academic\Admin_TentorVerificationController@tentor_transkip_get')->name('.get-transkip');
+        Route::post('submit', 'Academic\Admin_TentorVerificationController@verificationSubmit')->name('.verification-submit');
     });
   });
 
@@ -73,6 +78,7 @@ Route::group([
         Route::get('{id}/view/detail/', 'Admin_VacancyApplicationController@detail')->name('.detail');
         Route::post('/view/detail/decline', 'Admin_VacancyApplicationController@decline')->name('.decline');
         Route::post('/view/detail/invite', 'Admin_VacancyApplicationController@inviteInterview')->name('.invite');
+        Route::post('/view/detail/accept', 'Admin_VacancyApplicationController@accept')->name('.accept');
     });
     Route::group(['prefix' => '/interview', 'as' => '.interview'], function () {
       Route::get('index', 'Admin_VacancyInterview@index')->name('.index');

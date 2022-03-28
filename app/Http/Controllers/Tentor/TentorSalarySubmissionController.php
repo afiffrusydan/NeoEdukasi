@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\admin\TutoredStudents;
+use App\Models\ClassModel;
+use App\Models\RatesModel;
 use App\Models\tentor\StudentProgress;
 use App\Models\tentor\FileVerification;
 use App\Models\tentor\SalarySubmission;
@@ -113,7 +115,8 @@ class TentorSalarySubmissionController extends Controller
             }else{
                 $proofbasepath = "";
             }
-            
+            $add_cost = str_replace(array('Rp.','.'), "", $request->add_cost);
+            $total = str_replace(array('Rp.','.'), "", $request->total_salary);
             SalarySubmission::create([
                 'tentored_student_id' => $request->tentored_id,
                 'month' => $request->month,
@@ -122,7 +125,8 @@ class TentorSalarySubmissionController extends Controller
                 'documentation' => $documentationbasepath,
                 'attendance' => $attendance_destinationPath.'/'.$storageNameAtt,
                 'proof' => $proofbasepath,
-                'add_cost' => $request->add_cost,
+                'add_cost' => $add_cost,
+                'total' => $total,
                 'status' => 0,
             ]);
         Alert::success('Success', 'Your submission successfully submitted!');
@@ -251,7 +255,29 @@ class TentorSalarySubmissionController extends Controller
             //     'add_cost' => $request->add_cost,
             //     'status' => 0,
             // ]);
-         
-       
+     }
+
+     public function check(Request $request)
+     {
+         $tentoredid = $request->id;
+         $studentdata = TutoredStudents::join('students','students.id','=','tutored-students.student_id')
+         ->where('tutored-students.id','=',$request->id)
+         ->get(['students.branch_id','students.class_id'])->first();
+        $class = $studentdata->class_id;
+        $branch = $studentdata->branch_id;
+        $response = array();
+        $pricedata = ClassModel::join('rates','rates.category','=','class.category')
+        ->where('class.id','=',$class)
+        ->where('rates.branch_id','=',$branch)
+        ->get(['rates.*'])->first();
+        $add_cost = intval(str_replace(".", "", $request->add_cost));
+        $total = ($pricedata->price*$request->meet_hours)+($pricedata->add_price*intval($request->extra_meet_hours/30))+$add_cost;
+         //$response = $total;
+         $response = array(
+            "total"=>$total,
+            "price"=>$pricedata->price,
+            "add_price"=>$pricedata->add_price,
+        );
+         return $response;
      }
 }

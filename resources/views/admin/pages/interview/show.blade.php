@@ -80,8 +80,18 @@
                 <div class="block">
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Vacancy Detail</label>
+                        <div class="row">
+                            <div class="col-xl-12 order-xl-0">
+                                <div class="col-12-line1">
+                                    @if($interviewStatus == 1)
+                                    <div class="items-push float-lg-right">
+                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
+                                    </div>
+                                    @endif
+                                    <label class="form-label tittle">Vacancy Detail</label>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="row g-3 col-12 ">
                             <div class="col-12">
@@ -127,8 +137,19 @@
                 <div class="block">
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Tentor Detail</label>
+                        
+                        <div class="row">
+                            <div class="col-xl-12 order-xl-0">
+                                <div class="col-12-line1">
+                                    @if($interviewStatus == 1)
+                                    <div class="items-push float-lg-right">
+                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
+                                    </div>
+                                    @endif
+                                    <label class="form-label tittle">Tentor Detail</label>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="row g-3 col-12">
                             <div class="col-12 col-md-6 py-1">
@@ -198,8 +219,17 @@
                 <div class="block">
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Tentors Certificate</label>
+                        <div class="row">
+                            <div class="col-xl-12 order-xl-0">
+                                <div class="col-12-line1">
+                                    @if($interviewStatus == 1)
+                                    <div class="items-push float-lg-right">
+                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
+                                    </div>
+                                    @endif
+                                    <label class="form-label tittle">Tentors Certificate</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="row g-3 col-12">
                             <div class="col-12 col-md-12 py-1">
@@ -221,8 +251,17 @@
                 <div class="block">
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Tentors Transcripts</label>
+                        <div class="row">
+                            <div class="col-xl-12 order-xl-0">
+                                <div class="col-12-line1">
+                                    @if($interviewStatus == 1)
+                                    <div class="items-push float-lg-right">
+                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
+                                    </div>
+                                    @endif
+                                    <label class="form-label tittle">Tentors Transcripts</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="row g-3 col-12">
                             <div class="col-12 col-md-12 py-1">

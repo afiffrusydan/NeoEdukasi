@@ -36,8 +36,19 @@
                 <div class="block">
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Vacancy Detail</label>
+
+                        <div class="row">
+                            <div class="col-xl-12 order-xl-0">
+                                <div class="col-12-line1">
+                                    @if($interviewStatus == 1)
+                                    <div class="items-push float-sm-right">
+                                        <i class="fa fa-check-circle text-info" aria-hidden="true" style="font-size: 20px;"></i>
+                                    </div>
+                                    @endif
+                                    <label class="form-label tittle">Vacancy Detail</label>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="row g-3 col-12 ">
                             <div class="col-12">
@@ -52,8 +63,8 @@
                             </div>
                             <div class="col-6">
                                 <label class="form-label tittle-neo">Class</label>
-                                <input type="text" name="first_name" class="form-control" value="{{ $studentData->class }}"
-                                    disabled>
+                                <input type="text" name="first_name" class="form-control"
+                                    value="{{ $studentData->class }}" disabled>
                             </div>
                             <div class="col-6">
                                 <label class="form-label tittle-neo">Curriculum</label>
@@ -67,10 +78,10 @@
                             </div>
                             <div class="col-6 py-1">
                                 <label class="form-label tittle-neo">Criteria</label>
-                                    @foreach (explode('~', $vacancyData->criteria) as $info)
+                                @foreach (explode('~', $vacancyData->criteria) as $info)
                                     <input type="text" name="first_name" class="form-control mb-2"
-                                    value="{{ $info }}" disabled>
-                                    @endforeach
+                                        value="{{ $info }}" disabled>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -96,13 +107,13 @@
                             </div>
                             <div class="col-6 py-1 d-flex flex-column flex-1">
                                 <label class="form-label tittle-neo">Address</label>
-                                    <input type="text" class="form-control body-block-3"
-                                    value="{{ $tentorData->address }}" disabled>
+                                <input type="text" class="form-control body-block-3" value="{{ $tentorData->address }}"
+                                    disabled>
                             </div>
                             <div class="col-6 py-1">
                                 <label class="form-label tittle-neo">Gender</label>
-                                <input type="text" class="form-control body-block-3"
-                                    value="{{ $tentorData->gender }}" disabled>
+                                <input type="text" class="form-control body-block-3" value="{{ $tentorData->gender }}"
+                                    disabled>
                             </div>
                             <div class="col-6 py-1">
                                 <label class="form-label tittle-neo">Job Status</label>
@@ -113,7 +124,7 @@
                             <div class="col-6 py-1">
                                 <label class="form-label tittle-neo">Last Education</label>
                                 <input type="text" class="form-control body-block-3"
-                                value=" {{ ucwords($tentorData->last_education) }}" disabled>
+                                    value=" {{ ucwords($tentorData->last_education) }}" disabled>
                             </div>
                         </div>
                         @if ($data->status == -100)
@@ -134,7 +145,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($data->status == 10 OR $data->status == 0)
+                        @elseif ($data->status == 10 or $data->status == 0 or $data->status == 50)
                             <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
                                 <div class="mb-4 col-12 text-center">
                                     <div class="row d-flex justify-content-center">
@@ -158,7 +169,12 @@
                                             </button>
                                         </div>
                                         <div class="col-12 col-sm-3">
-                                            <button type="button" id="inviteButton" class="btn btn-sm btn-neo btn-block">
+                                            <button type="button" id="acceptButton" class="btn btn-sm btn-neo btn-block">
+                                                Accept
+                                            </button>
+                                        </div>
+                                        <div class="col-12 col-sm-3">
+                                            <button type="button" id="inviteButton" class="btn btn-sm btn-info btn-block">
                                                 Invite to Interview
                                             </button>
                                         </div>
@@ -204,7 +220,9 @@
                                 timer: 3000
                             });
                             setTimeout(function() {
-                                window.location.href = ("{{ route('admin.vacancy.vacancy-application.show', ['id'=>$vacancyData->id]) }}");
+                                window.location.href = (
+                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
+                                );
                             }, 1000);
                         },
 
@@ -251,7 +269,58 @@
                                 timer: 3000
                             });
                             setTimeout(function() {
-                                window.location.href = ("{{ route('admin.vacancy.vacancy-application.show', ['id'=>$vacancyData->id]) }}");
+                                window.location.href = (
+                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
+                                );
+                            }, 1000);
+                        },
+
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+        $("#acceptButton").click(function(event) {
+            event.preventDefault();
+            let id = "{{ $data->id }}";
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: "Accept applicant?",
+                icon: 'info',
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Yes, I want',
+                confirmButtonColor: "#6fa306"
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: "",
+                        text: "Please wait",
+                        imageUrl: "{{ asset('storage/tentors/tentor-photo-profile/30.jpg') }}",
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                    $.ajax({
+                        url: "{{ route('admin.vacancy.vacancy-application.accept') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: data,
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
+                                );
                             }, 1000);
                         },
 

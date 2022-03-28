@@ -57,10 +57,22 @@ class Admin_VacancyInterview extends Controller
         ->join('branchs','branchs.branch_id','=','tentors.branch_id')
         ->where('tentors.id','=', $data->tentor_id)
         ->get([ 'tentors.*', 'banks.bank_name','branchs.branch_name'])->first();;
-        
+        $interviewStatus = $this->interviewCheck($data->tentor_id);
         $vacancyDetail = Vacancy::find($data->vacancy_id);
         $studentDetail = Student::find($vacancyDetail->student_id);
-        return view('admin.pages.interview.show', ['data' => $data,'tentorData' => $tentorDetail,'vacancyData' => $vacancyDetail,'studentData' => $studentDetail]);
+        return view('admin.pages.interview.show', ['data' => $data,'tentorData' => $tentorDetail,'vacancyData' => $vacancyDetail,'studentData' => $studentDetail,'interviewStatus'=>$interviewStatus]);
+    }
+
+    private function interviewCheck($id){
+        $datacheck = TentorApplication::where('tentor_id','=',$id)
+        ->where('status','=','100')
+        ->orWhere('status','=','50')
+        ->get(['status']);;
+        if(count($datacheck) != 0){
+            return "1";
+        }else{
+            return "0";
+        }
     }
 
     public function tentor_ijazah_get($id)
@@ -118,7 +130,7 @@ class Admin_VacancyInterview extends Controller
             'status' => 0,
         ]);
         Vacancy::where('id', $appData->vacancy_id)->delete();
-        TentorApplication::where('vacancy_id', $appData->vacancy_id)->delete();
+        // TentorApplication::where('vacancy_id', $appData->vacancy_id)->delete();
         if($tentor){
             $tentor->account_status=100;
             $tentor->save();
@@ -126,6 +138,8 @@ class Admin_VacancyInterview extends Controller
         $response="Application Status Successfully Updated";
         return $response;
     }
+
+
     public function shortlist(Request $request)
     {
         $id = $request->id; 
