@@ -81,13 +81,13 @@ class Admin_StudentReportController extends Controller
         $pdf = PDF::loadView('template.student-progress', $data)->download('medium.pdf');
 
         $pdf1 = PDF::loadView('template.student-progress', $data);
-        Storage::put('public/invoice.pdf', $pdf1->output());
+        Storage::put('public/student-report.pdf', $pdf1->output());
 
         $key='866cb2bb28d0f410fedb3893178aa25fafc211e6b8456541'; //this is demo key please change with your own key
         $url='http://116.203.191.58/api/send_file_url';
-        $file_path = storage_path('public/invoice.pdf');
+        $file_path = storage_path('public/student-report.pdf');
         $data = array(
-          "phone_no"  => $studentProgress->parent_phone_number,
+          "phone_no"  => '+'.$studentProgress->parent_phone_number,
           "key"       => $key,
           "url"       => $file_path
         );
