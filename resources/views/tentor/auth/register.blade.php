@@ -90,7 +90,7 @@
                                             <legend>Email</legend>
                                             <input type="text" id="email" class="form-control"
                                                 pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="email@email.com"
-                                                @error('email') is-invalid @enderror" name="email"
+                                                @error('email') is-invalid @enderror name="email"
                                                 value="{{ old('email') }}" required>
                                         </fieldset>
                                         @error('email')
@@ -108,7 +108,7 @@
                                             <legend>Phone Number</legend>
                                             <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
                                                 class="form-control" id="phone_number" @error('phone_number')
-                                                is-invalid @enderror" name="phone_number"
+                                                is-invalid @enderror name="phone_number"
                                                 value="{{ old('phone_number') }}" placeholder="Phone Number"
                                                 required>
                                         </fieldset>
@@ -127,7 +127,7 @@
                                         <fieldset>
                                             <legend>Password</legend>
                                             <input type="password" class="form-control" id="password"
-                                                @error('password') is-invalid @enderror" name="password"
+                                                @error('password') is-invalid @enderror name="password"
                                                 value="{{ old('password') }}" placeholder="password" required>
                                         </fieldset>
                                         @error('password')

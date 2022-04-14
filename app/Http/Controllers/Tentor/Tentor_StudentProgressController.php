@@ -34,6 +34,7 @@ class Tentor_StudentProgressController extends Controller
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
         ->select('students_progress.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
         ->get()->sortByDesc("month");;
+
         return view('tentor.pages.student-progress.index', ['stdProgress' => $studentProgress]);
     }
 
@@ -76,7 +77,7 @@ class Tentor_StudentProgressController extends Controller
         ]);
 
         
-        Alert::success('Success', 'Your job application successfully submitted!');
+        Alert::success('Success', 'Your report successfully submitted');
         return redirect()->route('tentor.progress-report.index');
     }
 
@@ -89,7 +90,7 @@ class Tentor_StudentProgressController extends Controller
         ->get()->first();
         $strmonth = strtotime($timedata->month); 
         $created_date = date("Y-m",$strmonth);
-        $created_1month = $created_date.'-01';
+        $created_1month = $created_date.'-13';
         $created_month = strtotime($created_1month);
 
         $response = array();
@@ -102,8 +103,8 @@ class Tentor_StudentProgressController extends Controller
             $checkData = StudentProgress::where('tentored_student_id','=', $id)
                 ->where('month','=',$checkdate)
                 ->get()->first();
-                $date=date('Y-m');
-                $date1 = $date.'-01';
+                $date= date('Y-m-d');
+                $date1 = $date;
                 $str = strtotime($date1);
                 if(!$checkData AND $month <= $str){
                     $response[] = array(

@@ -1,4 +1,4 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>Add Salary Sumbission</title>
 @extends('tentor.layouts.app')
 
 @section('content')
@@ -13,10 +13,10 @@
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                Student
+                                <a class="link-fx" href="">Salary Sumbission</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">Add Progress Report</a>
+                                <a class="link-fx" href="">Add New</a>
                             </li>
                         </ol>
                     </nav>

@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-12 col-md-12">
                             <label class="form-label tittle-neo">Total</label>
-                            <input type="number" class="form-control form-control-alt" name="meet_hours" id="meet_hours"
+                            <input type="number" class="form-control form-control-alt" name="total" id="total"
                                 value="{{ $data->total }}" disabled>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                         <div class="col-12 col-md-12">
                                             <label class="form-label tittle-neo">Jumlah Jam Pertemuan</label>
                                             <input type="number" class="form-control form-control-alt" name="meet_hours"
-                                                id="meet_hours" value="{{ $data->meet_hours }}" >
+                                                id="meet_hours" value="{{ $data->meet_hours }}">
                                         </div>
                                         <div class="col-12 col-md-12">
                                             <label class="form-label tittle-neo">Tambahan Jam Pertemuan (Menit)</label>
@@ -154,8 +154,9 @@
                                             <label class="form-label tittle-neo">Aditional Cost</label>
                                             <div class="input-group">
                                                 <span class="input-group-text">Rp.</span>
-                                                <input type="number" class="form-control form-control-alt" name="add_cost" id="add_cost"
-                                                    placeholder="Additional Cost" value="{{ $data->add_cost }}">
+                                                <input type="number" class="form-control form-control-alt" name="add_cost"
+                                                    id="add_cost" placeholder="Additional Cost"
+                                                    value="{{ $data->add_cost }}">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-12">
@@ -173,54 +174,167 @@
                         </div>
                     </div>
                 </div>
+                @if ($data->status == 0)
+                    <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
+                        <div class="mb-4 col-12 text-center">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-12 col-sm-2 mb-3">
+                                    <button type="button" id="declineButton" class="btn btn-sm btn-danger btn-block">
+                                        Decline
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-2">
+                                    <button type="button" id="updateButton" class="btn btn-sm btn-info btn-block">
+                                        Update
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-2">
+                                    <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block">
+                                        Approve
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif ($data->status == -10)
+                    <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
+                        <div class="mb-4 col-12 text-center">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-12 col-sm-2 mb-3">
+                                    <button type="button" id="declinedButton" class="btn btn-sm btn-danger btn-block"
+                                        disabled>
+                                        Declined
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
+                        <div class="mb-4 col-12 text-center">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-12 col-sm-2">
+                                    <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block" disabled>
+                                        Approved
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
-        @if ($data->status == 0)
-            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                <div class="mb-4 col-12 text-center">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-sm-3 mb-3">
-                            <button type="button" id="declineButton" class="btn btn-sm btn-danger btn-block">
-                                Decline
-                            </button>
+        <div class="modal fade" id="modal-review" tabindex="-1" aria-labelledby="modal-block-vcenter" aria-modal="true"
+            role="dialog">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="block block-rounded block-transparent mb-0">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Submission Detail</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-3">
-                            <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block">
-                                Approve
-                            </button>
+                        <div class="block-content fs-sm">
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label tittle-neo">Gaji Pertemuan</label>
+                                    <input type="text" class="form-control form-control" id="modal-meet_hours" readonly>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label tittle-neo">Gaji Waktu Tambahan</label>
+                                    <input type="text" class="form-control form-control" id="modal-extra_meet_hours"
+                                        readonly>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <label class="form-label tittle-neo">Additional Cost</label>
+                                    <input type="text" class="form-control form-control" id="modal-add_cost" disabled>
+                                </div>
+                                <div class="col-12 col-md-12 py-2">
+                                    <label class="form-label tittle-neo">Total</label>
+                                    <input type="text" class="form-control" id="modal-total" name="total_salary"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full text-end bg-body text-right">
+                            <button type="button" class="btn btn-sm btn-alt-secondary me-1"
+                                data-dismiss="modal">Close</button>
+                            <button type="button" id="updateSubmitButton" class="btn btn-sm btn-info"
+                               >Update</button>
                         </div>
                     </div>
                 </div>
             </div>
-        @elseif ($data->status == -10)
-            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                <div class="mb-4 col-12 text-center">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-sm-3 mb-3">
-                            <button type="button" id="declinedButton" class="btn btn-sm btn-danger btn-block" disabled>
-                                Declined
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @else
-            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                <div class="mb-4 col-12 text-center">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-sm-3">
-                            <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block" disabled>
-                                Approved
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+        </div>
     </div>
     <!-- END Page Content -->
     <script>
+        $("#updateSubmitButton").click(function(event) {
+            event.preventDefault();
+            let id = "{{ $data->id }}";
+            let meet_hours = document.getElementById("meet_hours").value;
+            let add_cost = $("#add_cost").val();
+            let total = document.getElementById("modal-total").value;
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: "You still can change this record",
+                icon: 'info',
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                confirmButtonColor: "#70b9eb"
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ route('admin.submission.salary-submission.update') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            meet_hours: meet_hours,
+                            add_cost: add_cost,
+                            total: total,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: data,
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
+                        },
 
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+        $("#updateButton").click(function(event) {
+            event.preventDefault();
+            let meet_hours = document.getElementById("meet_hours").value;
+            let extra_meet_hours = "{{ intval($data->extra_meet_hours / 30) }}";
+            let add_cost = $("#add_cost").val();
+            let price = '{{ $rates->price }}';
+            let add_price = '{{ $rates->add_price }}';
+            document.getElementById("modal-add_cost").value = add_cost;
+            document.getElementById("modal-meet_hours").value = meet_hours + " x " + price;
+            document.getElementById("modal-extra_meet_hours").value = extra_meet_hours + " x " + add_price;
+            let total = meet_hours * price + extra_meet_hours * add_price + add_cost * 1;
+            document.getElementById("modal-total").value = total;
+            $("#modal-review").modal('show');
+        });
         $("#declineButton").click(function(event) {
             event.preventDefault();
             let id = "{{ $data->id }}";

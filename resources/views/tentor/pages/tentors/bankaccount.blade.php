@@ -86,9 +86,9 @@
                                 </div>
                                 <div class="mx-0 mx-md-12 mx-xl-12">
                                     <div class="mb-3 text-center">
-                                        <button type="button" class="btn btn-md btn-alt-secondary"
+                                        <button type="button" class="btn btn-sm btn-alt-secondary btn-block"
                                             title="Check Bank Account">
-                                            <a id="check" href="\#" class="btn btn-md btn-neo pull-right">Check</a>
+                                            <a id="check" href="\#" class="btn btn-sm btn-neo pull-right btn-block">Check</a>
                                         </button>
                                     </div>
                                 </div>
@@ -116,6 +116,13 @@
             event.preventDefault();
             let id = $("#select-bank").val();
             let number = $("#account-number").val();
+            Swal.fire({
+                        title: "",
+                        text: "Please wait",
+                        imageUrl: "{{ asset('storage/tentors/tentor-photo-profile/30.jpg') }}",
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
             $.ajax({
                 url: "{{ route('tentor.checkbank') }}",
                 type: "POST",
@@ -126,6 +133,7 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
+                    console.log(response);
                     if (response.status == "INVALID_ACCOUNT_NUMBER") {
                         Swal.fire({
                             title: 'Bank Account Detail',
@@ -153,6 +161,7 @@
                             icon: 'success',
                             showCloseButton: true,
                             showCancelButton: true,
+                            confirmButtonColor: "#6fa306",
                             confirmButtonText: 'Save'
                         }).then((result) => {
                             if (result.value) {

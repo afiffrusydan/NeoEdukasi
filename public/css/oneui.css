@@ -2640,7 +2640,19 @@ fieldset:disabled a.btn {
     border-color: #6fa306;
 }
 
+.btn-profile {
+    color: #fff;
+    background-color: #6fa306;
+    border-color: #6fa306;
+}
+
 .btn-neo:hover {
+    color: #fff;
+    background-color: #484d20;
+    border-color: #484d20;
+}
+
+.btn-profile:hover {
     color: #fff;
     background-color: #484d20;
     border-color: #484d20;
@@ -2656,6 +2668,14 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #373435;
     border-color: #373435;
+}
+
+.btn-profile.disabled,
+.btn-profile:disabled {
+    color: #ffffff;
+    background-color: #BCD1AA;
+    border-color: #BCD1AA;
+    opacity: 100%;
 }
 
 .btn-neo:not(:disabled):not(.disabled):active,
@@ -27317,8 +27337,19 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .tittle-vacancy {
     color: rgba(0, 0, 0, 0.65) !important;
-    ;
+
     margin-bottom: 0.5rem;
+}
+
+.tittle-vacancy-section-branch {
+    color: #066e6f;
+    font-size: 14px;
+}
+
+.tittle-vacancy-section-address {
+    color: rgba(0, 0, 0, 0.65) !important;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 /*
@@ -27379,8 +27410,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .border-right-neo {
     border-right: 0.15rem solid #6fa306 !important;
 }
+
 .border-left-neo {
-    border-left: 0.15rem solid #6fa306 !important;
+    border-left: 0.1rem solid #6fa306 !important;
 }
 
 .bootstrap-select .bs-caret {
@@ -27395,24 +27427,50 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     padding-bottom: 100%;
 }
 
-@media only screen and (max-width: 767px) 
-{
+@media only screen and (max-width: 767px) {
     .nav {
-        padding-left:2px;
-        padding-right:2px;
+        padding-left: 2px;
+        padding-right: 2px;
     }
+
     .nav li {
-        display:block !important;
-        width:100%;
-        margin:0px;
+        display: block !important;
+        width: 100%;
+        margin: 0px;
     }
+
     .nav li.active {
-        border-bottom:1px solid #ddd!important;
+        border-bottom: 1px solid #ddd !important;
         margin: 0px;
     }
 }
 
-#zoom{
-    width:100%;
+#zoom {
+    width: 100%;
     height: auto;
-   }
+}
+
+.vacancy-section {
+    border-bottom: 1px solid;
+    border-color: #c2c2c2;
+}
+
+.vacancy-section-data {
+    border-left: 1.5px solid;
+    border-color: #ede5c4;
+}
+
+.border-bottom {
+    border-bottom: 1px solid;
+    border-color: #c2c2c2;
+}
+.border-right-neo {
+    border-right: 1px solid;
+    border-color: #6fa306;
+}
+
+.bg-header-tentor {
+    background-repeat:no-repeat;
+    background-size:cover;
+    position: relative
+}

@@ -144,6 +144,6 @@ class Admin_TentorVerificationController extends Controller
             }
         }
         Alert::success('Success', 'Tentor account status successfully updated!');
-        return redirect()->route('admin.tentor.verification');
+        return redirect()->route('admin.tentor-verification.index');
     }
 }

@@ -33,7 +33,7 @@ class Admin_StudentReportController extends Controller
         ->join('students','tutored-students.student_id','=','students.id')
         ->where('students_progress.tentored_student_id','=', $id)
         ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
-        ->where('students_progress.status','=',10)
+        // ->where('students_progress.status','=',10)
         ->select('students_progress.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName')
         ->get();
         return view('admin.pages.student-report.student-progress.view', ['data' => $studentProgress]);
@@ -81,11 +81,11 @@ class Admin_StudentReportController extends Controller
         $pdf = PDF::loadView('template.student-progress', $data)->download('medium.pdf');
 
         $pdf1 = PDF::loadView('template.student-progress', $data);
-        Storage::put('public/student-report.pdf', $pdf1->output());
-
+        Storage::put('public/invoice.pdf', $pdf1->output());
+        //sdsad
         $key='866cb2bb28d0f410fedb3893178aa25fafc211e6b8456541'; //this is demo key please change with your own key
         $url='http://116.203.191.58/api/send_file_url';
-        $file_path = storage_path('public/student-report.pdf');
+        $file_path = 'https://ci6.googleusercontent.com/proxy/29KlYNooIzRna0Wb0cOjeEy1ZA3kN7WojLKIeXZ9y16G7Gpx5t1HdhkjEXjD5MhnZQG4GhnpMlihnh287l7IyIErNK6jCTy5lM3xHGTdj3jgih4Io-xfmpSYzVLYQP8=s0-d-e1-ft#https://drive.google.com/uc?export=view&id=1jSOqaxPriW48y4NLi-hT52yj_jpkSJTN';
         $data = array(
           "phone_no"  => '+'.$studentProgress->parent_phone_number,
           "key"       => $key,

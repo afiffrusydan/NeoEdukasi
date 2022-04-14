@@ -55,7 +55,7 @@ Route::group([
         Route::get('get-ktp/{id}', 'Academic\Admin_TentorVerificationController@tentor_ktp_get')->name('.get-ktp');
         Route::get('get-ijazah/{id}', 'Academic\Admin_TentorVerificationController@tentor_ijazah_get')->name('.get-ijazah');
         Route::get('get-transkip/{id}', 'Academic\Admin_TentorVerificationController@tentor_transkip_get')->name('.get-transkip');
-        Route::post('submit', 'Academic\Admin_TentorVerificationController@verificationSubmit')->name('.verification-submit');
+        Route::post('submit', 'Academic\Admin_TentorVerificationController@verificationSubmit')->name('.submit');
     });
   });
 
@@ -107,6 +107,7 @@ Route::group([
         Route::get('get-proof/{id}', 'Admin_SalarySubmissionController@get_proof')->name('.get-proof');
         Route::post('/show/approve', 'Admin_SalarySubmissionController@approve')->name('.approve');
         Route::post('/show/decline', 'Admin_SalarySubmissionController@decline')->name('.decline');
+        Route::post('/show/update', 'Admin_SalarySubmissionController@update')->name('.update');
       });
     });
 

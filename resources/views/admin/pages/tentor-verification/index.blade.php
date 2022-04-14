@@ -122,7 +122,7 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-alt-secondary" onclick=""
                                                 data-bs-toggle="tooltip" title="Detail">
-                                                <a href="{{ route('admin.tentor-verification.verification-detail', ['id' => $tentor->id]) }}"
+                                                <a href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}"
                                                     class="btn btn-sm btn-neo pull-right">Detail</a>
                                             </button>
                                         </div>

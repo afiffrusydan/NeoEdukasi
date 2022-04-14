@@ -30,6 +30,7 @@ class TentorSalarySubmissionController extends Controller
         ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
         ->join('branchs', 'tentors.branch_id', '=', 'branchs.branch_id')
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
+        ->where('salary-submission.status','!=', 10)
         ->select('salary-submission.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
         ->get()->sortByDesc("month");;
 
@@ -40,13 +41,13 @@ class TentorSalarySubmissionController extends Controller
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
         ->where('salary-submission.status','=', 10)
         ->select('salary-submission.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
-        ->get()->sortByDesc("month");;
+        ->orderBy('students.id')->orderBy('month')->get()->sortByDesc("month");;
 
         $leng = count($response);
         if($leng == 0 ){
-            return view('tentor.pages.salary-submission.index', ['stdProgress' => $studentProgress, 'history'=>$history]);
+            return view('tentor.pages.salary-submission.index2', ['stdProgress' => $studentProgress, 'history'=>$history]);
         }else{
-            return view('tentor.pages.salary-submission.index', ['stdProgress' => $studentProgress, 'history'=>$history])->withErrors(
+            return view('tentor.pages.salary-submission.index2', ['stdProgress' => $studentProgress, 'history'=>$history])->withErrors(
                 [
                     'errors' => 'You have a student progress report that has not been filled out, Please check it in the student progress report menu'
                 ]
@@ -167,7 +168,7 @@ class TentorSalarySubmissionController extends Controller
             ->get()->first();
             $strmonth = strtotime($timedata->month); 
             $created_date = date("Y-m",$strmonth);
-            $created_1month = $created_date.'-01';
+            $created_1month = $created_date.'-13';
             $created_month = strtotime($created_1month);
 
             
@@ -181,8 +182,8 @@ class TentorSalarySubmissionController extends Controller
             $checkData = StudentProgress::where('tentored_student_id','=', $check->id)
                 ->where('month','=',$checkdate)
                 ->get()->first();
-                $date=date('Y-m');
-                $date1 = $date.'-01';
+                $date=date('Y-m-d');
+                $date1 = $date;
                 $str = strtotime($date1);
                 if(!$checkData AND $month <= $str){
                     $response[] = array(
@@ -267,8 +268,8 @@ class TentorSalarySubmissionController extends Controller
         $branch = $studentdata->branch_id;
         $response = array();
         $pricedata = ClassModel::join('rates','rates.category','=','class.category')
-        ->where('class.id','=',$class)
-        ->where('rates.branch_id','=',$branch)
+        ->where('class.id','=',$studentdata->class_id)
+        ->where('rates.branch_id','=',$studentdata->branch_id)
         ->get(['rates.*'])->first();
         $add_cost = intval(str_replace(".", "", $request->add_cost));
         $total = ($pricedata->price*$request->meet_hours)+($pricedata->add_price*intval($request->extra_meet_hours/30))+$add_cost;

@@ -1,4 +1,4 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>Student Progress Report</title>
 @extends('tentor.layouts.app')
 
 @section('css_before')
@@ -24,7 +24,8 @@
 @section('content')
     <!-- Hero -->
     <div class="bg-body-light">
-        <div class="content content-full">
+        <div class="content content-full bg-header-tentor" style="
+        background-image:url({{ asset('images/Asset/header-tentors.png') }});">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
                     Student Progress List <small
@@ -32,9 +33,9 @@
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Student</li>
+                        <li class="breadcrumb-item">Student Progress Report</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Student Progress Report</a>
+                            <a class="link-fx" href="">Home</a>
                         </li>
                     </ol>
                 </nav>
@@ -43,21 +44,17 @@
     </div>
     <!-- END Hero -->
     <div class="content">
-        <div class="block block-rounded py-3 px-3 px-sm-0"">
-            
-        <div class="col-xl-12 order-xl-0 fade show active">
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <div class="row items-push float-end ">
-                            <div class="col-12 col-md-3 py-2">
-                                <a href="{{ route('tentor.progress-report.addnew') }}"
-                                    class="btn btn-sm btn-neo btn-block pull-right">Add New Report</a>
-                            </div>
-                        </div>
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12 ">
-                        <div class="table-responsive py-1">
-                            <table
+        <div class="block">
+            <div class="block-content block-content-full">
+                <div class="row items-push float-end ">
+                    <div class="col-12 col-md-3 py-2">
+                        <a href="{{ route('tentor.progress-report.addnew') }}"
+                            class="btn btn-sm btn-neo btn-block pull-right">Add New Report</a>
+                    </div>
+                </div>
+                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                    <div class="table-responsive py-1">
+                        <table
                             class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
                             <thead>
                                 <tr>
@@ -103,11 +100,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        </div>
-                        </div>
                     </div>
-                </div>
-        </div>
+            </div>
         </div>
         <!-- END Dynamic Table Full -->
     </div>

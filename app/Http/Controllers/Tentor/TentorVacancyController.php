@@ -13,17 +13,21 @@ class TentorVacancyController extends Controller
     public function index()
     {
         $vacancy = Vacancy::join('students', 'vacancy.student_id', '=', 'students.id')
+        ->join('branchs','branchs.branch_id','=','students.branch_id')
         ->where('vacancy.status','=','-10')
-        ->get(['vacancy.id as vacancyId', 'students.*', 'vacancy.*'])->sortByDesc("updated_at");
-        return view('tentor.pages.vacancy.index', ['vacancys' => $vacancy]);
+        ->where('students.branch_id','=',Auth::user()->branch_id)
+        ->orWhere('students.branch_id','=',11)
+        ->get(['vacancy.id as vacancyId', 'students.*', 'vacancy.*','branch_name'])->sortByDesc("updated_at");
+        return view('tentor.pages.vacancy.index2', ['vacancys' => $vacancy]);
     }
 
     public function view($id)
     {
         $vacancy = Vacancy::join('students', 'vacancy.student_id', '=', 'students.id')
         ->join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
+        ->join('class', 'students.class_id', '=', 'class.id')
         ->where('vacancy.id','=', $id)
-        ->get([ 'vacancy.created_at as vacancyCreateDate', 'vacancy.status as vacancyStatus','vacancy.id as vacancyId', 'vacancy.*', 'students.*','branchs.*'])->first();;
+        ->get([ 'vacancy.created_at as vacancyCreateDate', 'vacancy.status as vacancyStatus','vacancy.id as vacancyId', 'vacancy.*', 'students.*','branchs.*','class.class'])->first();;
         $userid=Auth::user()->id;
         $checkAplly = TentorApplication::where('tentor_id', '=', $userid)->where('vacancy_id', $id)->first();
         if($checkAplly){
