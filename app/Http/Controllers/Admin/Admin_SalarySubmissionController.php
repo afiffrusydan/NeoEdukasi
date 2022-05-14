@@ -65,6 +65,59 @@ class Admin_SalarySubmissionController extends Controller
 
         return view('admin.pages.salary-submission.view', ['data' => $studentProgress, 'rates'=>$ratesdata]);
     }
+    public function tentorlist()
+    {
+        $student = TutoredStudents::join('students', 'tutored-students.student_id','=','students.id')
+        ->join('tentors', 'tutored-students.tentor_id','=','tentors.id')
+        ->join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
+        ->get([ 'tutored-students.id','students.first_name as stdFirstName','students.last_name as stdLastName','tentors.first_name as tntrFirstName','tentors.last_name as tntrLastName','tutored-students.subject','tutored-students.status','branchs.branch_name'])->sortByDesc("id");;
+        return view('admin.pages.salary-submission.tentor-list', ['tentorlist'=>$student]);
+    }
+    
+    public function create()
+    {
+        $tentorList= Tentor::where('account_status','=',100)
+        ->get(['tentors.id','tentors.first_name','tentors.last_name']);;
+        return view('admin.pages.salary-submission.create', ['tentorList'=>$tentorList]);
+    }
+
+    public function getMonth(Request $request){
+        $id = $request->id;
+        $data = StudentProgress::select('month')
+        ->where('tentored_student_id','=',$id)
+        ->get();;
+        $response = array();
+        foreach($data as $data)
+        { 
+            $checkData=SalarySubmission::select('month')
+            ->where('tentored_student_id','=',$id)
+            ->where('month','=',$data->month)
+            ->get()->first();
+            if(!$checkData){
+                $response[] = array(
+                    "id"=>$data->month,
+                    "text"=>date('F Y', strtotime($data->month)), PHP_EOL
+                );
+            }
+        }    
+        return $response;
+     }
+
+    public function getStudent(Request $request){
+        $id = $request->id;
+        $data = Student::join('tutored-students', 'tutored-students.student_id', '=', 'students.id')
+        ->where('tutored-students.tentor_id','=',$id)
+        ->get(['tutored-students.id as stdId','students.*', 'tutored-students.subject'])->sortBy('month');
+        $response = array();
+        foreach($data as $data)
+        { 
+                $response[] = array(
+                    "id"=>$data->stdId,
+                    "text"=>$data->first_name.' '.$data->last_name.' ( '.$data->subject.' )', PHP_EOL
+                );
+        }    
+        return $response;
+     }
 
     public function approve(Request $request)
     {

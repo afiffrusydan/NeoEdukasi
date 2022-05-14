@@ -51,6 +51,12 @@
                 <!-- Dynamic Table Full -->
                 <div class="block">
                     <div class="block-content block-content-full">
+                        <div class="row items-push float-end ">
+                            <div class="col-12 col-md-3 py-2">
+                                <a href="{{ route('admin.submission.student-progress.create') }}"
+                                    class="btn btn-sm btn-neo btn-block pull-right">Add New Submission</a>
+                            </div>
+                        </div>
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                         <table class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
                             <thead>

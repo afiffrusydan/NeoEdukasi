@@ -132,13 +132,13 @@ $admin_role = Auth::user()->getRoleNames()->first();
                     <i class="nav-main-link-icon fa fa-file"></i>
                     <span class="nav-main-link-name">Submission</span>
                 </a>
-                {{-- <ul class="nav-main-submenu">
+                <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/submission/student-progress/*')) ? 'active' : '' }}" href="{{ route('admin.submission.student-progress.index') }}">
                             <span class="nav-main-link-name">Student Progress Report</span>
                         </a>
                     </li>
-                </ul> --}}
+                </ul>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/submission/salary-submission/*')) ? 'active' : '' }}" href="{{ route('admin.submission.salary-submission.index') }}">

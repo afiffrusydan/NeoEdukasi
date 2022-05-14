@@ -27,6 +27,7 @@ Route::group([
   Route::post('tentor_id_verify', 'TentorController@tentorsid_verify')->name('tentor_id_verify');
   Route::get('profile', 'TentorController@profile')->name('tentor.profile');
   Route::get('/verify', 'TentorVerificationController@verify')->name('tentor.verification');
+  Route::get('get/{filename}', 'TentorController@getFile')->name('getfile');
 });
 
 

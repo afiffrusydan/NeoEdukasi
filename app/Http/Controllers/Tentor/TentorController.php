@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tentor;
 
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\admin\TentorVerification;
@@ -12,8 +13,10 @@ use App\Models\Tentor;
 use App\Models\admin\Vacancy;
 use App\Models\Bank;
 use App\Models\tentor\FileVerification;
-use Facade\FlareClient\Stacktrace\File;
+// use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TentorController extends Controller
@@ -34,7 +37,14 @@ class TentorController extends Controller
     {
         $tentor_status = Auth::user()->account_status;
         $tentor_id = Auth::user()->id;
+        
         if($tentor_status == -10){
+            $files = Storage::files('public/files');
+            $file=array();
+            foreach ($files as $key => $value) {
+                $value= basename($value);
+                array_push($file,$value);
+            }
             return view('tentor.pages.dashboard')->withErrors(
                 [
                     'inactive' => 'Your account is inactive please verify your information first to activate your account!'
@@ -55,7 +65,13 @@ class TentorController extends Controller
                 ]
             );;
         }else{
-            return view('tentor.pages.dashboard');
+            $files = Storage::files('public/files');
+            $file=array();
+            foreach ($files as $key => $value) {
+                $value= basename($value);
+                array_push($file,$value);
+            }
+            return view('tentor.pages.dashboard', ['images' => $file]);
         };
         
     }
@@ -210,5 +226,11 @@ class TentorController extends Controller
 
         $response="Bank Account Successfully Updated";
         return $response;
+    }
+
+    function getFile($filename){
+        $file=Storage::disk('public')->get($filename);
+ 
+        return response()->download(storage_path('app/public/files/'. $filename));
     }
 }

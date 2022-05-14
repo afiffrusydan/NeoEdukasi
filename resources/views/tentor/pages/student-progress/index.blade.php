@@ -28,14 +28,14 @@
         background-image:url({{ asset('images/Asset/header-tentors.png') }});">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    Student Progress List <small
+                    Daftar Laporan Perkembangan Siswa <small
                         class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Student Progress Report</li>
+                        <li class="breadcrumb-item">Laporan Perkembangan Siswa</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Home</a>
+                            <a class="link-fx" href="">Dashboard</a>
                         </li>
                     </ol>
                 </nav>
@@ -49,7 +49,7 @@
                 <div class="row items-push float-end ">
                     <div class="col-12 col-md-3 py-2">
                         <a href="{{ route('tentor.progress-report.addnew') }}"
-                            class="btn btn-sm btn-neo btn-block pull-right">Add New Report</a>
+                            class="btn btn-sm btn-neo btn-block pull-right">Tambah Laporan</a>
                     </div>
                 </div>
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -59,11 +59,11 @@
                             <thead>
                                 <tr>
                                     <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
-                                    <th style="width: 10%;">Name</th>
-                                    <th style="width: 10%;">Subject</th>
-                                    <th class="d-sm-table-cell fs-sm" style="width: 5%;">Month</th>
+                                    <th style="width: 10%;">Nama</th>
+                                    <th style="width: 10%;">Mata Pelajaran</th>
+                                    <th class="d-sm-table-cell fs-sm" style="width: 5%;">Bulan</th>
                                     <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Status</th>
-                                    <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Action</th>
+                                    <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;"></th>
                                 </tr>
                             </thead>
                             <tbody>

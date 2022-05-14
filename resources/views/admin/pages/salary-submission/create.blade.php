@@ -1,5 +1,11 @@
 <title>Form Pengajuan Gaji</title>
-@extends('tentor.layouts.app')
+@extends('admin.layouts.app')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"
+    rel="stylesheet" />
 
 @section('content')
     <div class="content">
@@ -47,22 +53,36 @@
                             <div class="row g-3 col-12">
 
                                 <div class="col-12 col-md-12">
-                                    <label class="form-label tittle-neo">Nama Siswa ( Mata Pelajaran )</label>
-                                    <select class="form-control selectpicker" id="studentId" name="tentored_id"
-                                        data-live-search="true" data-size="4" required>
+                                    <label class="form-label tittle-neo">Tentor Name</label>
+                                    <select class="form-control selectpicker" id="tentorId" name="tentor_id"
+                                        data-live-search="true" data-size="4">
                                         <option value="0" selected disabled>
-                                            Silahkan Pilih
+                                            Please Select
                                         </option>
-                                        @foreach ($students as $student)
-                                            <option value="{{ $student->stdId }}">
-                                                {{ $student->first_name . ' ' . $student->last_name . '  ( ' . $student->subject . ' )' }}
+                                        @foreach ($tentorList as $tentor)
+                                            <option value="{{ $tentor->id }}">
+                                                {{ $tentor->first_name . ' ' . $tentor->last_name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12 col-md-12">
+                                    <label class="form-label tittle-neo">Nama Siswa ( Mata Pelajaran )</label>
+                                    <select class="form-control" id="studentId" name="tentored_id"
+                                        data-live-search="true" data-size="4" required disabled>
+                                        <option value="0" selected disabled>
+                                            Silahkan Pilih
+                                        </option>
+                                        {{-- @foreach ($students as $student)
+                                            <option value="{{ $student->stdId }}">
+                                                {{ $student->first_name . ' ' . $student->last_name . '  ( ' . $student->subject . ' )' }}
+                                            </option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-12">
                                     <label class="form-label tittle-neo">Bulan</label>
-                                    <select class="form-control selectpicker" id="monthSelect" name="month" disabled
+                                    <select class="form-control" id="monthSelect" name="month" disabled
                                         required>
                                         <option value="0" selected disabled>
                                             Silahkan Pilih
@@ -170,8 +190,8 @@
                                                     </div>
                                                     <div class="col-12 col-md-12 py-2">
                                                         <label class="form-label tittle-neo">Total</label>
-                                                        <input type="text" class="form-control"
-                                                            id="modal-total" name="total_salary" readonly>
+                                                        <input type="text" class="form-control" id="modal-total"
+                                                            name="total_salary" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,12 +297,66 @@
         });
     </script>
     <script>
+        $('#tentorId').on('change', function() {
+            var selected = $(this).val();
+            $("#studentId").prop("disabled", false);
+            $("#studentId").empty().append(
+                "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+            $("#monthSelect").prop("disabled", true);
+            $("#monthSelect").empty().append(
+                "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+
+            Swal.fire({
+                title: "",
+                text: "Please wait...",
+                imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+            $.ajax({
+                url: "{{ route('admin.submission.salary-submission.get-student') }}",
+                type: "POST",
+                data: {
+                    id: selected,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    let optionList = document.getElementById('studentId').options;
+                    if (response.length != 0) {
+                        $("#studentId").prop("disabled", false);
+                        $("#montstudentIdhSelect").empty().append(
+                            "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+
+                        response.forEach(response =>
+                            optionList.add(
+                                new Option(response.text, response.id)
+                            )
+                        );
+                        swal.close()
+                    } else {
+                        $("#studentId").prop("disabled", true);
+                        $("#studentId").empty().append(
+                            "<option disabled='disabled' SELECTED>No Data Found</option>");
+                    }
+                    swal.close()
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
         $('#studentId').on('change', function() {
             var selected = $(this).val();
+            Swal.fire({
+                title: "",
+                text: "Please wait...",
+                imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
             $.ajax({
-                url: "{{ route('tentor.salary-submission.get-month') }}",
+                url: "{{ route('admin.submission.salary-submission.get-month') }}",
                 type: "POST",
-                // dataType: 'json',
                 data: {
                     id: selected,
                     _token: '{{ csrf_token() }}'
@@ -299,11 +373,13 @@
                                 new Option(response.text, response.id)
                             )
                         );
+                        swal.close()
                     } else {
                         $("#monthSelect").prop("disabled", true);
                         $("#monthSelect").empty().append(
-                            "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+                            "<option disabled='disabled' SELECTED>No Data Found</option>");
                     }
+                    swal.close()
                 },
                 error: function(error) {
                     console.log(error);
@@ -337,20 +413,21 @@
                         ribuan = ribuan.join('.').split('').reverse().join('');
                         var fileInput = '';
                         var fileInput2 = '';
-                        document.getElementById("modal-total").value = 'Rp. '+ribuan;
+                        document.getElementById("modal-total").value = 'Rp. ' + ribuan;
                         if ($('#documentation').get(0).files.length !== 0) {
-                             fileInput= document.getElementById('documentation').files[0].name;
+                            fileInput = document.getElementById('documentation').files[0].name;
                         }
                         if ($('#proof').get(0).files.length !== 0) {
                             fileInput2 = document.getElementById('proof').files[0].name;
                         }
                         var fileInput1 = document.getElementById('attendance').files[0].name;
-                        document.getElementById("modal-meet_hours").value = meet_hours +' x '+response.price+' = '+(meet_hours*response.price);
+                        document.getElementById("modal-meet_hours").value = meet_hours + ' x ' +
+                            response.price + ' = ' + (meet_hours * response.price);
                         document.getElementById("modal-add_cost").value = document.getElementById(
                             'add_cost').value;
                         document.getElementById("modal-extra_meet_hours").value = parseInt(
-                            extra_meet_hours / 30)+' x '+response.add_price+' = '+(parseInt(
-                            extra_meet_hours / 30)*response.add_price);
+                            extra_meet_hours / 30) + ' x ' + response.add_price + ' = ' + (parseInt(
+                            extra_meet_hours / 30) * response.add_price);
                         document.getElementById("modal-documentation").value = fileInput;
                         document.getElementById("modal-attendance").value = fileInput1;
                         document.getElementById("modal-proof").value = fileInput2;

@@ -55,7 +55,7 @@ $account_status = Auth::user()->account_status;
             <li class="nav-main-item">
                 <a class="nav-main-link{{ request()->is('tentor/vacancy/*') ? ' active' : '' }}" href="{{ route('tentor.vacancy.index') }}">
                     <i class="nav-main-link-icon fa fa-briefcase"></i>
-                    <span class="nav-main-link-name">Vacancy</span>
+                    <span class="nav-main-link-name">Lowongan Pekerjaan</span>
                 </a>
             </li>
             @endif
@@ -64,13 +64,13 @@ $account_status = Auth::user()->account_status;
             <li class="nav-main-item">
                 <a class="nav-main-link{{ request()->is('tentor/student-progress-report/*') ? ' active' : '' }}" href="{{ route('tentor.progress-report.index') }}">
                     <i class="nav-main-link-icon fa fa-file"></i>
-                    <span class="nav-main-link-name">Student Progress Report</span>
+                    <span class="nav-main-link-name">Laporan Perkembangan Siswa</span>
                 </a>
             </li>
             <li class="nav-main-item">
                 <a class="nav-main-link{{ request()->is('tentor/salary-submission/*') ? ' active' : '' }}" href="{{ route('tentor.salary-submission.index') }}">
                     <i class="nav-main-link-icon fa fa-book"></i>
-                    <span class="nav-main-link-name">Salary Submission</span>
+                    <span class="nav-main-link-name">Pengajuan Gaji</span>
                 </a>
             </li>
             @endif

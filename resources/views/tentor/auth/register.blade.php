@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tentor Account Registration</title>
+    <title>Registrasi Akun Tentor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/opensans-font.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -41,23 +41,22 @@
 
                             <p class="step-icon"><span>01</span></p>
 
-                            <span class=" step-text">Account Infomation</span>
+                            <span class=" step-text">Informasi Akun</span>
                         </h2>
                         <section>
                             <div class="inner">
                                 <div class="wizard-header">
-                                    <h3 class="heading">Tentor Account Infomation</h3>
-                                    <p>Please enter your infomation and proceed to the next step so we can build your
-                                        accounts. </p>
+                                    <h3 class="heading">Informasi Akun</h3>
+                                    <p>Silahkan masukkan informasi anda dan lanjutkan langkah selanjutnya untuk proses pembuatan akun. </p>
                                 </div>
                                 <div class="form-row">
 
                                     <div class="form-holder">
                                         <fieldset>
-                                            <legend>First Name</legend>
+                                            <legend>Nama Depan</legend>
                                             <input type="text" class="form-control" id="first_name"
-                                                @error('first_name') is-invalid @enderror" name="first_name"
-                                                value="{{ old('first_name') }}" placeholder="First Name" required>
+                                                @error('first_name') is-invalid @enderror name="first_name"
+                                                value="{{ old('first_name') }}" placeholder="Nama Depan" required>
                                         </fieldset>
                                         @error('first_name')
                                             <span class="invalid-feedback" role="alert">
@@ -69,10 +68,10 @@
                                     </div>
                                     <div class="form-holder">
                                         <fieldset>
-                                            <legend>Last Name</legend>
+                                            <legend>Nama Belakang</legend>
                                             <input type="text" class="form-control" id="last_name" @error('last_name')
-                                                is-invalid @enderror" name="last_name" value="{{ old('last_name') }}"
-                                                placeholder="Last Name" required>
+                                                is-invalid @enderror name="last_name" value="{{ old('last_name') }}"
+                                                placeholder="Nama Belakang" required>
                                         </fieldset>
                                         @error('last_name')
                                             <span class="invalid-feedback" role="alert">
@@ -105,11 +104,11 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
-                                            <legend>Phone Number</legend>
+                                            <legend>Nomor Telepon</legend>
                                             <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
                                                 class="form-control" id="phone_number" @error('phone_number')
                                                 is-invalid @enderror name="phone_number"
-                                                value="{{ old('phone_number') }}" placeholder="Phone Number"
+                                                value="{{ old('phone_number') }}" placeholder="Nomor Telepon"
                                                 required>
                                         </fieldset>
                                         @error('phone_number')
@@ -125,10 +124,10 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
-                                            <legend>Password</legend>
+                                            <legend>Kata Sandi</legend>
                                             <input type="password" class="form-control" id="password"
                                                 @error('password') is-invalid @enderror name="password"
-                                                value="{{ old('password') }}" placeholder="password" required>
+                                                value="{{ old('password') }}" placeholder="Kata Sandi" required>
                                         </fieldset>
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -142,9 +141,9 @@
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label class="special-label">Branch</label>
+                                        <label class="special-label">Cabang</label>
                                         <select name="branch" id="branch">
-                                            <option value="branch" disabled selected>Branch</option>
+                                            <option value="branch" disabled selected>Cabang</option>
                                             @foreach ($branchs as $branch)
                                             <option value="{{ $branch->branch_id}}" @if (old("branch") == "{{ $branch->branch_id}}" ) {{  "selected" }}@else {{ "" }} @endif> {{ $branch->branch_name}} </option>
                                             @endforeach
@@ -152,27 +151,36 @@
                                     </div>
                                 </div>
                             </div>
+                                    
+                            <div class="inner text-right p-t-50">
+                                <a class="txt2">
+                                   Sudah punya akun?
+                                </a><br>
+                                <a class="txt2" href="{{ route('tentor.login') }}">
+                                    Login Sekarang!
+                                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                                </a>
+                            </div>
                         </section>
                         <!-- SECTION 2 -->
                         <h2>
                             <p class="step-icon"><span>02</span></p>
-                            <span class="step-text">Personal Infomation</span>
+                            <span class="step-text">Informasi Personal</span>
                         </h2>
                         <section>
                             <div class="inner">
                                 <div class="wizard-header">
-                                    <h3 class="heading">Tentor Personal Infomation</h3>
-                                    <p>Please enter your infomation and proceed to the next step so we can build your
-                                        accounts. </p>
+                                    <h3 class="heading">Informasi Personal</h3>
+                                    <p>Silahkan masukkan informasi anda dan lanjutkan langkah selanjutnya untuk proses pembuatan akun. </p>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
-                                            <legend>Address</legend>
+                                            <legend>Alamat</legend>
                                             <input type="text" name="address" id="address" class="form-control"
                                                 @error('address') is-invalid @enderror" name="address"
-                                                value="{{ old('address') }}" placeholder="Address" required>
+                                                value="{{ old('address') }}" placeholder="Alamat" required>
                                         </fieldset>
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">
@@ -186,10 +194,10 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
-                                            <legend>Place Of Birth</legend>
+                                            <legend>Tempat Lahir</legend>
                                             <input type="text" name="pob" id="pob" class="form-control" @error('pob')
                                                 is-invalid @enderror" name="pob" value="{{ old('pob') }}"
-                                                placeholder="Place Of Birth" required>
+                                                placeholder="Tempat Lahir" required>
                                         </fieldset>
                                         @error('pob')
                                             <span class="invalid-feedback" role="alert">
@@ -203,14 +211,14 @@
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label class="special-label">Date Of Birth:</label>
+                                        <label class="special-label">Tanggal Lahir</label>
                                     </div>
                                 </div>
 
                                 <div class="form-group required" style="margin-top: -2em;">
                                     <div class="input-group datepick">
                                         <input type="text" class="form-control" name="dob" id="dob" @error('dob')
-                                            is-invalid @enderror" name="dob" value="{{ old('dob') }}" required
+                                            is-invalid @enderror name="dob" value="{{ old('dob') }}" required
                                             readonly>
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -228,9 +236,9 @@
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label class="special-label">Religion:</label>
+                                        <label class="special-label">Agama</label>
                                         <select name="religion" id="religion" required>
-                                            <option value="Religion" disabled selected>Religion</option>
+                                            <option value="Religion" disabled selected>Agama</option>
                                             <option value="muslim" @if (old("religion") == 'muslim') {{  "selected" }}@else {{ "" }} @endif > Muslim </option>
                                             <option value="kristen" @if (old("religion") == 'kristen') {{  "selected" }}@else {{ "" }} @endif > Kristen </option>
                                             <option value="katolik" @if (old("religion") == 'katolik') {{  "selected" }}@else {{ "" }} @endif > Katolik </option>
@@ -250,9 +258,9 @@
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label class="special-label">Gender:</label>
+                                        <label class="special-label">Jenis Kelamin</label>
                                         <select name="gender" id="gender">
-                                            <option value="Gender" disabled selected>Gender</option>
+                                            <option value="Gender" disabled selected>Jenis Kelamin</option>
                                             <option value="Male" @if (old("gender") == 'Male') {{  "selected" }}@else {{ "" }} @endif > Male </option>
                                             <option value="Female" @if (old("gender") == 'Female') {{  "selected" }}@else {{ "" }} @endif > Female </option>
                                         </select>
@@ -270,26 +278,23 @@
                         <!-- SECTION 3 -->
                         <h2>
                             <p class="step-icon"><span>03</span></p>
-                            <span class="step-text">Education Infomation</span>
+                            <span class="step-text">Pendidikan</span>
                         </h2>
                         <section>
                             <div class="inner">
                                 <div class="wizard-header">
-                                    <h3 class="heading">Tentor Education Infomation</h3>
-                                    <p>Please enter your education infomation and proceed to the next step so we can
-                                        build your
-                                        accounts. </p>
+                                    <h3 class="heading">Informasi Pendidikan</h3>
+                                    <p>Silahkan masukkan informasi anda dan lanjutkan langkah selanjutnya untuk proses pembuatan akun.  </p>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label class="special-label">Job Status:</label>
+                                        <label class="special-label">Status Pekerjaan :</label>
                                         <select name="job_status" id="job_status">
-                                            <option value="" disabled selected>Job Status</option>
-                                            <option value="student" @if (old("job_status") == 'student') {{  "selected" }}@else {{ "" }} @endif > Student </option>
-                                            <option value="teacher" @if (old("job_status") == 'teacher') {{  "selected" }}@else {{ "" }} @endif >Teacher</option>
-                                            <option value="college_student" @if (old("job_status") == 'college_student') {{  "selected" }}@else {{ "" }} @endif >College student</option>
-                                            <option value="other"  @if (!old("job_status") == '' and old("job_status") == 'other') {{  "selected" }}@else {{ "" }}  @endif }}>Other</option>
+                                            <option value="" disabled selected>Status Pekerjaan</option>
+                                            <option value="guru" @if (old("job_status") == 'guru') {{  "selected" }}@else {{ "" }} @endif >Guru</option>
+                                            <option value="siswa" @if (old("job_status") == 'siswa') {{  "selected" }}@else {{ "" }} @endif >Siswa / Mahasiswa</option>
+                                            <option value="lain-lain"  @if (!old("job_status") == '' and old("job_status") == 'lain-lain') {{  "selected" }}@else {{ "" }}  @endif }}>Pekerjaan Lain</option>
                                         </select>
                                     </div>
                                 </div>
@@ -298,11 +303,11 @@
                                 <div class="form-row" id="other-job_status-div">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
-                                            <legend>Other Job Status</legend>
+                                            <legend>Lain-lain</legend>
                                             <input type="text" name="other_job_status" id="other_job_status" class="form-control"
                                                 pattern="\d*" maxlength="16" minlength="16" @error('other_job_status')
-                                                is-invalid @enderror" name="other_job_status"
-                                                value="{{ old('other_job_status') }}" placeholder="Other Job" required>
+                                                is-invalid @enderror name="other_job_status"
+                                                value="{{ old('other_job_status') }}" placeholder="Lain-lain" required>
                                         </fieldset>
 
                                     </div>
@@ -318,24 +323,26 @@
 
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label class="special-label">Highest Education Qualifications :</label>
+                                        <label class="special-label">Pendidikan Terakhir :</label>
                                         <select name="last_education" id="last_education">
-                                            <option value="" disabled selected>Your Highest Education</option>
+                                            <option value="" disabled selected>Pendidikan Terakhir</option>
+                                            <option value="SMA" @if (old("last_education") == 'SMA') {{  "selected" }}@else {{ "" }} @endif > SMA </option>
                                             <option value="S1" @if (old("last_education") == 'S1') {{  "selected" }}@else {{ "" }} @endif > S1 </option>
                                             <option value="S2" @if (old("last_education") == 'S2') {{  "selected" }}@else {{ "" }} @endif > S2 </option>
+                                            <option value="S3" @if (old("last_education") == 'S3') {{  "selected" }}@else {{ "" }} @endif > S3 </option>
                                         </select>
                                     </div>
                                 </div>
 
 
-                                <div class="form-row" id="education_major">
+                                <div class="form-row education_major_div">
                                     <div class="form-holder form-holder-2">
                                         <fieldset>
-                                            <legend>Major Education</legend>
+                                            <legend>Jurusan</legend>
                                             <input type="text" name="education_major" id="education_major"
                                                 class="form-control" @error('education_major') is-invalid @enderror"
                                                 name="education_major" value="{{ old('education_major') }}"
-                                                placeholder="Your Major Education" required>
+                                                placeholder="Jurusan" required>
                                         </fieldset>
                                         @error('Job Status')
                                             <span class="invalid-feedback" role="alert">
@@ -347,21 +354,52 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('last_education')
-                                    <span class="invalid-feedback" role="alert">
-                                        <div class="text-danger">
-                                            {{ $message }}
-                                        </div>
-                                    </span>
-                                    <br>
-                                @enderror
-
+                                <div class="form-row education_major_div">
+                                    <div class="form-holder form-holder-2">
+                                        <fieldset>
+                                            <legend>Fakultas</legend>
+                                            <input type="text" name="education_major" id="education_major"
+                                                class="form-control" @error('education_major') is-invalid @enderror"
+                                                name="education_major" value="{{ old('education_major') }}"
+                                                placeholder="Fakultas" required>
+                                        </fieldset>
+                                        @error('Job Status')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                            <br>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row education_major_div">
+                                    <div class="form-holder form-holder-2">
+                                        <fieldset>
+                                            <legend>Sekolah / Universitas</legend>
+                                            <input type="text" name="education_major" id="education_major"
+                                                class="form-control" @error('education_major') is-invalid @enderror"
+                                                name="education_major" value="{{ old('education_major') }}"
+                                                placeholder="Sekolah / Universitas" required>
+                                        </fieldset>
+                                        @error('Job Status')
+                                            <span class="invalid-feedback" role="alert">
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                            </span>
+                                            <br>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </section>
                     </div>
                 </form>
             </div>
         </div>
+
+
     </div>
 
     <script type="text/javascript">
@@ -393,12 +431,12 @@
         $(document).ready(function() {
             var value2 = document.getElementById("last_education").value;
             if (value2 != ""){
-                $("education_major").show();
+                $(".education_major_div").show();
             }else{
-                $("#education_major").hide();
+                $(".education_major_div").hide();
             }
             $("#last_education").on("change", function() {
-                $("#education_major").show();
+                $(".education_major_div").show();
             });
         });
     </script>

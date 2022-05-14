@@ -20,7 +20,7 @@ class IsHired
         if ((Auth::user()->account_status) != 100) {
             
             return redirect()->route('tentor.dashboard')
-                    ->with('errormsg', 'You cant access that menu. Please contact admin for information');
+                    ->with('errormsg', 'Anda tidak dapat mengakses halaman ini. Silahkan hubungi admin untuk informasi');
         }
 
         return $next($request);

@@ -98,6 +98,10 @@ Route::group([
         Route::get('{id}/detail', 'Admin_StudentProgressController@view')->name('.detail');
         Route::post('/show/approve', 'Admin_StudentProgressController@approve')->name('.approve');
         Route::post('/show/decline', 'Admin_StudentProgressController@decline')->name('.decline');
+        Route::get('/create', 'Admin_StudentProgressController@create')->name('.create');
+        Route::post('/create', 'Admin_StudentProgressController@postCreate')->name('.submit');
+        Route::post('/getStudent', 'Admin_StudentProgressController@getStudent')->name('.get-student');
+        Route::post('/getMonth', 'Admin_StudentProgressController@getMonth')->name('.get-month');
       });
       Route::group(['prefix' => '/salary-submission', 'as' => '.salary-submission'], function () {
         Route::get('/index', 'Admin_SalarySubmissionController@index')->name('.index');
@@ -108,6 +112,10 @@ Route::group([
         Route::post('/show/approve', 'Admin_SalarySubmissionController@approve')->name('.approve');
         Route::post('/show/decline', 'Admin_SalarySubmissionController@decline')->name('.decline');
         Route::post('/show/update', 'Admin_SalarySubmissionController@update')->name('.update');
+        Route::get('/create', 'Admin_SalarySubmissionController@create')->name('.create');
+        Route::post('/create', 'Admin_SalarySubmissionController@postCreate')->name('.submit');
+        Route::post('/getMonth', 'Admin_SalarySubmissionController@getMonth')->name('.get-month');
+        Route::post('/getStudent', 'Admin_SalarySubmissionController@getStudent')->name('.get-student');
       });
     });
 
@@ -116,6 +124,7 @@ Route::group([
         Route::get('/index', 'Admin_StudentReportController@index')->name('.index');
         Route::get('{id}/view', 'Admin_StudentReportController@view')->name('.view');
         Route::get('{id}/detail', 'Admin_StudentReportController@detail')->name('.detail');
+
         // Route::get('{id}/pdf', 'Admin_StudentReportController@get_report')->name('.get-report');
       });
     });

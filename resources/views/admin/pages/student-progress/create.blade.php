@@ -1,5 +1,5 @@
 <title>Add Student Progress Report</title>
-@extends('tentor.layouts.app')
+@extends('admin.layouts.app')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
@@ -8,12 +8,6 @@
     rel="stylesheet" />
 
 @section('content')
-    <!-- Hero -->
-    <title>Laravel Bootstrap Datepicker</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <!-- END Hero -->
     <!-- Page Content -->
     <div class="content">
@@ -21,17 +15,16 @@
             <div class="content content-full  border-right-neo">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Tambah Laporan Perkembangan Siswa<small
+                        Student Progress Report<small
                             class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('tentor.progress-report.index') }}">Laporan
-                                    Perkembangan Siswa</a>
+                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Student Progress Report</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">Tambah</a>
+                                <a class="link-fx" href="">Add New</a>
                             </li>
                         </ol>
                     </nav>
@@ -49,7 +42,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route('tentor.progress-report.submit') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.submission.student-progress.submit') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="block-content block-content-full">
                     <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -59,22 +52,35 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Nama Siswa (Mata Pelajaran)</label>
-                                <select class="form-control selectpicker" id="studentId" name="tentored_id"
-                                    data-live-search="true" data-size="8">
+                                <label class="form-label tittle-neo">Tentor Name</label>
+                                <select class="form-control selectpicker" id="tentorId" name="tentor_id"
+                                    data-live-search="true">
                                     <option value="0" selected disabled>
-                                        Silahkan Pilih
+                                        Please Select
                                     </option>
-                                    @foreach ($students as $student)
-                                        <option value="{{ $student->stdId }}">
-                                            {{ $student->first_name . ' ' . $student->last_name . '  ( ' . $student->subject . ' )' }}
+                                    @foreach ($tentorList as $tentor)
+                                        <option value="{{ $tentor->id }}">
+                                            {{ $tentor->first_name . ' ' . $tentor->last_name }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12 col-md-12">
+                                <label class="form-label tittle-neo">Nama Siswa (Mata Pelajaran)</label>
+                                <select class="form-control" id="studentId" name="tentored_id" data-live-search="true">
+                                    <option value="0" selected disabled>
+                                        Silahkan Pilih
+                                    </option>
+                                    {{-- @foreach ($students as $student)
+                                        <option value="{{ $student->stdId }}">
+                                            {{ $student->first_name . ' ' . $student->last_name . '  ( ' . $student->subject . ' )' }}
+                                        </option>
+                                    @endforeach --}}
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-12">
                                 <label class="form-label tittle-neo">Bulan</label>
-                                <select class="form-control" id="monthSelect" name="month" disabled>
+                                <select class="form-control" id="monthSelect" name="month" data-size="8" disabled>
                                     <option value="0" selected disabled>
                                         Silahkan Pilih
                                     </option>
@@ -113,6 +119,57 @@
     </div>
     <!-- END Page Content -->
     <script>
+        $('#tentorId').on('change', function() {
+            var selected = $(this).val();
+            $("#studentId").prop("disabled", false);
+            $("#studentId").empty().append(
+                "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+            $("#monthSelect").prop("disabled", true);
+            $("#monthSelect").empty().append(
+                "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+
+            Swal.fire({
+                title: "",
+                text: "Please wait...",
+                imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+            $.ajax({
+                url: "{{ route('admin.submission.student-progress.get-student') }}",
+                type: "POST",
+                data: {
+                    id: selected,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    let optionList = document.getElementById('studentId').options;
+                    if (response.length != 0) {
+                        $("#studentId").prop("disabled", false);
+                        $("#studentId").empty().append(
+                            "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+                        $("#monthSelect").prop("disabled", true);
+                        $("#monthSelect").empty().append(
+                            "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+
+                        response.forEach(response =>
+                            optionList.add(
+                                new Option(response.text, response.id)
+                            )
+                        );
+                        swal.close()
+                    } else {
+                        $("#studentId").prop("disabled", true);
+                        $("#studentId").empty().append(
+                            "<option disabled='disabled' SELECTED>No Data Found</option>");
+                    }
+                    swal.close()
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
         $('#studentId').on('change', function() {
             var selected = $(this).val();
             Swal.fire({
@@ -123,7 +180,7 @@
                 allowOutsideClick: false
             });
             $.ajax({
-                url: "{{ route('tentor.progress-report.get-month') }}",
+                url: "{{ route('admin.submission.student-progress.get-month') }}",
                 type: "POST",
                 // dataType: 'json',
                 data: {
@@ -146,7 +203,7 @@
                     } else {
                         $("#monthSelect").prop("disabled", true);
                         $("#monthSelect").empty().append(
-                            "<option disabled='disabled' SELECTED>Data Tidak Ditemukan</option>");
+                            "<option disabled='disabled' SELECTED>No Data Found</option>");
                         swal.close()
                     }
                 },

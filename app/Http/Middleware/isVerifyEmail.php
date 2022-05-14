@@ -21,7 +21,7 @@ class IsVerifyEmail
             auth()->logout();
             
             return redirect()->route('tentor.login')
-                    ->with('errormsg', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+                    ->with('errormsg', 'Anda perlu mengkonfirmasi akun Anda. Kami telah mengirimkan kode aktivasi, silakan periksa email Anda.');
         }
    
         return $next($request);

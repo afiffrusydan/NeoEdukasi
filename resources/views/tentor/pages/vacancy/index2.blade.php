@@ -1,4 +1,4 @@
-<title>Neo Edukasi Vacancy</title>
+<title>Lowongan Pekerjaan Neo Edukasi</title>
 @extends('tentor.layouts.app')
 
 @section('content')
@@ -11,16 +11,16 @@
                     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                         <div class="flex-grow-1">
                             <h1 class="h3 fw-bold mb-2">
-                                Job Vacancy
+                                Lowongan Pekerjaan
                             </h1>
                         </div>
                         <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-alt">
                                 <li class="breadcrumb-item">
-                                    <a class="link-fx" href="{{ route('tentor.vacancy.index') }}">Job Vacancy</a>
+                                    <a class="link-fx" href="{{ route('tentor.vacancy.index') }}">Lowongan Pekerjaan</a>
                                 </li>
                                 <li class="breadcrumb-item" aria-current="page">
-                                    Home
+                                    Dashboard
                                 </li>
                             </ol>
                         </nav>

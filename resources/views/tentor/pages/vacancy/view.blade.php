@@ -1,4 +1,4 @@
-<title>Neo Edukasi Vacancy Detail</title>
+<title>Detail Lowongan Pekerjaan Neo Edukasi</title>
 @extends('tentor.layouts.app')
 
 @section('content')
@@ -61,24 +61,24 @@
             <div class="block-content block-content-full">
                 <div class="row">
                     <div class="g-3 col-12-line1">
-                        <label class="form-label">Student Detail</label>
+                        <label class="form-label">Detail Siswa</label>
                     </div>
                     <div class="col-xl-6 order-xl-0">
                         <label class="form-label tittle-neo ml-3 text-center">Gender</label>
                         <div class="font-size-md text-muted ml-4">{{ $vacancy->gender }}</div>
                     </div>
                     <div class="col-xl-6 order-xl-0">
-                        <label class="form-label tittle-neo ml-3">Religion</label>
+                        <label class="form-label tittle-neo ml-3">Agama</label>
                         <div class="font-size-md text-muted ml-4">
                             {{ $vacancy->religion == '' ? '-' : ucfirst($vacancy->religion) }}</div>
                     </div>
                     <div class="col-xl-6 order-xl-0">
-                        <label class="form-label tittle-neo ml-3">Age</label>
+                        <label class="form-label tittle-neo ml-3">Umur</label>
                         <div class="font-size-md text-muted ml-4">
                             {{ \App\Http\Controllers\Tentor\TentorController::getAge($vacancy->DOB) }} Years Old</div>
                     </div>
                     <div class="col-xl-6 order-xl-0">
-                        <label class="form-label tittle-neo ml-3">Address</label>
+                        <label class="form-label tittle-neo ml-3">Alamat</label>
                         <div class="font-size-md text-muted ml-4">{{ $vacancy->address }}</div>
                     </div>
 
@@ -89,17 +89,17 @@
             <div class="block-content block-content-full">
                 <div class="row">
                     <div class="g-3 col-12-line1">
-                        <label class="form-label">Job Description</label>
+                        <label class="form-label">Detail Pekerjaan</label>
                     </div>
                     <div class="col-xl-12 order-xl-0">
                         <ul>
-                            <li class="font-size-md text-muted py-1">{{ $vacancy->subject }}</li>
-                            <li class="font-size-md text-muted py-1">{{ $vacancy->class }}</li>
-                            <li class="font-size-md text-muted py-1">{{ $vacancy->curriculum }}</li>
+                            <li class="font-size-md text-muted py-1">Mata Pelajaran : {{ $vacancy->subject }}</li>
+                            <li class="font-size-md text-muted py-1">Kelas : {{ $vacancy->class }}</li>
+                            <li class="font-size-md text-muted py-1">Kurikulum :{{ $vacancy->curriculum }}</li>
                         </ul>
                     </div>
                     <div class="col-xl-12 order-xl-0">
-                        <div class="font-size-md font-w600 text-muted"> Criteria</div>
+                        <div class="font-size-md font-w600 text-muted"> Kriteria Tentor</div>
                         <ul>
                             @foreach (explode('~', $vacancy->criteria) as $criteria)
                                 <li class="font-size-md text-muted py-1"> {{ $criteria }}</li>

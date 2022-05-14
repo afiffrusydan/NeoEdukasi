@@ -1,4 +1,4 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>Update Pengajuan Gaji</title>
 @extends('tentor.layouts.app')
 
 @section('content')

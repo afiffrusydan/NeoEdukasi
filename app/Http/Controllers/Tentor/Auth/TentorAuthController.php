@@ -46,7 +46,7 @@ class TentorAuthController extends Controller
         } else {
             $this->incrementLoginAttempts($request);
 
-            return redirect()->route('tentor.login')->with('errormsg', 'your username and password are wrong.');
+            return redirect()->route('tentor.login')->with('errormsg', 'Email dan Password yang dimasukkan tidak sesuai.');
         }
     }
 

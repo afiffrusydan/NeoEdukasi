@@ -27325,6 +27325,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     padding-top: 0.5rem;
 }
 
+.tittle-check{
+    color: rgba(0, 0, 0, 0.5) !important;
+}
 .tittle-neo-2 {
     color: #6fa306;
     font-size: 11px;

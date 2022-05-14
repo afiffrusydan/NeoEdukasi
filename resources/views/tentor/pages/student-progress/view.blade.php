@@ -15,13 +15,13 @@
             <div class="content content-full  border-right-neo">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Student Progress Report Detail<small
+                        Detail Laporan Perkembangan Siswa<small
                             class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('tentor.progress-report.index') }}">Student Progress Report</a>
+                                <a class="link-fx" href="{{ route('tentor.progress-report.index') }}">Laporan Perkembangan Siswa</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="">Detail</a>
@@ -47,11 +47,11 @@
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                         <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Student Progress Report</label>
+                            <label class="form-label tittle">Laporan Perkembangan Siswa</label>
                         </div>
                         <div class="row g-3 col-12">
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Student Name</label>
+                                <label class="form-label tittle-neo">Nama Siswa (Mata Pelajaran)</label>
                                 <select class="form-control selectpicker" id="studentId" name="student_id"
                                     data-live-search="true" data-size="4" disabled>
                                     <option value="{{ $data->stdId }}" selected>
@@ -60,7 +60,7 @@
                                 </select>
                             </div>
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Month</label>
+                                <label class="form-label tittle-neo">Bulan</label>
                                 <select class="form-control selectpicker" id="monthSelect" name="month" disabled>
                                     <option value="0" selected disabled>
                                         {{ date('F Y', strtotime($data->month)) }}
@@ -75,22 +75,22 @@
                                 }
                             @endphp
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Learning Progression</label>
+                                <label class="form-label tittle-neo">Progres Belajar Siswa</label>
                                 <textarea id="learning_progression" name="learning_progression" class="form-control learn_prog" required autofocus
                                     {{ $status }} rows="3">{{ $data->learning_progression }}</textarea>
                             </div>
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Study Target</label>
+                                <label class="form-label tittle-neo">Target Belajar</label>
                                 <textarea id="study_target" name="study_target" class="form-control std_trgt" required autofocus {{ $status }}
                                     rows="3">{{ $data->study_target }}</textarea>
                             </div>
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Study Method</label>
+                                <label class="form-label tittle-neo">Metode Belajar</label>
                                 <input type="text" id="study_method" name="study_method" class="form-control std_mthd"
                                     {{ $status }} value="{{ $data->study_method }}" required>
                             </div>
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Feedback</label>
+                                <label class="form-label tittle-neo">Saran/Masukan</label>
                                 <textarea id="feedback" name="feedback" class="form-control fdbck" required autofocus {{ $status }}
                                     rows="3">{{ $data->feedback }}</textarea>
                             </div>
@@ -127,7 +127,7 @@
                                         <div class="col-12 col-sm-3">
                                             <button type="button" id="approveButton" class="btn btn-sm btn-neo btn-block"
                                                 disabled>
-                                                Processed
+                                                Diajukan
                                             </button>
                                         </div>
                                     </div>

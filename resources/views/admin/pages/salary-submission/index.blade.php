@@ -86,6 +86,12 @@
                 aria-labelledby="nav-vacancyInformation-tab">
                 <div class="block">
                     <div class="block-content block-content-full">
+                        <div class="row items-push float-end ">
+                            <div class="col-12 col-md-3 py-2">
+                                <a href="{{ route('admin.submission.salary-submission.create') }}"
+                                    class="btn btn-sm btn-neo btn-block pull-right">Add New Submission</a>
+                            </div>
+                        </div>
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                         <div class="row g-3 col-12 ">
                             <div class="table-responsive py-1">

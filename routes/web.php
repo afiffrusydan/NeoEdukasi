@@ -2,8 +2,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('front');
+    return redirect()->route('tentor.dashboard');
+});
 
 Route::group([
     'namespace' => 'Student\\Auth',

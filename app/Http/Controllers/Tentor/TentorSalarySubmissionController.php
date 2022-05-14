@@ -86,9 +86,11 @@ class TentorSalarySubmissionController extends Controller
             'attendance' => ['required','mimes:jpeg,png,jpg'],
             'documentation' => ['mimes:jpeg,png,jpg'],
          ]);   
-            $documentation_destinationPath = 'private/files/tentors/salary-submission/'.Auth::user()->id.'/'.$request->tentored_id.'/'.$request->month.'/Documentation';
-            $attendance_destinationPath = 'private/files/tentors/salary-submission/'.Auth::user()->id.'/'.$request->tentored_id.'/'.$request->month.'/Attendance';
-            $proof_destinationPath = 'private/files/tentors/salary-submission/'.Auth::user()->id.'/'.$request->tentored_id.'/'.$request->month.'/Proof';
+         $month = date('Y-m', strtotime($request->month));
+        //     //disini ubah kodingan tanggal dulu
+            $documentation_destinationPath = 'private/files/tentors/salary-submission/'.$month.'/'.Auth::user()->id.'/'.$request->tentored_id.'/Documentation';
+            $attendance_destinationPath = 'private/files/tentors/salary-submission/'.$month.'/'.Auth::user()->id.'/'.$request->tentored_id.'/Attendance';
+            $proof_destinationPath = 'private/files/tentors/salary-submission/'.$month.'/'.Auth::user()->id.'/'.$request->tentored_id.'/Proof';
             $proof_file = $request->file('proof');
             $attendance_file = $request->file('attendance');
             $documentation_file = $request->file('documentation');

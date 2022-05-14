@@ -1,4 +1,4 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>Pengajuan Gaji Neo Edukasi</title>
 @extends('tentor.layouts.app')
 
 @section('css_before')

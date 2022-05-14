@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Tentor Login Page</title>
+    <title>Tentor Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -92,10 +92,10 @@
 
                     <div class="text-center p-t-50">
                         <a class="txt2">
-                            Don't have an account yet?
+                           Belum punya akun?
                         </a><br>
                         <a class="txt2" href="{{ route('tentor.register_page') }}">
-                            Create an account
+                            Daftar Sekarang!
                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                         </a>
                     </div>

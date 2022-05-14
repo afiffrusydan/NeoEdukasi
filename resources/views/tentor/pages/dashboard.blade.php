@@ -1,11 +1,10 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>{{ 'Dashboard' }}</title>
 @extends('tentor.layouts.app')
-
 @section('content')
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full bg-header-tentor" style="
-        background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">Dashboard</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
@@ -81,17 +80,33 @@
             </div>
         @enderror
         <div class="block">
+            <div class="block-header">
+                
+            </div>
             <div class="block-content block-content-full">
-                <div class="block-header justify-content-center">
-
-                    @error('inactive')
-                        <button type="button" class="btn btn-neo btn-sm">
-                            <a href="{{ route('tentor.verification') }}"
-                                class="btn btn-sm btn-neo pull-right">Verify</a></button>
-                    @enderror
+                @error('inactive')
+                <div class="text-center">
+                    <button type="button" class="btn btn-sm">
+                        <a href="{{ route('tentor.verification') }}"
+                        class="btn btn-sm btn-neo pull-right btn-block">Verify</a></button>
                 </div>
+            @enderror
+            @if (empty($images))
+            @else
+                <div class="filemanager">
+                    <ul class="list-unstyled">
+                        @foreach ($images as $image)
+                            <li class="files py-1"><a target="_blank" href="{{ route('getfile', $image) }}"><span
+                                        class="icon file fa fa-file">&nbsp</span><span
+                                        class="name">{{ $image }}</span></a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             </div>
         </div>
     </div>
     <!-- END Page Content -->
+
 @endsection

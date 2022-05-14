@@ -20,7 +20,7 @@ class IsActive
         if ((Auth::user()->account_status) == -10 OR (Auth::user()->account_status) == 0 OR (Auth::user()->account_status) == -5) {
             
             return redirect()->route('tentor.dashboard')
-                    ->with('errormsg', 'You need to active your account first. Please verify your account!.');
+                    ->with('errormsg', 'Anda harus mengaktifkan akun Anda terlebih dahulu. Harap verifikasi akun anda.');
         }
 
         return $next($request);
