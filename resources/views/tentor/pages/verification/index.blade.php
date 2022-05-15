@@ -90,7 +90,7 @@
                             <div class="modal-content">
                                 <div class="block block-rounded block-transparent mb-0">
                                     <div class="block-header block-header-default">
-                                        <h3 class="block-title">Detail Verifikasi Akun</h3>
+                                        <h3 class="block-title text-center">Standar Operasional Prosedur</h3>
                                         <div class="block-options">
                                             <button type="button" class="btn-block-option" data-bs-dismiss="modal"
                                                 aria-label="Close">
@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="block-content fs-sm">
                                         <div class="row g-3">
-                                            <div class="col-12 col-md-12">
+                                            {{-- <div class="col-12 col-md-12">
                                                 <label class="form-label tittle-neo">NIK</label>
                                                 <input type="text" class="form-control form-control" id="modal-NIK"
                                                     disabled>
@@ -119,38 +119,99 @@
                                                 <label class="form-label tittle-neo">Transkip Nilai</label>
                                                 <input type="text" class="form-control form-control" id="modal-transkip"
                                                     disabled>
+                                            </div> --}}
+                                            <div class="col-12 col-md-12 pb-2">
+                                                <p class="text-justify">
+                                                    &emsp; Selamat datang rekan tentor Neo Edukasi. Berikut adalah mekanisme les privat yang harus dipatuhi oleh tentor. Harap dibaca dengan saksama dan dipahami sepenuhnya. Dokumen ini bisa disebut juga sebagai “Perjanjian” dimana tentor harus bertanggungjawab penuh dengan apa yang sudah disetujui. Dengan klik tombol setuju di akhir, maka dianggap sebagai bentuk penerimaan atas semua ketentuan Neo Edukasi.
+                                                </p>
                                             </div>
+                                            <div class="pl-1">
+
                                             <div class="col-12 col-md-12">
-                                                <div class="form-check py-2">
-                                                    <input class="form-check-input" type="checkbox" value=""
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
                                                         id="example-checkbox-default1" name="example-checkbox-default1">
-                                                    <label class="tittle-check" for="example-checkbox-default1">Option
-                                                        1</label>
+                                                    <label class="text-justify pl-2" for="example-checkbox-default1">Les dilaksanakan sesuai dengan kontrak awal yang dijelaskan oleh Akademik. Jika ada perubahan jadwal dan biodata siswa bisa konfirmasi kepada Akademik.</label>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
-                                                <div class="form-check py-2">
-                                                    <input class="form-check-input" type="checkbox" value=""
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
                                                         id="example-checkbox-default2" name="example-checkbox-default2">
-                                                    <label class="tittle-check" for="example-checkbox-default2">Option
-                                                        2</label>
+                                                    <label class="text-justify pl-2" for="example-checkbox-default2">Tentor diwajibkan untuk professional, jujur, memiliki attitude yang baik, sopan dalam berinteraksi, disiplin, serta dapat menjaga nama baik pribadi dan Neo Edukasi.</label>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
-                                                <div class="form-check py-2">
-                                                    <input class="form-check-input" type="checkbox" value=""
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
                                                         id="example-checkbox-default3" name="example-checkbox-default3">
-                                                    <label class="tittle-check" for="example-checkbox-default3">Option
-                                                        3</label>
+                                                    <label class="text-justify pl-2" for="example-checkbox-default3">Setiap pertemuan les diwajibkan membawa dan mengisi presensi resmi terbaru dari Neo Edukasi yang diprint untuk satu dibawa siswa dan satu dibawa tentor. Presensi diisi hanya saat ada pertemuan dan wajib ditandatangani oleh wali siswa.</label>
                                                 </div>
                                             </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default4" name="example-checkbox-default4">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default4">Pertemuan les dilaksanakan dengan durasi 90 menit. Jika pertemuan kurang dari 90 menit mohon konfirmasi kepada Akademik dan diberikan keterangan dalam lembar presensi. Jika kurang dari durasi tersebut maka tidak dihitung penuh.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default5" name="example-checkbox-default5">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default5">Tentor diperbolehkan membawa print / fotocopy atau buku ajar tambahan dengan beban biaya ditanggung oleh siswa. Dengan catatan harus konfirmasi dahulu kepada wali siswa, jika tidak ada keterangan dan nota resmi maka kami tidak bertanggungjawab atas biaya tersebut.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default6" name="example-checkbox-default6">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default6">Tentor diwajibkan mengisi laporan perkembangan bulanan siswa. Laporan dikirimkan dalam bentuk softfile kepada wali/siswa setiap akhir bulan.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default7" name="example-checkbox-default7">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default7">Tentor rutin mengkonfirmasi ulang pertemuan les dengan siswa agar tidak terjadi pembatalan les ataupun tentor menunggu siswa bersiap.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default8" name="example-checkbox-default8">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default8">Ketika tentor sudah mendapatkan siswa, tentor tidak dapat membatalkan secara sepihak tanpa ada konfirmasi dari wali siswa ataupun Akademik.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default9" name="example-checkbox-default9">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default9">Tentor dilarang membahas tentang pembayaran atau meminta gaji langsung kepada wali siswa untuk menghindari ketidaknyamanan karena termasuk sikap yang tidak sopan dan bukan wewenang tentor. Gaji hanya boleh diajukan kepada pihak Neo Edukasi.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default10" name="example-checkbox-default10">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default10">Tentor siap menerima masukan jika ada keluhan dan siap diganti jika siswa mengajukan pergantian tentor.</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="form-check py-1">
+                                                    <input class="form-check-input px-2" type="checkbox" value=""
+                                                        id="example-checkbox-default11" name="example-checkbox-default11">
+                                                    <label class="text-justify pl-2" for="example-checkbox-default11">Apabila diketahui adanya pelanggaran SOP, maka Neo Edukasi berhak untuk memeberikan surat peringatan, sanksi, atau pemutusan relasi.</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="block-content block-content-full text-end bg-body text-right">
                                         <button type="button" class="btn btn-sm btn-alt-secondary me-1"
                                             data-bs-dismiss="modal">Batal</button>
                                         <button type="button" id="submit-verification" class="btn btn-sm btn-primary"
-                                            data-bs-dismiss="modal">Submit</button>
+                                            data-bs-dismiss="modal">Saya Mengerti, dan Setuju </button>
                                     </div>
                                 </div>
                             </div>
@@ -165,20 +226,20 @@
     <script>
         $("#verify").click(function(event) {
             event.preventDefault();
-            if (document.getElementById("input-ktp").files.length != 0) {
-                var ktp = $("#input-ktp")[0].files[0]
-                document.getElementById("modal-KTP").value = ktp.name;
-            }
-            if (document.getElementById("input-ijazah").files.length != 0) {
-                var ijazah = $("#input-ijazah")[0].files[0]
-                document.getElementById("modal-ijazah").value = ijazah.name;
-            }
-            if (document.getElementById("input-transkip").files.length != 0) {
-                var transkip = $("#input-transkip")[0].files[0]
-                document.getElementById("modal-transkip").value = transkip.name;
-            }
-            var transkip = $("#input-transkip")[0].files[0]
-            document.getElementById("modal-NIK").value = $("#NIK").val();
+            // if (document.getElementById("input-ktp").files.length != 0) {
+            //     var ktp = $("#input-ktp")[0].files[0]
+            //     document.getElementById("modal-KTP").value = ktp.name;
+            // }
+            // if (document.getElementById("input-ijazah").files.length != 0) {
+            //     var ijazah = $("#input-ijazah")[0].files[0]
+            //     document.getElementById("modal-ijazah").value = ijazah.name;
+            // }
+            // if (document.getElementById("input-transkip").files.length != 0) {
+            //     var transkip = $("#input-transkip")[0].files[0]
+            //     document.getElementById("modal-transkip").value = transkip.name;
+            // }
+            // var transkip = $("#input-transkip")[0].files[0]
+            // document.getElementById("modal-NIK").value = $("#NIK").val();
             $("#modal-review").modal('show');
         });
     </script>
@@ -186,7 +247,7 @@
         jQuery(document).ready(function() {
             document.getElementById("submit-verification").disabled = true;
             $('#formverify input:checkbox').change(function() {
-                if($('#formverify input:checkbox:checked').length === 3){
+                if($('#formverify input:checkbox:checked').length === 11){
                     document.getElementById("submit-verification").disabled = false;
                 }else{
                     document.getElementById("submit-verification").disabled = true;
