@@ -11555,6 +11555,10 @@ a.text-dark:focus {
     color: rgba(255, 255, 255, 0.5) !important;
 }
 
+.text-neo {
+    color: #6fa306;
+}
+
 .text-hide {
     font: 0/0 a;
     color: transparent;
@@ -27413,9 +27417,15 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .border-right-neo {
     border-right: 0.15rem solid #6fa306 !important;
 }
+.border-right-neo2 {
+    border-right: 0.1rem solid #6fa306 !important;
+}
 
 .border-left-neo {
     border-left: 0.1rem solid #6fa306 !important;
+}
+.border-left-neo2 {
+    border-left: 0.15rem solid #6fa306 !important;
 }
 
 .bootstrap-select .bs-caret {

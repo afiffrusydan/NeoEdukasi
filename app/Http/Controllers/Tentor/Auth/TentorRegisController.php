@@ -71,7 +71,7 @@ class TentorRegisController extends Controller
         $message->from('noreply.neoedukasi@gmail.com','Neo Edukasi');
         });
 
-        return redirect()->route('tentor.login')->with('msg', 'Sucsesfully create your account.');
+        return redirect()->route('tentor.login')->with('msg', 'Akun Berhasil dibuat. Silahkan cek email anda untuk verifikasi email akun anda.');
     }
     
     
@@ -123,9 +123,9 @@ class TentorRegisController extends Controller
           if(is_null($verified_status)) {
               $verifyUser->email_verified_at = $date;
               $verifyUser->save();
-              $message = "Your e-mail is verified. You can now login.";
+              $message = "Email berhasil diverifikasi. Silahkan login.";
           } else {
-              $message = "Your e-mail is already verified. You can now login.";
+              $message = "Email berhasil diverifikasi. Silahkan login.";
           }
       }
       return redirect()->route('tentor.login')->with('msg', $message);

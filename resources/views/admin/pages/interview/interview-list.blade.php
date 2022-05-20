@@ -8,71 +8,66 @@
 
 
 @section('content')
-    <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        Applicant List
-                    </h1>
-                    <h5 class="fs-base lh-base fw-medium text-muted mb-0">
-                        list of tentors applying for jobs
-                    </h5>
-                </div>
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">
-                            <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Job Vacancy</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            Applicant List
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-
     <!-- Page Content -->
     <div class="content">
-        <div class="bg-white p-2 push">
-            <div class="d-lg-none">
-                <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
-                    data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
-                    data-class="d-none">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <nav>
-                <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
-                    <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx active" id="nav-interview-tab" data-toggle="tab"
-                                href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-briefcase"></i>
-                                <span class="nav-main-link-name">Interview &nbsp</span>
-                                @if ($vacancy)
-                                <span class="badge badge-pill badge-info">{{ count($vacancy) }}</span>
-                                @endif
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab" href="#nav-shortlist"
-                                role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-address-card"></i>
-                                <span class="nav-main-link-name">Shortlist &nbsp</span>
-                                @isset($shortlist)
-                                    <span class="badge badge-pill badge-info">{{ count($shortlist) }}</span>
-                                @endisset
-                            </a>
-                        </li>
-                    </ul>
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-2">
+                            Interview List
+                        </h1>
+                    </div>
+                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">
+                                <a class="link-fx" href="{{ route('admin.vacancy.interview.index') }}">Job Interview</a>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                Interview List
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
-            </nav>
+            </div>
         </div>
         <div class="block block-rounded tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="bg-white p-2 push">
+                <div class="d-lg-none">
+                    <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
+                        data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
+                        data-class="d-none">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <nav>
+                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
+                        <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx active" id="nav-interview-tab" data-toggle="tab"
+                                    href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-briefcase"></i>
+                                    <span class="nav-main-link-name">Interview &nbsp</span>
+                                    @if ($vacancy)
+                                    <span class="badge badge-pill badge-info">{{ count($vacancy) }}</span>
+                                    @endif
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab" href="#nav-shortlist"
+                                    role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-address-card"></i>
+                                    <span class="nav-main-link-name">Shortlist &nbsp</span>
+                                    @isset($shortlist)
+                                        <span class="badge badge-pill badge-info">{{ count($shortlist) }}</span>
+                                    @endisset
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-interview" role="tabpanel"
             aria-labelledby="nav-vacancyInformation-tab">
                 <div class="block">
@@ -85,10 +80,10 @@
                                     <tr>
                                         <th class="text-center" style="width: 1%;">#</th>
                                         <th style="width: 15%;">Full Name</th>
-                                        <th style="width: 5%;">Last Education</th>
-                                        <th style="width: 5%;">Job Status</th>
+                                        <th style="width: 10%;">Last Education</th>
+                                        <th style="width: 10%;">Job Status</th>
                                         <th style="width: 5%;">Branch</th>
-                                        <th style="width: 10%;">Status</th>
+                                        <th style="width: 5%;">Status</th>
                                         <th style="width: 10%;">Action</th>
                                     </tr>
                                 </thead>
@@ -127,12 +122,12 @@
                                             </td>
                                             <td class="d-sm-table-cell text-center">
                                                 <div class="btn-group center">
-                                                    <button type="button" class="btn btn-md btn-alt-secondary"
+                                                    <button type="button" class="btn btn-sm btn-alt-secondary"
                                                         data-bs-toggle="tooltip" title="Detail">
                                                         <a href="{{ route('admin.vacancy.interview.detail', ['appId' => $data->appId]) }}"
                                                             class="btn btn-sm btn-neo pull-right">Detail</a>
                                                     </button>
-                                                    <button type="button" class="btn btn-md btn-alt-secondary"
+                                                    <button type="button" class="btn btn-sm btn-alt-secondary"
                                                         data-bs-toggle="tooltip" title="Detail">
                                                         <a href="https://api.whatsapp.com/send?phone={{ $data->phone_number }}"
                                                             target="_blank"
@@ -162,10 +157,10 @@
                                 <tr>
                                     <th class="text-center" style="width: 1%;">#</th>
                                     <th style="width: 15%;">Full Name</th>
-                                    <th style="width: 5%;">Last Education</th>
-                                    <th style="width: 5%;">Job Status</th>
+                                    <th style="width: 10%;">Last Education</th>
+                                    <th style="width: 10%;">Job Status</th>
                                     <th style="width: 5%;">Branch</th>
-                                    <th style="width: 10%;">Status</th>
+                                    <th style="width: 5%;">Status</th>
                                     <th style="width: 10%;">Action</th>
                                 </tr>
                             </thead>
@@ -197,12 +192,12 @@
                                         </td>
                                         <td class="d-sm-table-cell text-center">
                                             <div class="btn-group center">
-                                                <button type="button" class="btn btn-md btn-alt-secondary"
+                                                <button type="button" class="btn btn-sm btn-alt-secondary"
                                                     data-bs-toggle="tooltip" title="Detail">
                                                     <a href="{{ route('admin.vacancy.interview.detail', ['appId' => $data->appId]) }}"
                                                         class="btn btn-sm btn-neo pull-right">Detail</a>
                                                 </button>
-                                                <button type="button" class="btn btn-md btn-alt-secondary"
+                                                <button type="button" class="btn btn-sm btn-alt-secondary"
                                                     data-bs-toggle="tooltip" title="Detail">
                                                     <a href="https://api.whatsapp.com/send?phone={{ $data->phone_number }}"
                                                         target="_blank"

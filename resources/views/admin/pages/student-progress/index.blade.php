@@ -1,3 +1,4 @@
+<title>Student Progress Report</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -22,35 +23,37 @@
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    Student Progress List <small
-                        class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">{{ ucwords(
-                            Auth::user()->getRoleNames()->first(),
-                        ) }}</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Student Progress Report</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
     <!-- END Hero -->
 
     <!-- Page Content -->
     <div class="content">
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+                background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-2">
+                            Student Progress Report List 
+                        </h1>
+                    </div>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">{{ ucwords(
+                                Auth::user()->getRoleNames()->first(),
+                            ) }}</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Student Progress Report</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl-12 order-xl-0">
                 <!-- Dynamic Table Full -->
-                <div class="block">
-                    <div class="block-content block-content-full">
+                <div class="block shadow-sm">
+                    <div class="block-content block-content-full border-right-neo">
                         <div class="row items-push float-end ">
                             <div class="col-12 col-md-3 py-2">
                                 <a href="{{ route('admin.submission.student-progress.create') }}"

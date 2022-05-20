@@ -1,36 +1,35 @@
-<title>Tentor Verification</title>
+<title>Tentors application Detail</title>
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        Applicant Detail
-                    </h1>
-                    <h5 class="fs-base lh-base fw-medium text-muted mb-0">
-                        Form for job vacancy detail
-                    </h5>
-                </div>
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">
-                            <a class="link-fx"
-                                href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Applicant
-                                List</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            Applicant Detail
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+
     <!-- Page Content -->
     <div class="content">
-        <div class="block block-rounded">
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-2">
+                            Applicant Detail
+                        </h1>
+                    </div>
+                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">
+                                <a class="link-fx"
+                                    href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Applicant
+                                    List</a>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                Applicant Detail
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="block block-rounded border-right-neo">
             <div class="col-xl-12 order-xl-0">
                 <!-- Dynamic Table Full -->
                 <div class="block">
@@ -89,7 +88,7 @@
 
             </div>
         </div>
-        <div class="block block-rounded">
+        <div class="block block-rounded border-right-neo">
             <div class="col-xl-12 order-xl-0">
                 <!-- Dynamic Table Full -->
                 <div class="block">

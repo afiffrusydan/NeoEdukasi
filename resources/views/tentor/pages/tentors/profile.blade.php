@@ -1,4 +1,4 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>{{ 'Profile' }}</title>
 @extends('tentor.layouts.app')
 
 @section('content')

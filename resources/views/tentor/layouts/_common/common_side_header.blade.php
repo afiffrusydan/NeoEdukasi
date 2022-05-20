@@ -6,7 +6,7 @@
                 <div class="content-header border-bottom">
                     <!-- User Avatar -->
                     <a class="img-link mr-1" href="javascript:void(0)">
-                        <img class="img-avatar img-avatar32" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
+                        <img class="img-avatar img-avatar32" src="{{ asset('images/Asset//vacancy-avatar.png') }}" alt="">
                     </a>
                     <!-- END User Avatar -->
 

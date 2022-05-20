@@ -41,6 +41,10 @@ body {
 	display: -webkit-flex;
 }
 
+.tologin   {
+	margin-top: -10%;
+}
+
 .form-v1-content .wizard-form {
 	width: 100%;
 }
@@ -475,10 +479,16 @@ body {
 	.form-v1-content {
 		margin: 40px 20px 160px;
 	}
+	.tologin   {
+		margin-top: -35%;
+	}
 }
 @media screen and (max-width: 991px) {
 	.form-register .vertical {
 		background: #fff;
+	}
+	.tologin   {
+		margin-top: -35%;
 	}
 	.form-register .steps,
 	.form-register .content,
@@ -517,16 +527,25 @@ body {
 	.inner .form-row-total label {
 		width: 120px;
 	}
+	.tologin   {
+		margin-top: -35%;
+	}
 }
 @media screen and (max-width: 767px) {
 	.inner .form-row.form-row-date .form-holder select {
 	    width: 17.5%;
 	    margin-right: 20px;
 	}
+	.tologin   {
+		margin-top: -35%;
+	}
 } 
 @media screen and (max-width: 575px) {
 	.form-register .content .inner {
 	    padding: 0 30px;
+	}
+	.tologin   {
+		margin-top: -35%;
 	}
 	.form-register .content .wizard-header,
 	.form-register .content #form-total-p-2 .wizard-header {

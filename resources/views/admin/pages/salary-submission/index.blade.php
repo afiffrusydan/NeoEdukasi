@@ -1,3 +1,4 @@
+<title>Salary Submission</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -21,64 +22,68 @@
 @endsection
 
 @section('content')
-    <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    Student Progress List <small
-                        class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">{{ ucwords(
-                            Auth::user()->getRoleNames()->first(),
-                        ) }}</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="{{ route('admin.submission.salary-submission.index') }}">Student Progress Report</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-
     <!-- Page Content -->
     <div class="content">
-        <div class="bg-white p-2 push">
-            <div class="d-lg-none">
-                <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
-                    data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
-                    data-class="d-none">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <nav>
-                <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
-                    <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
-                        <li class="nav-main-item tab-pane">
-                            <a class="nav-main-link link-fx active tab-pane" id="nav-interview-tab" data-toggle="tab"
-                                href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-paperclip"></i>
-                                <span class="nav-main-link-name">Submission &nbsp</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item tab-pane">
-                            <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab" href="#nav-shortlist"
-                                role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-history"></i>
-                                <span class="nav-main-link-name">History &nbsp</span>
-                            </a>
-                        </li>
-                    </ul>
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+                    background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-2">
+                            Salary Submission
+                        </h1>
+                    </div>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">
+                                {{ ucwords(
+                                    Auth::user()->getRoleNames()->first(),
+                                ) }}
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx"
+                                    href="{{ route('admin.submission.salary-submission.index') }}">Salary Submission</a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
-            </nav>
+            </div>
         </div>
-        <div class="block block-rounded tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+        <div class="block block-rounded tab-content py-3 px-3 px-sm-0 shadow-sm border-right-neo" id="nav-tabContent">
+            <div class="bg-white p-2 push">
+                <div class="d-lg-none">
+                    <button type="button"
+                        class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
+                        data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
+                        data-class="d-none">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <nav>
+                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
+                        <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
+                            <li class="nav-main-item tab-pane">
+                                <a class="nav-main-link link-fx active tab-pane" id="nav-interview-tab" data-toggle="tab"
+                                    href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-paperclip"></i>
+                                    <span class="nav-main-link-name">Submission &nbsp</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item tab-pane">
+                                <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab"
+                                    href="#nav-shortlist" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-history"></i>
+                                    <span class="nav-main-link-name">History &nbsp</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
             @if ($errors->has('errors'))
                 <div class="block-content">
-                        <div class="alert alert-danger text-center">{{ $errors->first('errors') }}</div>
+                    <div class="alert alert-danger text-center">{{ $errors->first('errors') }}</div>
                 </div>
                 <div class="error">{{ $errors->first('firstname') }}</div>
             @endif
@@ -95,7 +100,8 @@
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                         <div class="row g-3 col-12 ">
                             <div class="table-responsive py-1">
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
+                                <table
+                                    class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
                                     <thead>
                                         <tr>
                                             <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
@@ -110,7 +116,8 @@
                                     <tbody>
                                         @foreach ($datas as $studentProgress)
                                             <tr>
-                                                <td class="d-none d-md-table-cell fs-sm text-center">{{ $loop->iteration }}</td>
+                                                <td class="d-none d-md-table-cell fs-sm text-center">
+                                                    {{ $loop->iteration }}</td>
                                                 <td class="fs-sm">
                                                     <a
                                                         href="{{ route('admin.submission.salary-submission.detail', ['id' => $studentProgress->id]) }}">{{ $studentProgress->tntrFirstName . ' ' . $studentProgress->tntrLastName }}</a>
@@ -127,18 +134,21 @@
                                                 </td>
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
                                                     @if ($studentProgress->status == 0)
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
+                                                        <span
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
                                                     @elseif ($studentProgress->status == -10)
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                                        <span
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
                                                     @else
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                                        <span
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
                                                     @endif
                                                 </td>
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
-                                                    
-                                                            <a href="{{ route('admin.submission.salary-submission.detail', ['id' => $studentProgress->id]) }}"
-                                                                class="btn btn-sm btn-neo">Detail</a>
-                
+
+                                                    <a href="{{ route('admin.submission.salary-submission.detail', ['id' => $studentProgress->id]) }}"
+                                                        class="btn btn-sm btn-neo">Detail</a>
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -157,7 +167,8 @@
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                         <div class="row g-3 col-12 ">
                             <div class="table-responsive py-1">
-                                <table class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
+                                <table
+                                    class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
                                     <thead>
                                         <tr>
                                             <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
@@ -172,7 +183,8 @@
                                     <tbody>
                                         @foreach ($history as $studentProgress)
                                             <tr>
-                                                <td class="d-none d-md-table-cell fs-sm text-center">{{ $loop->iteration }}</td>
+                                                <td class="d-none d-md-table-cell fs-sm text-center">
+                                                    {{ $loop->iteration }}</td>
                                                 <td class="fs-sm">
                                                     <a
                                                         href="{{ route('admin.submission.salary-submission.detail', ['id' => $studentProgress->id]) }}">{{ $studentProgress->tntrFirstName . ' ' . $studentProgress->tntrLastName }}</a>
@@ -189,18 +201,21 @@
                                                 </td>
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
                                                     @if ($studentProgress->status == 0)
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
+                                                        <span
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
                                                     @elseif ($studentProgress->status == -10)
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                                        <span
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
                                                     @else
-                                                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                                        <span
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
                                                     @endif
                                                 </td>
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
-                                                    
-                                                            <a href="{{ route('admin.submission.salary-submission.detail', ['id' => $studentProgress->id]) }}"
-                                                                class="btn btn-sm btn-neo">Detail</a>
-                
+
+                                                    <a href="{{ route('admin.submission.salary-submission.detail', ['id' => $studentProgress->id]) }}"
+                                                        class="btn btn-sm btn-neo">Detail</a>
+
                                                 </td>
                                             </tr>
                                         @endforeach

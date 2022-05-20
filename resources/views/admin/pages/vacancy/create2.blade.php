@@ -1,47 +1,30 @@
-<title>Tentor Verification</title>
+<title>Form Job Vacancy</title>
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        Job Vacany Detail
-                    </h1>
-                    <h5 class="fs-base lh-base fw-medium text-muted mb-0">
-                        Form for job vacancy detail
-                    </h5>
-                </div>
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">
-                            <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Job Vacancy</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            Job Vacancy Detail
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
     <!-- Page Content -->
     <div class="content">
-        <div class="block block-rounded " style="position: sticky">
-            <div class="block-content block-content-full">
-                <div class="row ">
-                    <div class="col-xl-12 order-xl-0">
-                        <h4 class="tittle-neo my-2">
-                            Job Vacancy Detail
-                        </h4>
+        <div class="block block-rounded border-right-neo shadow-sm">
+            <div class="bg-body-light ">
+                <div class="content content-full">
+                    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                        <h1 class="h3 fw-bold mb-0">
+                            Job Vacany Detail
+                        </h1>
+                        <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                            <ol class="breadcrumb breadcrumb-alt">
+                                <li class="breadcrumb-item">
+                                    <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Job Vacancy</a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">
+                                    Job Vacancy Detail
+                                </li>
+                            </ol>
+                        </nav>
                     </div>
-
                 </div>
             </div>
-        </div>
-        <div class="block block-rounded">
-            <div class="col-xl-12 order-xl-0">
+            <div class="col-xl-12 order-xl-0 ">
                 <!-- Dynamic Table Full -->
                 <div class="block">
                     <div class="block-content block-content-full">
@@ -76,7 +59,7 @@
 
             </div>
         </div>
-        <div class="block block-rounded">
+        <div class="block block-rounded border-right-neo shadow-sm">
             <div class="col-xl-12 order-xl-0">
                 <!-- Dynamic Table Full -->
                 <form method="POST" action="{{ route('admin.vacancy.job-vacancy.submit') }}" enctype="multipart/form-data">
@@ -118,8 +101,8 @@
                             </div>
                         </div>
 
-                        <div class="row g-3 col-12 d-flex justify-content-center py-2">
-                            <button class="btn btn-neo" name="submit" type="submit">
+                        <div class="row g-3 col-12 d-flex justify-content-center py-2 pb-4">
+                            <button class="btn btn-sm btn-neo" name="submit" type="submit">
                                 Save Changes
                             </button>
                         </div>

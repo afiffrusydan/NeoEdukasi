@@ -3,7 +3,6 @@
 
 @section('content')
     <!-- Hero -->
-    <title>Laravel Bootstrap Datepicker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

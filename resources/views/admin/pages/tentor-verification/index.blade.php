@@ -1,21 +1,28 @@
 <title>Tentor Verification</title>
 @extends('admin.layouts.app')
-
+@section('css_before')
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css') }}">
+@endsection
 @section('content')
     <!-- Page Content -->
     <div class="content">
         <!-- Hero -->
         <div class="bg-body-light block">
-            <div class="content content-full">
+            <div class="content content-full bg-header-tentor" style="
+                    background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
                         Tentor Verification
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">{{ ucwords(
-                                Auth::user()->getRoleNames()->first(),
-                            ) }}</li>
+                            <li class="breadcrumb-item">
+                                {{ ucwords(
+                                    Auth::user()->getRoleNames()->first(),
+                                ) }}
+                            </li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="">Tentor Verification</a>
                             </li>
@@ -26,115 +33,172 @@
         </div>
         <!-- END Hero -->
         <!-- Dynamic Table Full -->
-        <div class="block">
-            <div class="block-content block-content-full">
-                <div class="tittle-neo h4">
-                    New Tentor Verification
+        <div class="block block-rounded tab-content py-3 px-sm-0" id="nav-tabContent">
+            <div class="bg-white p-2 push col-12-line mx-0">
+                <div class="d-lg-none">
+                    <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
+                        data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
+                        data-class="d-none">
+                        <i class="fa fa-bars"></i>
+                    </button>
                 </div>
-                <div class="table-responsive">
-                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable no-footer">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="width: 1%;">#</th>
-                                <th style="width: 10%;">Full Name</th>
-                                <th style="width: 10%;">Last Education</th>
-                                <th style="width: 10%;">Branch</th>
-                                <th style="width: 10%;">Email</th>
-                                <th class="text-center" style="width: 10%;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach ($tentors as $tentor)
-                                <tr>
-                                    <td class="text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-
-                                    <td class="fw-semibold fs-sm">
-                                        <a
-                                            href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}">{{ $tentor->first_name . ' ' . $tentor->last_name }}</a>
-                                    </td>
-                                    <td class="fs-sm">
-                                        {{ $tentor->last_education }}
-                                    </td>
-                                    <td class="fs-sm">
-                                        {{ $tentor->branch_name }}
-                                    </td>
-                                    <td class="fs-sm"><em class="text-muted">{{ $tentor->email }}</em></td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" onclick=""
-                                                data-bs-toggle="tooltip" title="Detail">
-                                                <a href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}"
-                                                    class="btn btn-sm btn-neo pull-right">Detail</a>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <nav>
+                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
+                        <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx active" id="nav-interview-tab" data-toggle="tab"
+                                    href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-file"></i>
+                                    <span class="nav-main-link-name">New Tentor Verification &nbsp</span>
+                                    @if ($tentors)
+                                        <span class="badge badge-pill badge-info">{{ count($tentors) }}</span>
+                                    @endif
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab" href="#nav-shortlist"
+                                    role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-file"></i>
+                                    <span class="nav-main-link-name">Declined Verification &nbsp</span>
+                                    @isset($oldtentors)
+                                        <span class="badge badge-pill badge-info">{{ count($oldtentors) }}</span>
+                                    @endisset
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
+            <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-interview" role="tabpanel"
+            aria-labelledby="nav-vacancyInformation-tab">
+                <div class="block">
+                    <div class="block-content block-content-full">
+                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                        <div class="row g-3 col-12 ">
+                        <div class="table-responsive py-1">
+                            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 1%;">#</th>
+                                        <th style="width: 10%;">Full Name</th>
+                                        <th style="width: 10%;">Last Education</th>
+                                        <th style="width: 10%;">Branch</th>
+                                        <th style="width: 10%;">Email</th>
+                                        <th class="text-center" style="width: 10%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($tentors as $tentor)
+                                        <tr>
+                                            <td class="text-center">
+                                                {{ $loop->iteration }}
+                                            </td>
+
+                                            <td class="fw-semibold fs-sm">
+                                                <a
+                                                    href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}">{{ $tentor->first_name . ' ' . $tentor->last_name }}</a>
+                                            </td>
+                                            <td class="fs-sm">
+                                                {{ $tentor->last_education }}
+                                            </td>
+                                            <td class="fs-sm">
+                                                {{ $tentor->branch_name }}
+                                            </td>
+                                            <td class="fs-sm"><em
+                                                    class="text-muted">{{ $tentor->email }}</em></td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-sm btn-alt-secondary"
+                                                        onclick="" data-bs-toggle="tooltip" title="Detail">
+                                                        <a href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}"
+                                                            class="btn btn-sm btn-neo pull-right">Detail</a>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
         </div>
+            <div class="col-xl-12 order-xl-0 tab-pane fade " id="nav-shortlist" role="tabpanel"
+                aria-labelledby="nav-shortlist-tab">
+                <!-- Dynamic Table Full -->
+                <div class="block">
+                    <div class="block-content block-content-full">
+                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                        <div class="row g-3 col-12 ">
+                            <div class="table-responsive py-1">
+                                <table
+                                    class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 1%;">#</th>
+                                            <th style="width: 10%;">Full Name</th>
+                                            <th style="width: 10%;">Last Education</th>
+                                            <th style="width: 10%;">Branch</th>
+                                            <th style="width: 10%;">Email</th>
+                                            <th class="text-center" style="width: 10%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
+                                        @foreach ($oldtentors as $tentor)
+                                            <tr>
+                                                <td class="text-center">
+                                                    {{ $loop->iteration }}
+                                                </td>
 
-        <div class="block">
-            <div class="block-content block-content-full">
-                <div class="tittle-neo h4">
-                    Tentor Verification (Update)
+                                                <td class="fw-semibold fs-sm">
+                                                    <a
+                                                        href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}">{{ $tentor->first_name . ' ' . $tentor->last_name }}</a>
+                                                </td>
+                                                <td class="fs-sm">
+                                                    {{ $tentor->last_education }}
+                                                </td>
+                                                <td class="fs-sm">
+                                                    {{ $tentor->branch_name }}
+                                                </td>
+                                                <td class="fs-sm"><em
+                                                        class="text-muted">{{ $tentor->email }}</em></td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-sm btn-alt-secondary"
+                                                            onclick="" data-bs-toggle="tooltip" title="Detail">
+                                                            <a href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}"
+                                                                class="btn btn-sm btn-neo pull-right">Detail</a>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="table-responsive">
-                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable no-footer">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="width: 1%;">#</th>
-                                <th style="width: 10%;">Full Name</th>
-                                <th style="width: 10%;">Last Education</th>
-                                <th style="width: 10%;">Branch</th>
-                                <th style="width: 10%;">Email</th>
-                                <th class="text-center" style="width: 10%;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            @foreach ($oldtentors as $tentor)
-                                <tr>
-                                    <td class="text-center">
-                                        {{ $loop->iteration }}
-                                    </td>
-
-                                    <td class="fw-semibold fs-sm">
-                                        <a
-                                            href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}">{{ $tentor->first_name . ' ' . $tentor->last_name }}</a>
-                                    </td>
-                                    <td class="fs-sm">
-                                        {{ $tentor->last_education }}
-                                    </td>
-                                    <td class="fs-sm">
-                                        {{ $tentor->branch_name }}
-                                    </td>
-                                    <td class="fs-sm"><em class="text-muted">{{ $tentor->email }}</em></td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" onclick=""
-                                                data-bs-toggle="tooltip" title="Detail">
-                                                <a href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}"
-                                                    class="btn btn-sm btn-neo pull-right">Detail</a>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
         <!-- END Dynamic Table Full -->
     </div>
     <!-- END Page Content -->
+@section('js_after')
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/buttons/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/buttons/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables/buttons/buttons.colVis.min.js') }}"></script>
+
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@endsection
 @endsection

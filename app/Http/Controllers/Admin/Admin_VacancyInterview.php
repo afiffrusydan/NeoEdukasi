@@ -27,6 +27,7 @@ class Admin_VacancyInterview extends Controller
     {
         $vacancy = Vacancy::join('students', 'vacancy.student_id', '=', 'students.id')
         ->where('vacancy.status','=', -10)
+        ->Orwhere('vacancy.status','=', 10)
         ->get(['vacancy.*', 'students.first_name','students.last_name'])->sortByDesc("created_at");;
         return view('admin.pages.interview.index', ['vacancys' => $vacancy]);
     }

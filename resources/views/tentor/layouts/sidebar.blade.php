@@ -140,12 +140,12 @@ $account_status = Auth::user()->account_status;
             <!-- User Dropdown -->
             <div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="Header Avatar" style="width: 20px;">
+                    <img class="rounded" src="{{ asset('images/Asset//vacancy-avatar.png') }}" alt="Header Avatar" style="width: 20px;">
                     <span class="d-none d-sm-inline-block ml-1">{{ Auth::user()->first_name ." ". Auth::user()->last_name }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
                     <div class="p-3 text-center bg-primary">
-                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
+                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('images/Asset//vacancy-avatar.png') }}" alt="">
                     </div>
                     <div class="p-2">
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('tentor.profile') }}">

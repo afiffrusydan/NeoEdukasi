@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Registrasi Akun Tentor</title>
+    <title>Registrasi Akun</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/opensans-font.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -151,16 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                                    
-                            <div class="inner text-right p-t-50">
-                                <a class="txt2">
-                                   Sudah punya akun?
-                                </a><br>
-                                <a class="txt2" href="{{ route('tentor.login') }}">
-                                    Login Sekarang!
-                                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                                
                         </section>
                         <!-- SECTION 2 -->
                         <h2>
@@ -398,10 +389,14 @@
                 </form>
             </div>
         </div>
-
-
     </div>
-
+    <div class="page-content text-right tologin">
+           Sudah punya akun?&nbsp;
+        <a class="txt2" href="{{ route('tentor.login') }}">
+            Login Sekarang!
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        </a>
+    </div>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.datepick').datetimepicker({

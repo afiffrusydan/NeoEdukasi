@@ -21,7 +21,9 @@ class Admin_VacancyController extends Controller
     {
         $vacancy = Vacancy::join('students', 'vacancy.student_id', '=', 'students.id')
         ->where('vacancy.status','=', -10)
+        ->Orwhere('vacancy.status','=', 10)
         ->get(['vacancy.*', 'students.first_name','students.last_name'])->sortByDesc("created_at");;
+
         return view('admin.pages.vacancy.index', ['vacancys' => $vacancy]);
     }
 
@@ -70,10 +72,26 @@ class Admin_VacancyController extends Controller
         ->join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
         ->where('vacancy.id','=', $id)
         ->get([ 'vacancy.created_at as vacancyCreateDate', 'vacancy.status as vacancyStatus', 'vacancy.id as vacancyId','vacancy.*', 'students.*','branchs.*'])->first();;
-
+        if($vacancy->vacancyStatus== -10){
+            $jobStatus= 'Open';
+        }else{
+            $jobStatus= 'Closed';
+        }
         $criteria = explode('~', $vacancy->criteria);
         $result1 = count($criteria)-1;
-        return view('admin.pages.vacancy.view', ['vacancy' => $vacancy, 'criteria'=> $result1]);
+        return view('admin.pages.vacancy.view', ['vacancy' => $vacancy, 'criteria'=> $result1,'jobStatus'=>$jobStatus]);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $id = $request->id;
+        $vacancy = Vacancy::find($id);
+        
+        $vacancy->status = $request->status;
+        $vacancy->save();
+
+        $response="Vacancy Status Successfully Updated";
+        return $response;
     }
 
 

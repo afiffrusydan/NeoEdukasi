@@ -2,78 +2,76 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        Applicant & Vacancy Detail
-                    </h1>
-                    <h5 class="fs-base lh-base fw-medium text-muted mb-0">
-                        Applicant & Vacancy Information
-                    </h5>
-                </div>
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">
-                            <a class="link-fx"
-                                href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Applicant
-                                List</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            Applicant Detail
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
     <!-- Page Content -->
     <div class="content">
-        <div class="bg-white p-2 push">
-            <div class="d-lg-none">
-                <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
-                    data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
-                    data-class="d-none">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <nav>
-                <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
-                    <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx active" id="nav-home-tab" data-toggle="tab"
-                                href="#nav-vacancyInformation" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-briefcase"></i>
-                                <span class="nav-main-link-name">Vacancy Information</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-home-tab" data-toggle="tab"
-                                href="#nav-tentorInformation" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="nav-main-link-icon fa fa-address-card"></i>
-                                <span class="nav-main-link-name">Tentor Information</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-contact-tab" data-toggle="tab" href="#nav-certificate"
-                                role="tab" aria-controls="nav-contact" aria-selected="false">
-                                <i class="nav-main-link-icon fa fa-certificate"></i>
-                                <span class="nav-main-link-name">Certificate</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link link-fx" id="nav-about-tab" data-toggle="tab" href="#nav-transcripts"
-                                role="tab" aria-controls="nav-about" aria-selected="false">
-                                <i class="nav-main-link-icon fa fa-file"></i>
-                                <span class="nav-main-link-name">Transcripts</span>
-                            </a>
-                        </li>
-                    </ul>
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+                background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-2">
+                            Applicant & Vacancy Detail
+                        </h1>
+                    </div>
+                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">
+                                <a class="link-fx"
+                                    href="{{ route('admin.vacancy.interview.show', ['id' => $vacancyData->id]) }}">Applicant
+                                    List</a>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                Applicant Detail
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
-            </nav>
+            </div>
         </div>
-        <div class="block block-rounded tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+        <div class="block block-rounded tab-content py-3 px-3 px-sm-0 border-right-neo shadow-sm" id="nav-tabContent">
+            <div class="bg-white p-2 push">
+                <div class="d-lg-none">
+                    <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
+                        data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
+                        data-class="d-none">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <nav>
+                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
+                        <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx active" id="nav-home-tab" data-toggle="tab"
+                                    href="#nav-vacancyInformation" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-briefcase"></i>
+                                    <span class="nav-main-link-name">Vacancy Information</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-home-tab" data-toggle="tab"
+                                    href="#nav-tentorInformation" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <i class="nav-main-link-icon fa fa-address-card"></i>
+                                    <span class="nav-main-link-name">Tentor Information</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-contact-tab" data-toggle="tab" href="#nav-certificate"
+                                    role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    <i class="nav-main-link-icon fa fa-certificate"></i>
+                                    <span class="nav-main-link-name">Certificate</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link link-fx" id="nav-about-tab" data-toggle="tab" href="#nav-transcripts"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">
+                                    <i class="nav-main-link-icon fa fa-file"></i>
+                                    <span class="nav-main-link-name">Transcripts</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
             <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-vacancyInformation" role="tabpanel"
                 aria-labelledby="nav-vacancyInformation-tab">
                 <!-- Dynamic Table Full -->

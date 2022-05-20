@@ -71,6 +71,7 @@ Route::group([
           Route::get('{id}/view', 'Admin_VacancyController@show')->name('.show');
           Route::post('/update', 'Admin_VacancyController@update')->name('.update');
           Route::post('/delete', 'Admin_VacancyController@remove')->name('.delete');
+          Route::post('/update-status', 'Admin_VacancyController@updateStatus')->name('.update_status');
       });
       Route::group(['prefix' => '/vacancy-application', 'as' => '.vacancy-application'], function () {
         Route::get('index', 'Admin_VacancyApplicationController@index')->name('.index');

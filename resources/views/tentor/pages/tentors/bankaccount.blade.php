@@ -1,4 +1,4 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>{{ 'Pengaturan Akun Bank' }}</title>
 @extends('tentor.layouts.app')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -119,7 +119,7 @@
             Swal.fire({
                         title: "",
                         text: "Please wait",
-                        imageUrl: "{{ asset('storage/tentors/tentor-photo-profile/30.jpg') }}",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
                         showConfirmButton: false,
                         allowOutsideClick: false
                     });

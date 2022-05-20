@@ -1,42 +1,42 @@
-<title>Tentor Verification</title>
+<title>Job Vacancy</title>
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        Job Vacancy
-                    </h1>
-                </div>
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">
-                            <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Job Vacancy</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            Home
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
     <!-- Page Content -->
     <div class="content">
         <!-- Hero -->
-
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        Vacancy
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">
+                                {{ ucwords(
+                                    Auth::user()->getRoleNames()->first(),
+                                ) }}
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="">Vacancy</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
         <!-- END Hero -->
         <!-- Dynamic Table Full -->
-        <div class="block block-rounded">
+        <div class="block block-rounded shadow-sm">
             <div class="block-content block-content-full" >
                 <div class="row">
                     <div class="col-xl-12 order-xl-0">
                         <div class="row items-push float-sm-right ">
-                            <button type="button" class="btn btn-md btn-alt-secondary" title="Add New Student">
+                            <button type="button" class="btn btn-sm btn-alt-secondary" title="Add New Student">
                                 <a href="{{ route('admin.vacancy.job-vacancy.create1') }}"
-                                    class="btn btn-md btn-neo pull-right">Add New Job Vacancy</a>
+                                    class="btn btn-sm btn-neo pull-right">Add New Job Vacancy</a>
                             </button>
                         </div>
                         <h4 class="tittle-neo my-2">
@@ -50,15 +50,20 @@
 
         @foreach ($vacancys as $vacancy)
         <a class=" " href="{{ route('admin.vacancy.job-vacancy.show', ['id'=>$vacancy->id])}}">
-            <div class="block block-rounded">
-                <div class="block-content block-content-full">
+            <div class="block block-rounded shadow-sm">
+                <div class="content content-full bg-header-tentor border-left-neo2" style="
+            background-image:url({{ asset('images/Asset/header-tentors-detail-big-2.png') }});">
                     <div class="row">
                         <div class="col-xl-9 order-xl-0">
-                            <div class="mb-1 h5 text-black-75 py-2">
-                                {{ $vacancy->first_name.' '.$vacancy->last_name }}
+                            <div class="text-neo">
+                                <h3 style="color: #6fa306">{{ $vacancy->first_name.' '.$vacancy->last_name }}</h3>
                             </div>
-                            <div class="mb-1 h6 text-black-50 py-1">
-                                Job Vacancy Status
+                            <div class="mb-0 h6 text-black-50 ">
+                                @if ($vacancy->status == -10)
+                                    {{ 'Open' }}
+                                @else
+                                {{ 'Closed' }}
+                                @endif
                             </div>
                             <div class="mb-1 h6 text-black-50 py-1">
                                 {{ $vacancy->created_at }}
