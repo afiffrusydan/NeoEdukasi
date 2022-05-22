@@ -329,12 +329,17 @@
         $("#check").click(function(event) {
             event.preventDefault();
             var isvalidate = $("#submitForm")[0].checkValidity();
-            if (isvalidate) {
-                event.preventDefault();
-                let id = $("#studentId").val();
-                let meet_hours = $("#meet_hours").val();
-                let extra_meet_hours = $("#extra_meet_hours").val();
-                let add_cost = $("#add_cost").val();
+            Swal.fire({
+                title: "",
+                text: "Please wait...",
+                imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+                var id = $("#studentId").val();
+                var meet_hours = $("#meet_hours").val();
+                var extra_meet_hours = $("#extra_meet_hours").val();
+                var add_cost = $("#add_cost").val();
                 $.ajax({
                     url: "{{ route('tentor.salary-submission.check') }}",
                     type: "POST",
@@ -346,11 +351,14 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
+                        swal.close();
+                        console.log(response);
                         var reverse = response.total.toString().split('').reverse().join(''),
                             ribuan = reverse.match(/\d{1,3}/g);
                         ribuan = ribuan.join('.').split('').reverse().join('');
                         var fileInput = '';
                         var fileInput2 = '';
+                        var fileInput3 ='';
                         document.getElementById("modal-total").value = 'Rp. '+ribuan;
                         if ($('#documentation').get(0).files.length !== 0) {
                              fileInput= document.getElementById('documentation').files[0].name;
@@ -358,7 +366,9 @@
                         if ($('#proof').get(0).files.length !== 0) {
                             fileInput2 = document.getElementById('proof').files[0].name;
                         }
-                        var fileInput1 = document.getElementById('attendance').files[0].name;
+                        if ($('#attendance').get(0).files.length !== 0) {
+                            fileInput3 = document.getElementById('attendance').files[0].name;
+                        }
                         document.getElementById("modal-meet_hours").value = meet_hours +' x '+response.price+' = '+(meet_hours*response.price);
                         document.getElementById("modal-add_cost").value = document.getElementById(
                             'add_cost').value;
@@ -366,16 +376,15 @@
                             extra_meet_hours / 30)+' x '+response.add_price+' = '+(parseInt(
                             extra_meet_hours / 30)*response.add_price);
                         document.getElementById("modal-documentation").value = fileInput;
-                        document.getElementById("modal-attendance").value = fileInput1;
+                        document.getElementById("modal-attendance").value = fileInput3;
                         document.getElementById("modal-proof").value = fileInput2;
                         $("#modal-review").modal('show');
+                        
                     },
                     error: function(error) {
                         console.log(error);
                     }
                 });
-            }
-
         });
     </script>
 @endsection
