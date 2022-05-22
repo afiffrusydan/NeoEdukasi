@@ -229,8 +229,6 @@ class TentorController extends Controller
     }
 
     function getFile($filename){
-        $file=Storage::disk('public')->get($filename);
- 
-        return response()->download(storage_path('app/public/files/'. $filename));
+        return Storage::download('public/files/'.$filename);
     }
 }

@@ -54,7 +54,7 @@
                     @foreach ($vacancys as $vacancy)
                         <div class="col-md-12 pb-2">
                             <a class="shadow-sm"
-                                href="{{ route('tentor.vacancy.detail', ['id' => $vacancy->vacancyId]) }}">
+                                href="{{ route('tentor.vacancy.detail', ['id' => Crypt::encrypt($vacancy->vacancyId)]) }}">
 
                                 <div class="border-left-neo vacancy-section bg-white">
                                     <div class="block-content block-content-full">

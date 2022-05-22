@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\admin\TutoredStudents;
 use App\Models\ClassModel;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\RatesModel;
 use App\Models\tentor\StudentProgress;
 use App\Models\tentor\FileVerification;
@@ -56,8 +57,9 @@ class TentorSalarySubmissionController extends Controller
         
     }
 
-    public function view($id)
+    public function view($_id)
     {
+        $id = Crypt::decrypt($_id);
         $studentProgress = SalarySubmission::join('tutored-students', 'tutored-students.id', '=', 'salary-submission.tentored_student_id') 
         ->join('students', 'tutored-students.student_id', '=', 'students.id') 
         ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
@@ -65,6 +67,18 @@ class TentorSalarySubmissionController extends Controller
         ->select('salary-submission.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName')
         ->get()->first();;
         return view('tentor.pages.salary-submission.view', ['data' => $studentProgress]);
+    }
+
+    public function update($_id)
+    {
+        $id = Crypt::decrypt($_id);
+        $studentProgress = SalarySubmission::join('tutored-students', 'tutored-students.id', '=', 'salary-submission.tentored_student_id') 
+        ->join('students', 'tutored-students.student_id', '=', 'students.id') 
+        ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
+        ->where('salary-submission.id','=',$id)
+        ->select('salary-submission.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName')
+        ->get()->first();;
+        return view('tentor.pages.salary-submission.update', ['data' => $studentProgress]);
     }
 
 
@@ -198,7 +212,7 @@ class TentorSalarySubmissionController extends Controller
         return $response;
      }
      
-     public function update(Request $request)
+     public function postUpdate(Request $request)
      {
         $request->validate([
             'meet_hours' => ['required', 'string'],

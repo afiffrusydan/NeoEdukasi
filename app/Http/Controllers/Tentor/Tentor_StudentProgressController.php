@@ -11,6 +11,7 @@ use App\Models\tentor\StudentProgress;
 use App\Models\tentor\TentorApplication;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class Tentor_StudentProgressController extends Controller
@@ -38,8 +39,9 @@ class Tentor_StudentProgressController extends Controller
         return view('tentor.pages.student-progress.index', ['stdProgress' => $studentProgress]);
     }
 
-    public function view($id)
+    public function view($_id)
     {
+        $id = Crypt::decrypt($_id);
         $studentProgress = StudentProgress::join('tutored-students', 'tutored-students.id', '=', 'students_progress.tentored_student_id')  
         ->join('students','tutored-students.student_id','=','students.id')
         ->where('students_progress.id','=', $id)

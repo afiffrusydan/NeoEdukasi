@@ -1,10 +1,15 @@
 <title>Form Pengajuan Gaji</title>
 @extends('tentor.layouts.app')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"
+    rel="stylesheet" />
 @section('content')
-    <div class="content">
+    <div class="content shadow-sm">
         <div class="bg-body-light">
-            <div class="content content-full">
+            <div class="content content-full border-right-neo">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
                         Form Pengajuan Gaji<small
@@ -49,7 +54,7 @@
                                 <div class="col-12 col-md-12">
                                     <label class="form-label tittle-neo">Nama Siswa ( Mata Pelajaran )</label>
                                     <select class="form-control selectpicker" id="studentId" name="tentored_id"
-                                        data-live-search="true" data-size="4" required>
+                                        data-live-search="true" data-size="8" required>
                                         <option value="0" selected disabled>
                                             Silahkan Pilih
                                         </option>
@@ -62,7 +67,7 @@
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <label class="form-label tittle-neo">Bulan</label>
-                                    <select class="form-control selectpicker" id="monthSelect" name="month" disabled
+                                    <select class="form-control" id="monthSelect" name="month" disabled
                                         required>
                                         <option value="0" selected disabled>
                                             Silahkan Pilih
@@ -279,6 +284,13 @@
     <script>
         $('#studentId').on('change', function() {
             var selected = $(this).val();
+            Swal.fire({
+                title: "",
+                text: "Please wait...",
+                imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
             $.ajax({
                 url: "{{ route('tentor.salary-submission.get-month') }}",
                 type: "POST",
@@ -299,10 +311,12 @@
                                 new Option(response.text, response.id)
                             )
                         );
+                        swal.close()
                     } else {
                         $("#monthSelect").prop("disabled", true);
                         $("#monthSelect").empty().append(
-                            "<option disabled='disabled' SELECTED>Silahkan Pilih</option>");
+                            "<option disabled='disabled' SELECTED>Data Tidak Ditemukan</option>");
+                        swal.close()
                     }
                 },
                 error: function(error) {

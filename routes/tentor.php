@@ -44,8 +44,8 @@ Route::group([
   Route::post('/update-bank-account', 'TentorController@bankUpdate')->name('tentor.updatebank');
   Route::group(['prefix' => '/vacancy', 'as' => 'tentor.vacancy'], function () {
     Route::get('vacancy', 'TentorVacancyController@index')->name('.index');
-    Route::get('{id}/view-vacancy', 'TentorVacancyController@view')->name('.detail');
-    Route::get('{id}/apply-vacancy', 'TentorVacancyController@submitApplication')->name('.apply');
+    Route::get('view-vacancy/{id}', 'TentorVacancyController@view')->name('.detail');
+    Route::get('apply-vacancy/{id}', 'TentorVacancyController@submitApplication')->name('.apply');
 });
 });
 
@@ -60,7 +60,7 @@ Route::group([
 ], function () {
     Route::group(['prefix' => '/student-progress-report', 'as' => 'tentor.progress-report'], function () {
       Route::get('/index', 'Tentor_StudentProgressController@index')->name('.index');
-      Route::get('{id}/detail', 'Tentor_StudentProgressController@view')->name('.detail');
+      Route::get('detail/{id}', 'Tentor_StudentProgressController@view')->name('.detail');
       Route::get('/add', 'Tentor_StudentProgressController@create')->name('.addnew');
       Route::post('/add', 'Tentor_StudentProgressController@postCreate')->name('.submit');
       Route::post('/update', 'Tentor_StudentProgressController@update')->name('.update');
@@ -68,10 +68,11 @@ Route::group([
   });
     Route::group(['prefix' => '/salary-submission', 'as' => 'tentor.salary-submission'], function () {
       Route::get('/index', 'TentorSalarySubmissionController@index')->name('.index');
-      Route::get('{id}/detail', 'TentorSalarySubmissionController@view')->name('.detail');
+      Route::get('detail/{id}', 'TentorSalarySubmissionController@view')->name('.detail');
+      Route::get('update/{id}', 'TentorSalarySubmissionController@update')->name('.update');
       Route::get('/add', 'TentorSalarySubmissionController@create')->name('.addnew');
       Route::post('/add', 'TentorSalarySubmissionController@postCreate')->name('.submit');
-      Route::post('/update', 'TentorSalarySubmissionController@update')->name('.update');
+      Route::post('/update', 'TentorSalarySubmissionController@postUpdate')->name('.post-update');
       Route::post('/getMonth', 'TentorSalarySubmissionController@getMonth')->name('.get-month');
       Route::post('/check', 'TentorSalarySubmissionController@check')->name('.check');
   });

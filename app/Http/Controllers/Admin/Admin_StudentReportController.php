@@ -9,6 +9,8 @@ use App\Models\tentor\StudentProgress;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
+
 class Admin_StudentReportController extends Controller
 {
     public function __construct()
@@ -41,6 +43,8 @@ class Admin_StudentReportController extends Controller
 
     public function detail($id)
     {
+
+
         $studentProgress = StudentProgress::join('tutored-students', 'tutored-students.id', '=', 'students_progress.tentored_student_id')  
         ->join('students','tutored-students.student_id','=','students.id')
         ->join('tentors','tutored-students.tentor_id','=','tentors.id')
@@ -78,14 +82,17 @@ class Admin_StudentReportController extends Controller
             'year' => $studentProgress->year,
         ];
           
-        $pdf = PDF::loadView('template.student-progress', $data)->download('medium.pdf');
+        $path = public_path('pdf');
+        $filename ='Laporan_Perkembangan_Siswa';
+        // $pdf = PDF::loadView('template.student-progress', $data);
+        
+        $pdf = PDF::loadView('template.student-progress', $data)->save(''.$path.'/'.$filename.'.pdf');
 
-        $pdf1 = PDF::loadView('template.student-progress', $data);
-        Storage::put('public/invoice.pdf', $pdf1->output());
-        //sdsad
+        // Storage::put('public/invoice.pdf', $pdf->output());
+
         $key='866cb2bb28d0f410fedb3893178aa25fafc211e6b8456541'; //this is demo key please change with your own key
         $url='http://116.203.191.58/api/send_file_url';
-        $file_path = 'https://ci6.googleusercontent.com/proxy/29KlYNooIzRna0Wb0cOjeEy1ZA3kN7WojLKIeXZ9y16G7Gpx5t1HdhkjEXjD5MhnZQG4GhnpMlihnh287l7IyIErNK6jCTy5lM3xHGTdj3jgih4Io-xfmpSYzVLYQP8=s0-d-e1-ft#https://drive.google.com/uc?export=view&id=1jSOqaxPriW48y4NLi-hT52yj_jpkSJTN';
+        $file_path = asset('pdf/'.$filename);
         $data = array(
           "phone_no"  => '+'.$studentProgress->parent_phone_number,
           "key"       => $key,
@@ -110,8 +117,5 @@ class Admin_StudentReportController extends Controller
         echo $res=curl_exec($ch);
         curl_close($ch);
         return $res;
-        // return response($pdf, 200)
-        //     ->header('Content-Type', 'application/pdf');
-
     }
 }

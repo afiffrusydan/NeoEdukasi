@@ -23,7 +23,10 @@
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-body-light">
+
+    <!-- END Hero -->
+    <div class="content">    
+        <div class="row block bg-body-light shadow-sm">
         <div class="content content-full bg-header-tentor" style="
         background-image:url({{ asset('images/Asset/header-tentors.png') }});">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
@@ -42,9 +45,7 @@
             </div>
         </div>
     </div>
-    <!-- END Hero -->
-    <div class="content">
-        <div class="block">
+        <div class="row block shadow-sm">
             <div class="block-content block-content-full">
                 <div class="row items-push float-end ">
                     <div class="col-12 col-md-3 py-2">
@@ -72,7 +73,7 @@
                                         <td class="d-none d-md-table-cell fs-sm text-center">{{ $loop->iteration }}</td>
                                         <td class="fs-sm">
                                             <a
-                                                href="{{ route('tentor.progress-report.detail', ['id' => $studentProgress->id]) }}">{{ $studentProgress->stdFirstName . ' ' . $studentProgress->stdLastName }}</a>
+                                                href="{{ route('tentor.progress-report.detail', ['id' => Crypt::encrypt($studentProgress->id)]) }}">{{ $studentProgress->stdFirstName . ' ' . $studentProgress->stdLastName }}</a>
                                         </td>
                                         <td class="fs-sm">
                                             {{ $studentProgress->subject }}
@@ -93,7 +94,7 @@
                                             @endif
                                         </td>
                                         <td class="d-none d-sm-table-cell fs-sm text-center">
-                                            <a href="{{ route('tentor.progress-report.detail', ['id' => $studentProgress->id]) }}"
+                                            <a href="{{ route('tentor.progress-report.detail', ['id' => Crypt::encrypt($studentProgress->id)]) }}"
                                                 class="btn btn-sm btn-neo">Detail</a>
                                         </td>
                                     </tr>

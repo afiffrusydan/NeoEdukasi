@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\admin\Vacancy;
 use App\Models\tentor\TentorApplication;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Crypt;
 
 class TentorVacancyController extends Controller
 {
@@ -21,8 +22,9 @@ class TentorVacancyController extends Controller
         return view('tentor.pages.vacancy.index2', ['vacancys' => $vacancy]);
     }
 
-    public function view($id)
+    public function view($_id)
     {
+        $id = Crypt::decrypt($_id);
         $vacancy = Vacancy::join('students', 'vacancy.student_id', '=', 'students.id')
         ->join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
         ->join('class', 'students.class_id', '=', 'class.id')
@@ -44,8 +46,9 @@ class TentorVacancyController extends Controller
     }
 
 
-    public function submitApplication($id)
+    public function submitApplication($_id)
     {
+        $id = Crypt::decrypt($_id);
         TentorApplication::create([
             'tentor_id' => Auth::user()->id,
             'vacancy_id' => $id,

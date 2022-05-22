@@ -1,4 +1,4 @@
-<title>Detail Lowongan Pekerjaan Neo Edukasi</title>
+<title>Detail Lowongan Pekerjaan</title>
 @extends('tentor.layouts.app')
 
 @section('content')
@@ -21,7 +21,7 @@
                             @else
                                 <button type="button" class="btn btn-sm btn-alt-secondary btn-block"
                                     title="Add New Student">
-                                    <a href="{{ route('tentor.vacancy.apply', ['id' => $vacancy->vacancyId]) }}"
+                                    <a href="{{ route('tentor.vacancy.apply', ['id' => Crypt::encrypt($vacancy->vacancyId)]) }}"
                                         class="btn btn-sm btn-neo pull-right btn-block">Apply</a>
                                 </button>
                             @endif

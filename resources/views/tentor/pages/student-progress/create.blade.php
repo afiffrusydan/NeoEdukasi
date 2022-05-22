@@ -1,4 +1,4 @@
-<title>Add Student Progress Report</title>
+<title>Form Laporan Perkembangan Siswa</title>
 @extends('tentor.layouts.app')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -8,15 +8,8 @@
     rel="stylesheet" />
 
 @section('content')
-    <!-- Hero -->
-    <title>Laravel Bootstrap Datepicker</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-    <!-- END Hero -->
-    <!-- Page Content -->
-    <div class="content">
+
+    <div class="content shadow-sm">
         <div class="bg-body-light">
             <div class="content content-full  border-right-neo">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">

@@ -2,27 +2,27 @@
 @extends('tentor.layouts.app')
 @section('content')
     <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full bg-header-tentor" style="
-                            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">Dashboard</h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">{{ config('app.name', 'Neo Edukasi') }}</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Dashboard</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+
     <!-- END Hero -->
 
     <!-- Page Content -->
     <div class="content">
-
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+                                background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">Dashboard</h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">{{ config('app.name', 'Neo Edukasi') }}</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="">Dashboard</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
         @error('msg')
             <div class="block content-full">
                 <center>
@@ -79,7 +79,7 @@
                 </div>
             </div>
         @enderror
-        <div class="block">
+        <div class="block shadow-sm">
             <div class="block-header">
                 
             </div>

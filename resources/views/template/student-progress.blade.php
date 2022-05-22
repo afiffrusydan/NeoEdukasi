@@ -5,25 +5,19 @@
 <title>{{ $student_name }} Progress Report</title>
 <link rel="stylesheet" href="{{ public_path('css/template/student-progress.css') }}" />
 </head>
-<body>
-<header class="clearfix">
-  <div id="logo"> <img src="{{ public_path("images/logo-ne.png") }}"> </div>
-  <div id="company">
-    <h2 class="company-name">Neo Edukasi</h2>
-    <div>Klodran RT 02/V, Colomadu, Karanganyar</div>
-    <div>0812-4596-1133</div>
-    <div><a>neoedukasi@gmail.com </a></div>
-  </div>
-</header>
-<main>
-  <div id="details" class="clearfix">
+<body style="background-image: url('{{ public_path("asset/images/templates/bg.png") }}');">
+{{-- <header class="clearfix">
+  <div id="logo"> <img src="{{ public_path("asset/images/templates/header.png") }}"> </div>
+</header> --}}
+<main style="margin-left:7%;">
+  <div id="details" class="clearfix" style="margin-bottom: -1%;padding-top:250px;">
     <div id="client">
       <h2 class="name">{{ $student_name }}</h2>
       <div class="address">{{ $class }}</div>
       <div class="address">{{ $school }}</div>
     </div>
     <div id="invoice">
-      <div class="to">Laporan Perkembangan Siswa</div>
+      <div class="to">Bulan</div>
       <h3>{{ $month.' '.$year }}</h3>
     </div>
   </div>
@@ -72,24 +66,23 @@
       <tr>
         <td class="tittle" width="21%">Progres Belajar Siswa</td>
         <td width="1%">:</td>
-        <td class="normal" width="79%">{{ $learning_progression }}</td>
+        <td class="normal" width="79%">{{ $learning_progression }}
+          </td>
       </tr>
       <tr>
         <td class="tittle" width="21%">Saran/Masukan</td>
         <td width="1%">:</td>
-        <td class="normal" width="79%">{{ $feedback }}</td>
+        <td class="normal" width="79%">{{ $feedback }}
+        </td>
       </tr>
     </tbody>
   </table>
-	
-	    <div id="tandatangan">
-      <div class="tittle-neo">Karanganyar, {{ date('d-m-Y', strtotime($date)) }}</div>
-      <div class="ttd">ttd</div>
-      <div>{{ $tentor_name }}</div>
-    </div>
+	<div id="tandatangan" style="bottom:50px;position: absolute;">
+    <div class="tittle-neo">Karanganyar, {{ date('d/m/Y', strtotime($date)) }}</div>
+    <div>Tentor / Guru Les</div>
+    <div class="ttd">ttd</div>
+    <div>{{ $tentor_name }}</div>
+  </div>
 </main>
-
-<footer>
-  </footer>
 </body>
 </html>

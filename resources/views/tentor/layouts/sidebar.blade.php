@@ -36,7 +36,9 @@ $account_status = Auth::user()->account_status;
             </span>
         </a>
         <!-- Logo -->
-
+        <a class="d-lg-none btn-white btn btn-sm btn-alt-secondary ms-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+            <i class="fa fa-fw fa-times text-white"></i>
+          </a>
 
     </div>
     <!-- END Side Header -->

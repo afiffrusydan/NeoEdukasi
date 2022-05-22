@@ -33,6 +33,9 @@ $admin_role = Auth::user()->getRoleNames()->first();
         <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_close">
             <i class="fa fa-fw fa-ellipsis-v"></i>
         </button>
+        <a class="d-lg-none btn-white btn btn-sm btn-alt-secondary ms-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+            <i class="fa fa-fw fa-times text-white"></i>
+          </a>
         </div>
 
     </div>

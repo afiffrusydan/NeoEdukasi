@@ -17,27 +17,28 @@
 
 @section('content')
     <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full bg-header-tentor" style="
-        background-image:url({{ asset('images/Asset/header-tentors.png') }});">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    Daftar Pengajuan Gaji <small
-                        class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Pengajuan Gaji</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Dashboard</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+
     <!-- END Hero -->
     <div class="content">
+        <div class="block row bg-body-light">
+            <div class="content content-full bg-header-tentor" style="
+            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-sm-fill h3 my-2">
+                        Daftar Pengajuan Gaji <small
+                            class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
+                    </h1>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">Pengajuan Gaji</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="">Dashboard</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
         <div class="row bg-white push justify-content-center align-items-center">
             <nav>
                 <div id="horizontal-navigation-hover-centered" class="d-lg-block mt-2 mt-lg-0">
@@ -96,7 +97,7 @@
                                         <tr>
                                             <td class="fs-sm">
                                                 <a class="font-size-h6"
-                                                    href="javascript:void(0)">{{ $studentProgress->stdFirstName . ' ' . $studentProgress->stdLastName }}</a>
+                                                    href="{{ route('tentor.salary-submission.detail', ['id' => Crypt::encrypt($studentProgress->id)]) }}">{{ $studentProgress->stdFirstName . ' ' . $studentProgress->stdLastName }}</a>
                                             </td>
                                             <td class="fs-sm">
                                                 {{ $studentProgress->subject }}
@@ -117,7 +118,7 @@
                                                 @endif
                                             </td>
                                             <td class="d-none d-sm-table-cell fs-sm text-center">
-                                                <a href="{{ route('tentor.salary-submission.detail', ['id' => $studentProgress->id]) }}"
+                                                <a href="{{ route('tentor.salary-submission.update', ['id' => Crypt::encrypt($studentProgress->id)]) }}"
                                                     class="btn btn-sm btn-neo{{ $studentProgress->status == -10 ? '' : ' disabled' }}">Update</a>
                                             </td>
                                         </tr>
@@ -150,7 +151,7 @@
                                         <tr>
                                             <td class="fs-sm">
                                                 <a class="font-size-h6"
-                                                    href="javascript:void(0)">{{ $studentProgress->stdFirstName . ' ' . $studentProgress->stdLastName }}</a>
+                                                    href="{{ route('tentor.salary-submission.detail', ['id' => Crypt::encrypt($studentProgress->id)]) }}">{{ $studentProgress->stdFirstName . ' ' . $studentProgress->stdLastName }}</a>
                                             </td>
                                             <td class="fs-sm">
                                                 {{ $studentProgress->subject }}
