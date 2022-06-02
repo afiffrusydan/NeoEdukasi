@@ -135,7 +135,7 @@
                 Swal.fire({
                     title: 'Response Status :',
                     text: error,
-                    icon: 'danger',
+                    icon: 'error',
                     showConfirmButton: false,
                     timer: 3000
                 });

@@ -198,7 +198,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
                             <div class="invisible pt-4 mt-4" id="saveChanges" data-toggle="appear" style="display: none">
                                 <div class="block-content block-content-full">
                                     <div class="mb-2 col-12 text-center">
@@ -223,6 +222,7 @@
                                 </div>
 
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>

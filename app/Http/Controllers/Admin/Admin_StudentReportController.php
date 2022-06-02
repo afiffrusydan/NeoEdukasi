@@ -97,10 +97,10 @@ class Admin_StudentReportController extends Controller
         ];
           
         $path = public_path('pdf');
-        $filename ='Laporan_Perkembangan_Siswa';
+        $filename ='Laporan_Perkembangan_Siswa.pdf';
         // $pdf = PDF::loadView('template.student-progress', $data);
         
-        $pdf = PDF::loadView('template.student-progress', $data)->save(''.$path.'/'.$filename.'.pdf');
+        $pdf = PDF::loadView('template.student-progress', $data)->save(''.$path.'/'.$filename);
 
         // Storage::put('public/invoice.pdf', $pdf->output());
 
@@ -128,7 +128,7 @@ class Admin_StudentReportController extends Controller
             'Content-Length: ' . strlen($data_string),
             'Authorization: Basic dXNtYW5ydWJpYW50b3JvcW9kcnFvZHJiZWV3b293YToyNjM3NmVkeXV3OWUwcmkzNDl1ZA=='
         ));
-        echo $res=curl_exec($ch);
+        $res=curl_exec($ch);
         curl_close($ch);
         return $res;
     }
