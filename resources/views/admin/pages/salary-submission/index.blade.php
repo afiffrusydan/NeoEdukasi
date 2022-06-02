@@ -1,4 +1,4 @@
-<title>Salary Submission</title>
+<title>Pengajuan Gaji Tentor</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -30,7 +30,7 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
-                            Salary Submission
+                            Pengajuan Gaji Tentor
                         </h1>
                     </div>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
@@ -42,7 +42,7 @@
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx"
-                                    href="{{ route('admin.submission.salary-submission.index') }}">Salary Submission</a>
+                                    href="{{ route('admin.submission.salary-submission.index') }}">Pengajuan Gaji Tentor</a>
                             </li>
                         </ol>
                     </nav>
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="block block-rounded tab-content py-3 px-3 px-sm-0 shadow-sm border-right-neo" id="nav-tabContent">
+        <div class="block block-rounded tab-content px-3 px-sm-0 shadow-sm border-right-neo" id="nav-tabContent">
             <div class="bg-white p-2 push">
                 <div class="d-lg-none">
                     <button type="button"
@@ -61,20 +61,20 @@
                     </button>
                 </div>
                 <nav>
-                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
+                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block ">
                         <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
                             <li class="nav-main-item tab-pane">
                                 <a class="nav-main-link link-fx active tab-pane" id="nav-interview-tab" data-toggle="tab"
                                     href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
                                     <i class="nav-main-link-icon fa fa-paperclip"></i>
-                                    <span class="nav-main-link-name">Submission &nbsp</span>
+                                    <span class="nav-main-link-name">Pengajuan Gaji &nbsp</span>
                                 </a>
                             </li>
                             <li class="nav-main-item tab-pane">
                                 <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab"
                                     href="#nav-shortlist" role="tab" aria-controls="nav-home" aria-selected="true">
                                     <i class="nav-main-link-icon fa fa-history"></i>
-                                    <span class="nav-main-link-name">History &nbsp</span>
+                                    <span class="nav-main-link-name">Riwayat Pengajuan Gaji &nbsp</span>
                                 </a>
                             </li>
                         </ul>
@@ -92,9 +92,9 @@
                 <div class="block">
                     <div class="block-content block-content-full">
                         <div class="row items-push float-end ">
-                            <div class="col-12 col-md-3 py-2">
+                            <div class="col-12 col-md-3 pb-3">
                                 <a href="{{ route('admin.submission.salary-submission.create') }}"
-                                    class="btn btn-sm btn-neo btn-block pull-right">Add New Submission</a>
+                                    class="btn btn-sm btn-neo btn-block pull-right">Tambah Pengajuan Gaji</a>
                             </div>
                         </div>
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -105,10 +105,10 @@
                                     <thead>
                                         <tr>
                                             <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
-                                            <th style="width: 10%;">Tentor Name</th>
-                                            <th style="width: 10%;">Student Name</th>
-                                            <th style="width: 10%;">Subject</th>
-                                            <th class="d-sm-table-cell fs-sm" style="width: 5%;">Month</th>
+                                            <th style="width: 10%;">Nama Tentor</th>
+                                            <th style="width: 10%;">Nama Siswa</th>
+                                            <th style="width: 10%;">Mata Pelajaran</th>
+                                            <th class="d-sm-table-cell fs-sm" style="width: 5%;">Bulan</th>
                                             <th class="d-none d-sm-table-cell fs-sm" style="width: 5%;">Status</th>
                                             <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Action</th>
                                         </tr>
@@ -135,13 +135,13 @@
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
                                                     @if ($studentProgress->status == 0)
                                                         <span
-                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Diajukan</span>
                                                     @elseif ($studentProgress->status == -10)
                                                         <span
-                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Ditolak</span>
                                                     @else
                                                         <span
-                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Diterima</span>
                                                     @endif
                                                 </td>
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
@@ -172,10 +172,10 @@
                                     <thead>
                                         <tr>
                                             <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
-                                            <th style="width: 10%;">Tentor Name</th>
-                                            <th style="width: 10%;">Student Name</th>
-                                            <th style="width: 10%;">Subject</th>
-                                            <th class="d-sm-table-cell fs-sm" style="width: 5%;">Month</th>
+                                            <th style="width: 10%;">Nama Tentor</th>
+                                            <th style="width: 10%;">Nama Siswa</th>
+                                            <th style="width: 10%;">Mata Pelajaran</th>
+                                            <th class="d-sm-table-cell fs-sm" style="width: 5%;">Bulan</th>
                                             <th class="d-none d-sm-table-cell fs-sm" style="width: 5%;">Status</th>
                                             <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Action</th>
                                         </tr>
@@ -202,13 +202,13 @@
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">
                                                     @if ($studentProgress->status == 0)
                                                         <span
-                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Diajukan</span>
                                                     @elseif ($studentProgress->status == -10)
                                                         <span
-                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Ditplak</span>
                                                     @else
                                                         <span
-                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                                            class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Diterima</span>
                                                     @endif
                                                 </td>
                                                 <td class="d-none d-sm-table-cell fs-sm text-center">

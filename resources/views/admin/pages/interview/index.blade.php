@@ -1,4 +1,4 @@
-<title>Job Vacancy Interview</title>
+<title>Interview Lowongan Pekerjaan</title>
 @extends('admin.layouts.app')
 
 @section('content')
@@ -11,17 +11,18 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
-                            Job Vacancy Interview
+                            Interview Lowongan Pekerjaan
                         </h1>
                     </div>
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('admin.vacancy.interview.index') }}">Job Vacancy
-                                    Interview</a>
+                                {{ ucwords(
+                                    Auth::user()->getRoleNames()->first(),
+                                ) }}
                             </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                Index
+                            <li class="breadcrumb-item">
+                                <a class="link-fx" href="{{ route('admin.vacancy.interview.index') }}">Interview Lowongan Pekerjaan</a>
                             </li>
                         </ol>
                     </nav>
@@ -33,7 +34,7 @@
 
 
         @foreach ($vacancys as $vacancy)
-            <a class=" " href="{{ route('admin.vacancy.interview.show', ['id' => $vacancy->id]) }}">
+            <a class="" href="{{ route('admin.vacancy.interview.show', ['id' => $vacancy->id]) }}">
                 <div class="block block-rounded shadow-sm">
                     <div class="content content-full bg-header-tentor border-left-neo2" style="
                     background-image:url({{ asset('images/Asset/header-tentors-detail-big-2.png') }});">
@@ -56,8 +57,7 @@
 
                                 <div>
                                     <a class="h6 neo"
-                                        href="{{ route('admin.vacancy.interview.show', ['id' => $vacancy->id]) }}">Show
-                                        Applicant</a>
+                                        href="{{ route('admin.vacancy.interview.show', ['id' => $vacancy->id]) }}">Tampilkan Pelamar</a>
                                 </div>
                             </div>
 

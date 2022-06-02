@@ -1,4 +1,4 @@
-<title>Tentor Verification</title>
+<title>Daftar Tentor</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -24,12 +24,12 @@
     <!-- Page Content -->
     <div class="content">
         <!-- Hero -->
-        <div class="bg-body-light block">
+        <div class="bg-body-light block shadow-sm">
             <div class="content content-full bg-header-tentor" style="
             background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Tentor List
+                        Daftar Tentor
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
@@ -48,19 +48,16 @@
         </div>
         <!-- END Hero -->
         <!-- Dynamic Table Full -->
-        <div class="block">
+        <div class="block shadow-sm">
             <div class="block-content block-content-full">
-                <div class="tittle-neo h4">
-                    Tentor List
-                </div>
                 <div class="table-responsive py-1">
                     <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr class="text-center">
                                 <th class="text-center" style="width: 1%;">#</th>
-                                <th style="width: 15%;">Full Name</th>
-                                <th style="width: 10%;">Branch</th>
+                                <th style="width: 15%;">Nama Lengkap</th>
+                                <th style="width: 10%;">Cabang</th>
                                 <th style="width: 10%;">Email</th>
                                 <th style="width: 5%;">Status</th>
                                 <th class="text-center" style="width: 10%;">Action</th>
@@ -85,13 +82,13 @@
                                     <td class="fs-sm text-center">
                                         @if ($tentor->status == 0)
                                             <span
-                                                class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning text-white">Inactive</span>
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-warning text-white fs-sm">Inactive</span>
                                         @elseif ($tentor->status == -10)
                                             <span
-                                                class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger text-white">Blacklist</span>
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-danger text-white fs-sm">Blacklist</span>
                                         @elseif ($tentor->status == 10)
                                             <span
-                                                class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success text-white">Active</span>
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-success text-white fs-sm">Active</span>
                                         @endif
                                     </td>
                                     <td class="text-center">

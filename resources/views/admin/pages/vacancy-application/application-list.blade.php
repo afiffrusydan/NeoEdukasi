@@ -1,4 +1,4 @@
-<title>Applicant List</title>
+<title>Daftar Pelamar</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -20,16 +20,16 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
-                            Applicant List
+                            Daftar Pelamar
                         </h1>
                     </div>
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('admin.vacancy.vacancy-application.index') }}">Vacancy Application</a>
+                                <a class="link-fx" href="{{ route('admin.vacancy.vacancy-application.index') }}">Lamaran Pekerjaan</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                Applicant List
+                                Daftar Pelamar
                             </li>
                         </ol>
                     </nav>
@@ -47,11 +47,11 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 1%;">#</th>
-                                        <th style="width: 15%;">Full Name</th>
-                                        <th style="width: 5%;">Last Education</th>
-                                        <th style="width: 5%;">Job Status</th>
-                                        <th style="width: 5%;">Branch</th>
-                                        <th style="width: 10%;">Status</th>
+                                        <th style="width: 15%;">Nama Lengkap</th>
+                                        <th style="width: 20%;">Pendidikan Terakhir</th>
+                                        <th style="width: 10%;">Pekerjaan</th>
+                                        <th style="width: 5%;">Cabang</th>
+                                        <th style="width: 5%;">Status</th>
                                         <th style="width: 10%;">Action</th>
                                     </tr>
                                 </thead>
@@ -87,11 +87,8 @@
                                             </td>
                                             <td class="d-sm-table-cell text-center">
                                                 <div class="btn-group center">
-                                                    <button type="button" class="btn btn-md btn-alt-secondary"
-                                                        data-bs-toggle="tooltip" title="Detail">
                                                         <a href="{{ route('admin.vacancy.vacancy-application.detail', ['id' => $data->appId]) }}"
                                                             class="btn btn-sm btn-neo pull-right">Detail</a>
-                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>

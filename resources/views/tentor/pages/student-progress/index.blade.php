@@ -1,4 +1,4 @@
-<title>Student Progress Report</title>
+<title>Laporan Perkembangan Siswa</title>
 @extends('tentor.layouts.app')
 
 @section('css_before')

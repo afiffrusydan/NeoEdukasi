@@ -47,21 +47,21 @@ class TentorController extends Controller
             }
             return view('tentor.pages.dashboard')->withErrors(
                 [
-                    'inactive' => 'Your account is inactive please verify your information first to activate your account!'
+                    'inactive' => 'Akun anda belum diverifikasi silahkan verifikasi akun anda terlebih dahulu.'
                 ]
             );;
         }elseif($tentor_status == 0 OR $tentor_status == 5){
             return view('tentor.pages.dashboard')->withErrors(
                 [
-                    'msg' => 'Your account verification is in progress please wait while we verify'
+                    'msg' => 'Verifikasi akun anda sedang diproses oleh admin kami, silahkan tunggu'
                 ]
             );;
         }elseif($tentor_status == -5){
             $status=TentorVerification::find($tentor_id);
             return view('tentor.pages.dashboard', ['reasons'=> $status])->withErrors(
                 [
-                    'inactive' => 'Your verification is declined!',
-                    'declinemsg' => 'Reason'
+                    'inactive' => 'Verifikasi akun anda ditolak!',
+                    'declinemsg' => 'Alasan'
                 ]
             );;
         }else{
@@ -133,8 +133,7 @@ class TentorController extends Controller
                 $tentor->account_status = 0;
             }
             $tentor->save();
-            echo $ktp_filename;
-            //return response()->json(['success'=>'Data is successfully added ']);
+            return response()->json(['success'=>'Data is successfully added ']);
           }
     }
 

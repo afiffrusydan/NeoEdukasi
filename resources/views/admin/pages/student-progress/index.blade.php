@@ -1,4 +1,4 @@
-<title>Student Progress Report</title>
+<title>Pengajuan Laporan Perkembangan Siswa</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -33,7 +33,7 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
-                            Student Progress Report List 
+                            Pengajuan Laporan Perkembangan Siswa
                         </h1>
                     </div>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
@@ -42,7 +42,7 @@
                                 Auth::user()->getRoleNames()->first(),
                             ) }}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Student Progress Report</a>
+                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Pengajuan Laporan Perkembangan Siswa</a>
                             </li>
                         </ol>
                     </nav>
@@ -55,9 +55,9 @@
                 <div class="block shadow-sm">
                     <div class="block-content block-content-full border-right-neo">
                         <div class="row items-push float-end ">
-                            <div class="col-12 col-md-3 py-2">
+                            <div class="col-12 col-md-4 py-2">
                                 <a href="{{ route('admin.submission.student-progress.create') }}"
-                                    class="btn btn-sm btn-neo btn-block pull-right">Add New Submission</a>
+                                    class="btn btn-sm btn-neo btn-block pull-right">Tambah Laporan Perkembangan Siswa</a>
                             </div>
                         </div>
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -65,10 +65,10 @@
                             <thead>
                                 <tr>
                                     <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
-                                    <th style="width: 10%;">Tentor Name</th>
-                                    <th style="width: 10%;">Student Name</th>
-                                    <th style="width: 10%;">Subject</th>
-                                    <th class="d-sm-table-cell fs-sm" style="width: 5%;">Month</th>
+                                    <th style="width: 10%;">Nama Tentor</th>
+                                    <th style="width: 10%;">Nama Siswa</th>
+                                    <th style="width: 10%;">Mata Pelajaran</th>
+                                    <th class="d-sm-table-cell fs-sm" style="width: 5%;">Bulan</th>
                                     <th class="d-none d-sm-table-cell fs-sm" style="width: 5%;">Status</th>
                                     <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Action</th>
                                 </tr>
@@ -93,11 +93,11 @@
                                         </td>
                                         <td class="d-none d-sm-table-cell fs-sm text-center">
                                             @if ($studentProgress->status == 0)
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Submitted</span>
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Diajukan</span>
                                             @elseif ($studentProgress->status == -10)
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Ditolak</span>
                                             @else
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Diterima</span>
                                             @endif
                                         </td>
                                         <td class="d-none d-sm-table-cell fs-sm text-center">

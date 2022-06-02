@@ -30,7 +30,7 @@ class Student extends Authenticatable
         'parent_phone_number',
         'religion',
         'school',
-        'class',
+        'class_id',
         'curriculum',
         'branch_id',
         'token',

@@ -124,7 +124,7 @@ Route::group([
       Route::group(['prefix' => '/student-progress', 'as' => '.student-progress'], function () {
         Route::get('/index', 'Admin_StudentReportController@index')->name('.index');
         Route::get('{id}/view', 'Admin_StudentReportController@view')->name('.view');
-        Route::get('{id}/detail', 'Admin_StudentReportController@detail')->name('.detail');
+        Route::post('detail', 'Admin_StudentReportController@detail')->name('.detail');
 
         // Route::get('{id}/pdf', 'Admin_StudentReportController@get_report')->name('.get-report');
       });

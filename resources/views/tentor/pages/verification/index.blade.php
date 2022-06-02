@@ -8,7 +8,7 @@
             <div class="bg-white">
                 <div class="content content-full bg-header-tentor"
                     style="
-                                                        background-image:url({{ asset('images/Asset/header-tentors-big.png') }});">
+                                                            background-image:url({{ asset('images/Asset/header-tentors-big.png') }});">
                     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                         <div class="flex-grow-1">
                             <h1 class="h3 fw-bold mb-2">
@@ -122,89 +122,138 @@
                                             </div> --}}
                                             <div class="col-12 col-md-12 pb-2">
                                                 <p class="text-justify">
-                                                    &emsp; Selamat datang rekan tentor Neo Edukasi. Berikut adalah mekanisme les privat yang harus dipatuhi oleh tentor. Harap dibaca dengan saksama dan dipahami sepenuhnya. Dokumen ini bisa disebut juga sebagai “Perjanjian” dimana tentor harus bertanggungjawab penuh dengan apa yang sudah disetujui. Dengan klik tombol setuju di akhir, maka dianggap sebagai bentuk penerimaan atas semua ketentuan Neo Edukasi.
+                                                    &emsp; Selamat datang rekan tentor Neo Edukasi. Berikut adalah mekanisme
+                                                    les privat yang harus dipatuhi oleh tentor. Harap dibaca dengan saksama
+                                                    dan dipahami sepenuhnya. Dokumen ini bisa disebut juga sebagai
+                                                    “Perjanjian” dimana tentor harus bertanggungjawab penuh dengan apa yang
+                                                    sudah disetujui. Dengan klik tombol setuju di akhir, maka dianggap
+                                                    sebagai bentuk penerimaan atas semua ketentuan Neo Edukasi.
                                                 </p>
                                             </div>
                                             <div class="pl-1">
 
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default1" name="example-checkbox-default1">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default1">Les dilaksanakan sesuai dengan kontrak awal yang dijelaskan oleh Akademik. Jika ada perubahan jadwal dan biodata siswa bisa konfirmasi kepada Akademik.</label>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default1" name="example-checkbox-default1">
+                                                        <label class="text-justify pl-2" for="example-checkbox-default1">Les
+                                                            dilaksanakan sesuai dengan kontrak awal yang dijelaskan oleh
+                                                            Akademik. Jika ada perubahan jadwal dan biodata siswa bisa
+                                                            konfirmasi kepada Akademik.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default2" name="example-checkbox-default2">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default2">Tentor diwajibkan untuk
+                                                            professional, jujur, memiliki attitude yang baik, sopan dalam
+                                                            berinteraksi, disiplin, serta dapat menjaga nama baik pribadi
+                                                            dan Neo Edukasi.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default3" name="example-checkbox-default3">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default3">Setiap pertemuan les diwajibkan
+                                                            membawa dan mengisi presensi resmi terbaru dari Neo Edukasi yang
+                                                            diprint untuk satu dibawa siswa dan satu dibawa tentor. Presensi
+                                                            diisi hanya saat ada pertemuan dan wajib ditandatangani oleh
+                                                            wali siswa.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default4" name="example-checkbox-default4">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default4">Pertemuan les dilaksanakan
+                                                            dengan durasi 90 menit. Jika pertemuan kurang dari 90 menit
+                                                            mohon konfirmasi kepada Akademik dan diberikan keterangan dalam
+                                                            lembar presensi. Jika kurang dari durasi tersebut maka tidak
+                                                            dihitung penuh.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default5" name="example-checkbox-default5">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default5">Tentor diperbolehkan membawa
+                                                            print / fotocopy atau buku ajar tambahan dengan beban biaya
+                                                            ditanggung oleh siswa. Dengan catatan harus konfirmasi dahulu
+                                                            kepada wali siswa, jika tidak ada keterangan dan nota resmi maka
+                                                            kami tidak bertanggungjawab atas biaya tersebut.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default6" name="example-checkbox-default6">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default6">Tentor diwajibkan mengisi
+                                                            laporan perkembangan bulanan siswa. Laporan dikirimkan dalam
+                                                            bentuk softfile kepada wali/siswa setiap akhir bulan.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default7" name="example-checkbox-default7">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default7">Tentor rutin mengkonfirmasi
+                                                            ulang pertemuan les dengan siswa agar tidak terjadi pembatalan
+                                                            les ataupun tentor menunggu siswa bersiap.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default8" name="example-checkbox-default8">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default8">Ketika tentor sudah mendapatkan
+                                                            siswa, tentor tidak dapat membatalkan secara sepihak tanpa ada
+                                                            konfirmasi dari wali siswa ataupun Akademik.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default9" name="example-checkbox-default9">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default9">Tentor dilarang membahas tentang
+                                                            pembayaran atau meminta gaji langsung kepada wali siswa untuk
+                                                            menghindari ketidaknyamanan karena termasuk sikap yang tidak
+                                                            sopan dan bukan wewenang tentor. Gaji hanya boleh diajukan
+                                                            kepada pihak Neo Edukasi.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default10"
+                                                            name="example-checkbox-default10">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default10">Tentor siap menerima masukan
+                                                            jika ada keluhan dan siap diganti jika siswa mengajukan
+                                                            pergantian tentor.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-12">
+                                                    <div class="form-check py-1">
+                                                        <input class="form-check-input px-2" type="checkbox" value=""
+                                                            id="example-checkbox-default11"
+                                                            name="example-checkbox-default11">
+                                                        <label class="text-justify pl-2"
+                                                            for="example-checkbox-default11">Apabila diketahui adanya
+                                                            pelanggaran SOP, maka Neo Edukasi berhak untuk memeberikan surat
+                                                            peringatan, sanksi, atau pemutusan relasi.</label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default2" name="example-checkbox-default2">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default2">Tentor diwajibkan untuk professional, jujur, memiliki attitude yang baik, sopan dalam berinteraksi, disiplin, serta dapat menjaga nama baik pribadi dan Neo Edukasi.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default3" name="example-checkbox-default3">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default3">Setiap pertemuan les diwajibkan membawa dan mengisi presensi resmi terbaru dari Neo Edukasi yang diprint untuk satu dibawa siswa dan satu dibawa tentor. Presensi diisi hanya saat ada pertemuan dan wajib ditandatangani oleh wali siswa.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default4" name="example-checkbox-default4">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default4">Pertemuan les dilaksanakan dengan durasi 90 menit. Jika pertemuan kurang dari 90 menit mohon konfirmasi kepada Akademik dan diberikan keterangan dalam lembar presensi. Jika kurang dari durasi tersebut maka tidak dihitung penuh.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default5" name="example-checkbox-default5">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default5">Tentor diperbolehkan membawa print / fotocopy atau buku ajar tambahan dengan beban biaya ditanggung oleh siswa. Dengan catatan harus konfirmasi dahulu kepada wali siswa, jika tidak ada keterangan dan nota resmi maka kami tidak bertanggungjawab atas biaya tersebut.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default6" name="example-checkbox-default6">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default6">Tentor diwajibkan mengisi laporan perkembangan bulanan siswa. Laporan dikirimkan dalam bentuk softfile kepada wali/siswa setiap akhir bulan.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default7" name="example-checkbox-default7">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default7">Tentor rutin mengkonfirmasi ulang pertemuan les dengan siswa agar tidak terjadi pembatalan les ataupun tentor menunggu siswa bersiap.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default8" name="example-checkbox-default8">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default8">Ketika tentor sudah mendapatkan siswa, tentor tidak dapat membatalkan secara sepihak tanpa ada konfirmasi dari wali siswa ataupun Akademik.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default9" name="example-checkbox-default9">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default9">Tentor dilarang membahas tentang pembayaran atau meminta gaji langsung kepada wali siswa untuk menghindari ketidaknyamanan karena termasuk sikap yang tidak sopan dan bukan wewenang tentor. Gaji hanya boleh diajukan kepada pihak Neo Edukasi.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default10" name="example-checkbox-default10">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default10">Tentor siap menerima masukan jika ada keluhan dan siap diganti jika siswa mengajukan pergantian tentor.</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-check py-1">
-                                                    <input class="form-check-input px-2" type="checkbox" value=""
-                                                        id="example-checkbox-default11" name="example-checkbox-default11">
-                                                    <label class="text-justify pl-2" for="example-checkbox-default11">Apabila diketahui adanya pelanggaran SOP, maka Neo Edukasi berhak untuk memeberikan surat peringatan, sanksi, atau pemutusan relasi.</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                         </div>
                                     </div>
                                     <div class="block-content block-content-full text-end bg-body text-right">
@@ -247,9 +296,9 @@
         jQuery(document).ready(function() {
             document.getElementById("submit-verification").disabled = true;
             $('#formverify input:checkbox').change(function() {
-                if($('#formverify input:checkbox:checked').length === 11){
+                if ($('#formverify input:checkbox:checked').length === 11) {
                     document.getElementById("submit-verification").disabled = false;
-                }else{
+                } else {
                     document.getElementById("submit-verification").disabled = true;
                 }
             });
@@ -268,7 +317,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                jQuery.ajax({
+                $.ajax({
                     url: "{{ route('tentor_id_verify') }}",
                     method: 'post',
                     processData: false,
@@ -296,6 +345,9 @@
                             window.location = loc.protocol + "//" + loc.hostname + ":" + loc
                                 .port + "/tentor/dashboard";
                         }
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
 
                 });

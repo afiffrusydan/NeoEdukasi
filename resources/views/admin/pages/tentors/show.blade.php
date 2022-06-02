@@ -1,4 +1,4 @@
-<title>Tentor Verification</title>
+<title>Detail Tentor</title>
 @extends('admin.layouts.app')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -11,13 +11,12 @@
     <!-- Page Content -->
     <div class="content">
         <div class="block  shadow-sm">
-            <div class="block block-rounded ">
-                <div class="bg-body-light block">
+                <div class="bg-body-light">
                     <div class="content content-full border-right-neo">
                         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                             <div class="flex-grow-1">
-                                <h1 class="h3 fw-bold mb-2">
-                                    Tentors Detail
+                                <h1 class="h3 fw-bold mb-0 pl-3">
+                                    Detail Tentor
                                 </h1>
                             </div>
                             <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -58,23 +57,23 @@
                                                 </option>
                                             </select>
                                         </div>
-                                        <label class="form-label tittle">Tentor Detail</label>
+                                        <label class="form-label tittle">Detail Tentor</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row g-3 col-12">
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Full Name</label>
+                                    <label class="form-label tittle-neo">Nama Lengkap</label>
                                     <input type="text" class="form-control" placeholder="First Name"
                                         value="{{ $tentorData->first_name . ' ' . $tentorData->last_name }}" readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Branch</label>
+                                    <label class="form-label tittle-neo">Cabang</label>
                                     <input type="text" class="form-control" placeholder="First Name"
                                         value="{{ $tentorData->branch_name }}" readonly>
                                 </div>
                                 <div class="col-12 col-md-12 py-1 d-flex flex-column flex-1">
-                                    <label class="form-label tittle-neo">Address</label>
+                                    <label class="form-label tittle-neo">Alamat</label>
                                     <input type="text" class="form-control body-block-3"
                                         value="{{ $tentorData->address }}" readonly>
                                 </div>
@@ -84,7 +83,7 @@
                                         value="{{ $tentorData->NIK }}" readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Gender</label>
+                                    <label class="form-label tittle-neo">Jenis Kelamin</label>
                                     <input type="text" class="form-control body-block-3" value="{{ $tentorData->gender }}"
                                         readonly>
                                 </div>
@@ -94,28 +93,28 @@
                                         readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Place and Date of Birth</label>
+                                    <label class="form-label tittle-neo">Tempat, Tanggal Lahir</label>
                                     <input type="text" class="form-control body-block-3"
                                         value="{{ $tentorData->POB . ', ' . date('d M Y', strtotime($tentorData->DOB)) }}"
                                         readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Religion</label>
+                                    <label class="form-label tittle-neo">Agama</label>
                                     <input type="text" class="form-control body-block-3"
                                         value="{{ ucwords($tentorData->religion) }}" readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Bank Account</label>
+                                    <label class="form-label tittle-neo">Akun Bank</label>
                                     <input type="text" class="form-control body-block-3"
                                         value="{{ ucwords($tentorData->bank_name) }}" readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Job Status</label>
+                                    <label class="form-label tittle-neo">Pekerjaan</label>
                                     <input type="text" class="form-control body-block-3"
                                         value="{{ ucwords($tentorData->job_status) }}" readonly>
                                 </div>
                                 <div class="col-12 col-md-6 py-1">
-                                    <label class="form-label tittle-neo">Last Education</label>
+                                    <label class="form-label tittle-neo">Pendidikan Terakhir</label>
                                     <input type="text" class="form-control body-block-3"
                                         value=" {{ ucwords($tentorData->last_education) }}" readonly>
                                 </div>
@@ -123,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <script>

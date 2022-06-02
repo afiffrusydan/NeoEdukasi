@@ -1,4 +1,4 @@
-<title>Create New Job Vacancy</title>
+<title>Tambah Lowongan Pekerjaan</title>
 @extends('admin.layouts.app')
 
 @section('css_before')
@@ -19,16 +19,15 @@
             background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                         <h1 class="h3 fw-bold mb-2">
-                            Select Student For Job Vacancy
+                            Pilih Siswa Untuk Lowongan Pekerjaan
                         </h1>
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Job
-                                    Vacancy</a>
+                                <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Lowongan Pekerjaan</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                Select Student
+                                Pilih Siswa
                             </li>
                         </ol>
                     </nav>

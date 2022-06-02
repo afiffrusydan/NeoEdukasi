@@ -53,7 +53,7 @@
                             <div class="row g-3 col-12">
 
                                 <div class="col-12 col-md-12">
-                                    <label class="form-label tittle-neo">Tentor Name</label>
+                                    <label class="form-label tittle-neo">Nama Tentor</label>
                                     <select class="form-control selectpicker" id="tentorId" name="tentor_id"
                                         data-live-search="true" data-size="4">
                                         <option value="0" selected disabled>

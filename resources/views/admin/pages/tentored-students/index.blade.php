@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-
+<title>Daftar Siswa Aktif</title>
 @section('css_before')
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
@@ -21,31 +21,30 @@
 @endsection
 
 @section('content')
-    <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    Student List <small
-                        class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">{{ ucwords(
-                            Auth::user()->getRoleNames()->first(),
-                        ) }}</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Student</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-
     <!-- Page Content -->
     <div class="content">
+        <div class="block bg-body-light shadow-sm">
+            <div class="content content-full bg-header-tentor" style="
+                background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-2">
+                            Daftar Siswa Aktif
+                        </h1>
+                    </div>
+                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-alt">
+                            <li class="breadcrumb-item">{{ ucwords(
+                                Auth::user()->getRoleNames()->first(),
+                            ) }}</li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a class="link-fx" href="#">Daftar Siswa Aktif</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl-12 order-xl-0">
                 <!-- Dynamic Table Full -->
@@ -57,10 +56,10 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 1%;">#</th>
-                                        <th style="width: 15%;">Student Name</th>
-                                        <th style="width: 15%;">Tentor Name</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 20%;">Subject</th>
-                                        <th style="width: 10%;">Branch</th>
+                                        <th style="width: 15%;">Nama Siswa</th>
+                                        <th style="width: 15%;">Nama Tentor</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 20%;">Mata Pelajaran</th>
+                                        <th style="width: 10%;">Cabang</th>
                                         <th style="width: 10%;">Status</th>
                                         <th style="width: 10%;">Action</th>
                                     </tr>

@@ -1,58 +1,83 @@
-<title>Applicant & Vacancy Detail</title>
+<title>Detail Laporan Perkembangan Siswa</title>
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="bg-body-light">
+<div class="content">
+    <div class="bg-body-light border-right-neo">
         <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
-                <div class="flex-grow-1">
-                    <h1 class="h3 fw-bold mb-2">
-                        Applicant & Vacancy Detail
-                    </h1>
-                    <h5 class="fs-base lh-base fw-medium text-muted mb-0">
-                        Applicant & Vacancy Information
-                    </h5>
-                </div>
-                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                <h1 class="flex-sm-fill h3 my-2">
+                    Detail Laporan Perkembangan Siswa<small
+                        class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
+                </h1>
+                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">
+                        <li class="breadcrumb-item" aria-current="page">
                             <a class="link-fx"
-                                href="{{ route('admin.student-report.student-progress.detail', ['id' => $data->id]) }}">Student Progress</a>
+                                href="{{ route('admin.submission.student-progress.index') }}">Laporan Perkembangan
+                                Siswa</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Applicant Detail
+                            {{ $data->stdFirstName . ' ' . $data->stdLastName . '  ( ' . $data->subject . ' )' }}
                         </li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
-    <!-- Page Content -->
-    <div class="content">
-        <div class="block block-rounded tab-content py-3 px-3 px-sm-0">
-            <div class="col-xl-12 order-xl-0">
-                <!-- Dynamic Table Full -->
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Tentors Transcripts</label>
+    <div class="row">
+        <div class="col-xl-12 order-xl-0">
+            <!-- Dynamic Table Full -->
+            <div class="block">
+                <div class="block-content block-content-full">
+                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                    <div class="row g-3 col-12-line1">
+                        <label class="form-label tittle">Laporan Perkembangan Siswa</label>
+                    </div>
+                    <div class="row g-3 col-12">
+
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Nama Siswa ( Mata Pelajaran )</label>
+                            <select class="form-control selectpicker" id="studentId" name="student_id"
+                                data-live-search="true" data-size="4" disabled>
+                                <option value="{{ $data->stdId }}" selected>
+                                    {{ $data->stdFirstName . ' ' . $data->stdLastName . '  ( ' . $data->subject . ' )' }}
+                                </option>
+                            </select>
                         </div>
-                        <div class="row g-3 col-12">
-                            <div class="col-12 col-md-12 py-1">
-                                <label class="form-label tittle-neo">Transcripts</label>
-                                <div class='embed-responsive'>
-                                    <object
-                                        data="{{ route('admin.student-report.student-progress.get-report', ['id'=> $data->id]) }}"
-                                        type='application/pdf' width='100%' height='100%'></object>
-                                </div>
-                            </div>
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Bulan</label>
+                            <select class="form-control selectpicker" id="monthSelect" name="month" disabled>
+                                <option value="0" selected disabled>
+                                    {{ date('F Y', strtotime($data->month)) }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Perkembangan Belajar</label>
+                            <textarea name="learning_progression" class="form-control" required autofocus disabled
+                                rows="3">{{ $data->learning_progression }}</textarea>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Target Belajar</label>
+                            <textarea name="study_target" class="form-control" required autofocus disabled
+                                rows="3">{{ $data->study_target }}</textarea>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <label class="form-label tittle-neo">Metode Belajar</label>
+                            <input type="text" name="study_method" class="form-control"
+                                value="{{ $data->study_method }}" required autofocus disabled>
+                        </div>
+                        <div class="col-12 col-md-12 pb-4">
+                            <label class="form-label tittle-neo">Saran / Masukan</label>
+                            <textarea name="feedback" class="form-control" required autofocus disabled rows="3">{{ $data->feedback }}</textarea>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-    <!-- END Page Content -->
+    <!-- END Dynamic Table Full -->
+</div>
 @endsection

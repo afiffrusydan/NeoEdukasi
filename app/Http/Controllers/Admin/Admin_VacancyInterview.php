@@ -54,10 +54,10 @@ class Admin_VacancyInterview extends Controller
     {
         $data = TentorApplication::find($appId);
         
-        $tentorDetail = Tentor::join('banks', 'banks.id','=','tentors.bank_id')
-        ->join('branchs','branchs.branch_id','=','tentors.branch_id')
+        $tentorDetail = Tentor::join('branchs','branchs.branch_id','=','tentors.branch_id')
+        // ->join('banks', 'banks.id','=','tentors.bank_id')
         ->where('tentors.id','=', $data->tentor_id)
-        ->get([ 'tentors.*', 'banks.bank_name','branchs.branch_name'])->first();;
+        ->get([ 'tentors.*','branchs.branch_name'])->first();;
         $interviewStatus = $this->interviewCheck($data->tentor_id);
         $vacancyDetail = Vacancy::find($data->vacancy_id);
         $studentDetail = Student::find($vacancyDetail->student_id);

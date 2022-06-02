@@ -81,6 +81,68 @@ class Admin_SalarySubmissionController extends Controller
         return view('admin.pages.salary-submission.create', ['tentorList'=>$tentorList]);
     }
 
+    public function postCreate(Request $request)
+    {   
+        $request->validate([
+            'tentored_id' => ['required'],
+            'month' => ['required'],
+            'meet_hours' => ['required', 'string'],
+            'extra_meet_hours' => ['required'],
+            'proof' => ['mimes:jpeg,png,jpg'],
+            'attendance' => ['required','mimes:jpeg,png,jpg'],
+            'documentation' => ['mimes:jpeg,png,jpg'],
+         ]);   
+         $month = date('Y-m', strtotime($request->month));
+        //     //disini ubah kodingan tanggal dulu
+            $documentation_destinationPath = 'private/files/tentors/salary-submission/'.$month.'/'.Auth::user()->id.'/'.$request->tentored_id.'/Documentation';
+            $attendance_destinationPath = 'private/files/tentors/salary-submission/'.$month.'/'.Auth::user()->id.'/'.$request->tentored_id.'/Attendance';
+            $proof_destinationPath = 'private/files/tentors/salary-submission/'.$month.'/'.Auth::user()->id.'/'.$request->tentored_id.'/Proof';
+            $proof_file = $request->file('proof');
+            $attendance_file = $request->file('attendance');
+            $documentation_file = $request->file('documentation');
+            
+
+            Storage::put($attendance_destinationPath,$attendance_file);
+            $storagePathAtt = Storage::put($attendance_destinationPath,$attendance_file);
+            $storageNameAtt = basename($storagePathAtt);
+
+
+            if($request->has('documentation')){
+                Storage::put($documentation_destinationPath,$documentation_file);
+                $storagePathDest = Storage::put($documentation_destinationPath,$documentation_file);
+                $storageNameDest = basename($storagePathDest);
+                $documentationbasepath = $documentation_destinationPath.'/'.$storageNameDest;
+            }else{
+                $documentationbasepath ="";
+            }
+
+            if($request->has('proof')){
+                Storage::put($proof_destinationPath,$proof_file);
+                $storagePathProf = Storage::put($proof_destinationPath,$proof_file);
+                $storageNameProf = basename($storagePathProf);
+                $proofbasepath = $proof_destinationPath.'/'.$storageNameProf;
+            }else{
+                $proofbasepath = "";
+            }
+            $add_cost = str_replace(array('Rp.','.'), "", $request->add_cost);
+            $total = str_replace(array('Rp.','.'), "", $request->total_salary);
+            SalarySubmission::create([
+                'tentored_student_id' => $request->tentored_id,
+                'month' => $request->month,
+                'meet_hours' => $request->meet_hours,
+                'extra_meet_hours' => $request->extra_meet_hours,
+                'documentation' => $documentationbasepath,
+                'attendance' => $attendance_destinationPath.'/'.$storageNameAtt,
+                'proof' => $proofbasepath,
+                'add_cost' => $add_cost,
+                'total' => $total,
+                'status' => 0,
+            ]);
+        Alert::success('Success', 'Your submission successfully submitted!');
+        return redirect()->route('tentor.salary-submission.index');
+    }
+
+
     public function getMonth(Request $request){
         $id = $request->id;
         $data = StudentProgress::select('month')

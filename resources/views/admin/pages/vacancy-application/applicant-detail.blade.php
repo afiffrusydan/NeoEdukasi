@@ -1,4 +1,4 @@
-<title>Tentors application Detail</title>
+<title>Detail Lamaran Pekerjaan</title>
 @extends('admin.layouts.app')
 
 @section('content')
@@ -18,11 +18,10 @@
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
                                 <a class="link-fx"
-                                    href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Applicant
-                                    List</a>
+                                    href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Daftar Pelamar</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                Applicant Detail
+                                {{ $studentData->first_name . ' ' . $studentData->last_name }}
                             </li>
                         </ol>
                     </nav>
@@ -44,39 +43,39 @@
                                         <i class="fa fa-check-circle text-info" aria-hidden="true" style="font-size: 20px;"></i>
                                     </div>
                                     @endif
-                                    <label class="form-label tittle">Vacancy Detail</label>
+                                    <label class="form-label tittle">Detail Lowongan Pekerjaan</label>
 
                                 </div>
                             </div>
                         </div>
                         <div class="row g-3 col-12 ">
                             <div class="col-12">
-                                <label class="form-label tittle-neo">Full Name</label>
+                                <label class="form-label tittle-neo">Nama Lengkap Siswa</label>
                                 <input type="text" name="first_name" class="form-control" placeholder="First Name"
                                     value="{{ $studentData->first_name . ' ' . $studentData->last_name }}" disabled>
                             </div>
                             <div class="col-12">
-                                <label class="form-label tittle-neo">Address</label>
+                                <label class="form-label tittle-neo">Alamat</label>
                                 <input type="text" name="first_name" class="form-control"
                                     value="{{ $studentData->address }}" disabled>
                             </div>
                             <div class="col-6">
-                                <label class="form-label tittle-neo">Class</label>
+                                <label class="form-label tittle-neo">Kelas</label>
                                 <input type="text" name="first_name" class="form-control"
                                     value="{{ $studentData->class }}" disabled>
                             </div>
                             <div class="col-6">
-                                <label class="form-label tittle-neo">Curriculum</label>
+                                <label class="form-label tittle-neo">Kurikulum</label>
                                 <input type="text" name="first_name" class="form-control"
                                     value="{{ $studentData->curriculum }}" disabled>
                             </div>
                             <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Subject</label>
+                                <label class="form-label tittle-neo">Mata Pelajaran</label>
                                 <input type="text" name="first_name" class="form-control "
                                     value="{{ $vacancyData->subject }}" disabled>
                             </div>
                             <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Criteria</label>
+                                <label class="form-label tittle-neo">Kriteria</label>
                                 @foreach (explode('~', $vacancyData->criteria) as $info)
                                     <input type="text" name="first_name" class="form-control mb-2"
                                         value="{{ $info }}" disabled>
@@ -95,33 +94,33 @@
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                         <div class="row g-3 col-12-line1">
-                            <label class="form-label tittle">Applicant Detail</label>
+                            <label class="form-label tittle">Detail Pelamar</label>
                         </div>
                         <div class="row g-3 col-12">
                             <div class="col-12 py-1">
-                                <label class="form-label tittle-neo">Full Name</label>
+                                <label class="form-label tittle-neo">Nama Lengkap Tentor</label>
                                 <input type="text" class="form-control" placeholder="First Name"
                                     value="{{ $tentorData->first_name . ' ' . $tentorData->last_name }}" disabled>
 
                             </div>
                             <div class="col-6 py-1 d-flex flex-column flex-1">
-                                <label class="form-label tittle-neo">Address</label>
+                                <label class="form-label tittle-neo">Alamat</label>
                                 <input type="text" class="form-control body-block-3" value="{{ $tentorData->address }}"
                                     disabled>
                             </div>
                             <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Gender</label>
+                                <label class="form-label tittle-neo">Jenis Kelamin</label>
                                 <input type="text" class="form-control body-block-3" value="{{ $tentorData->gender }}"
                                     disabled>
                             </div>
                             <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Job Status</label>
+                                <label class="form-label tittle-neo">Pekerjaan</label>
                                 <input type="text" class="form-control body-block-3"
                                     value="{{ ucwords($tentorData->job_status) }}" disabled>
 
                             </div>
                             <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Last Education</label>
+                                <label class="form-label tittle-neo">Pendidikan Terakhir</label>
                                 <input type="text" class="form-control body-block-3"
                                     value=" {{ ucwords($tentorData->last_education) }}" disabled>
                             </div>
@@ -133,12 +132,12 @@
                                         <div class="col-12 col-sm-3 mb-3">
                                             <button type="button" id="declinedButton"
                                                 class="btn btn-sm btn-danger btn-block" disabled>
-                                                Declined
+                                                Tolak
                                             </button>
                                         </div>
                                         <div class="col-12 col-sm-3">
                                             <button type="button" id="inviteButton" class="btn btn-sm btn-neo btn-block">
-                                                Invite to Interview
+                                                Undang Interview
                                             </button>
                                         </div>
                                     </div>
@@ -151,7 +150,7 @@
                                         <div class="col-12 col-sm-3 mb-3">
                                             <button type="button" id="declinedButton"
                                                 class="btn btn-sm btn-neo btn-block disabled">
-                                                Interview Process
+                                                Proses Interview
                                             </button>
                                         </div>
                                     </div>
@@ -164,17 +163,17 @@
                                         <div class="col-12 col-sm-3 mb-3">
                                             <button type="button" id="declineButton"
                                                 class="btn btn-sm btn-danger btn-block">
-                                                Not Suitable
+                                                Tidak Sesuai
                                             </button>
                                         </div>
                                         <div class="col-12 col-sm-3">
                                             <button type="button" id="acceptButton" class="btn btn-sm btn-neo btn-block">
-                                                Accept
+                                                Terima
                                             </button>
                                         </div>
                                         <div class="col-12 col-sm-3">
                                             <button type="button" id="inviteButton" class="btn btn-sm btn-info btn-block">
-                                                Invite to Interview
+                                                Undang Interview
                                             </button>
                                         </div>
                                     </div>

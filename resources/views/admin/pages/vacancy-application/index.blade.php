@@ -1,4 +1,4 @@
-<title>Vacancy Application</title>
+<title>Lamaran Pekerjaan</title>
 @extends('admin.layouts.app')
 
 @section('content')
@@ -11,16 +11,18 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
-                            Vacancy Application
+                            Lamaran Pekerjaan
                         </h1>
                     </div>
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('admin.vacancy.job-vacancy.index') }}">Job Vacancy</a>
+                                {{ ucwords(
+                                    Auth::user()->getRoleNames()->first(),
+                                ) }}
                             </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                Home
+                            <li class="breadcrumb-item">
+                                <a class="link-fx" href="{{ route('admin.vacancy.vacancy-application.index') }}">Lamaran Pekerjaan</a>
                             </li>
                         </ol>
                     </nav>
@@ -53,7 +55,7 @@
                             </div>
 
                             <div>
-                                <a class="h6 neo" href="{{ route('admin.vacancy.vacancy-application.show', ['id'=>$vacancy->id]) }}">Show Applicant</a>
+                                <a class="h6 neo" href="{{ route('admin.vacancy.vacancy-application.show', ['id'=>$vacancy->id]) }}">Tampilkan Pelamar</a>
                             </div>
                         </div>
 
@@ -61,7 +63,7 @@
                             <div style="font-size: 70px">
                                 {{ \App\Http\Controllers\Admin\Admin_VacancyController::getApplicant($vacancy->id) }}
                             </div>
-                            Applicants
+                            Pelamar
                         </div>
                     </div>
                 </div>

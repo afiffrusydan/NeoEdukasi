@@ -1,4 +1,4 @@
-<title>Job Vacancy</title>
+<title>Lowongan Pekerjaan</title>
 @extends('admin.layouts.app')
 
 @section('content')
@@ -10,7 +10,7 @@
             background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Vacancy
+                        Lowongan Pekerjaan
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
@@ -20,7 +20,7 @@
                                 ) }}
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">Vacancy</a>
+                                <a class="link-fx" href="">Lowongan Pekerjaan</a>
                             </li>
                         </ol>
                     </nav>
@@ -36,11 +36,11 @@
                         <div class="row items-push float-sm-right ">
                             <button type="button" class="btn btn-sm btn-alt-secondary" title="Add New Student">
                                 <a href="{{ route('admin.vacancy.job-vacancy.create1') }}"
-                                    class="btn btn-sm btn-neo pull-right">Add New Job Vacancy</a>
+                                    class="btn btn-sm btn-neo pull-right">Tambah Lowongan Pekerjaan</a>
                             </button>
                         </div>
                         <h4 class="tittle-neo my-2">
-                            Job Vacancy
+                            Lowongan Pekerjaan
                         </h4>
                     </div>
 
@@ -78,7 +78,7 @@
                             <div style="font-size: 70px">
                                 {{ \App\Http\Controllers\Admin\Admin_VacancyController::getApplicant($vacancy->id) }}
                             </div>
-                            Job Applicants
+                            Pelamar
                         </div>
                     </div>
                 </div>

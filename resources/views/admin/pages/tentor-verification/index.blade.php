@@ -1,4 +1,4 @@
-<title>Tentor Verification</title>
+<title>Verifikasi Akun Tentor</title>
 @extends('admin.layouts.app')
 @section('css_before')
     <!-- Page JS Plugins CSS -->
@@ -14,7 +14,7 @@
                     background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Tentor Verification
+                        Verifikasi Akun Tentor
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
@@ -24,7 +24,7 @@
                                 ) }}
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">Tentor Verification</a>
+                                <a class="link-fx" href="">Verifikasi Akun Tentor</a>
                             </li>
                         </ol>
                     </nav>
@@ -49,7 +49,7 @@
                                 <a class="nav-main-link link-fx active" id="nav-interview-tab" data-toggle="tab"
                                     href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
                                     <i class="nav-main-link-icon fa fa-file"></i>
-                                    <span class="nav-main-link-name">New Tentor Verification &nbsp</span>
+                                    <span class="nav-main-link-name">Pengajuan verifikasi Baru &nbsp</span>
                                     @if ($tentors)
                                         <span class="badge badge-pill badge-info">{{ count($tentors) }}</span>
                                     @endif
@@ -59,7 +59,7 @@
                                 <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab" href="#nav-shortlist"
                                     role="tab" aria-controls="nav-home" aria-selected="true">
                                     <i class="nav-main-link-icon fa fa-file"></i>
-                                    <span class="nav-main-link-name">Declined Verification &nbsp</span>
+                                    <span class="nav-main-link-name">Pengajuan verifikasi yang ditolak &nbsp</span>
                                     @isset($oldtentors)
                                         <span class="badge badge-pill badge-info">{{ count($oldtentors) }}</span>
                                     @endisset
@@ -80,9 +80,9 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 1%;">#</th>
-                                        <th style="width: 10%;">Full Name</th>
-                                        <th style="width: 10%;">Last Education</th>
-                                        <th style="width: 10%;">Branch</th>
+                                        <th style="width: 15%;">Nama Lengkap</th>
+                                        <th style="width: 15%;">Pendidikan Terakhir</th>
+                                        <th style="width: 10%;">Cabang</th>
                                         <th style="width: 10%;">Email</th>
                                         <th class="text-center" style="width: 10%;">Action</th>
                                     </tr>
@@ -138,9 +138,9 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="width: 1%;">#</th>
-                                            <th style="width: 10%;">Full Name</th>
-                                            <th style="width: 10%;">Last Education</th>
-                                            <th style="width: 10%;">Branch</th>
+                                            <th style="width: 15%;">Nama Lengkap</th>
+                                            <th style="width: 20%;">Pendidikan Terakhir</th>
+                                            <th style="width: 10%;">Cabang</th>
                                             <th style="width: 10%;">Email</th>
                                             <th class="text-center" style="width: 10%;">Action</th>
                                         </tr>

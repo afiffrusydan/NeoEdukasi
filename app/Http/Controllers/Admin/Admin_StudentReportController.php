@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\TutoredStudents;
 use App\Models\tentor\SalarySubmission;
 use App\Models\tentor\StudentProgress;
+use Symfony\Component\HttpFoundation\Request;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -20,35 +21,48 @@ class Admin_StudentReportController extends Controller
 
     public function index()
     {
-        $stdProgress = TutoredStudents::join('students', 'tutored-students.student_id', '=', 'students.id') 
+        
+        // $stdProgress = TutoredStudents::join('students', 'tutored-students.student_id', '=', 'students.id') 
+        // ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
+        // ->join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
+        // ->select('tutored-students.id','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
+        // ->get()->sortByDesc("tutored-students.id");;
+        $studentProgress = StudentProgress::join('tutored-students', 'tutored-students.id', '=', 'students_progress.tentored_student_id')  
+        ->join('students','tutored-students.student_id','=','students.id')
         ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
         ->join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
-        ->select('tutored-students.id','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
-        ->get()->sortByDesc("tutored-students.id");;
+        ->where('students_progress.status','=',10)
+        // ->select('students_progress.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName')
+        ->select('students_progress.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName')
+        ->get();
 
-        return view('admin.pages.student-report.student-progress.index', ['datas' => $stdProgress]);
+        return view('admin.pages.student-report.student-progress.index', ['datas' => $studentProgress]);
     }
 
     public function view($id)
     {
+        // $studentProgress = StudentProgress::join('tutored-students', 'tutored-students.id', '=', 'students_progress.tentored_student_id')  
+        // ->join('students','tutored-students.student_id','=','students.id')
+        // ->where('students_progress.tentored_student_id','=', $id)
+        // ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
+        // ->where('students_progress.status','=',10)
+        // ->select('students_progress.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName')
+        // ->get();
+        // return view('admin.pages.student-report.student-progress.view', ['data' => $studentProgress]);
         $studentProgress = StudentProgress::join('tutored-students', 'tutored-students.id', '=', 'students_progress.tentored_student_id')  
         ->join('students','tutored-students.student_id','=','students.id')
-        ->where('students_progress.tentored_student_id','=', $id)
-        ->join('tentors', 'tutored-students.tentor_id', '=', 'tentors.id') 
-        // ->where('students_progress.status','=',10)
-        ->select('students_progress.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName')
-        ->get();
-        return view('admin.pages.student-report.student-progress.view', ['data' => $studentProgress]);
+        ->where('students_progress.id','=', $id)
+        ->select('students_progress.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName')
+        ->get()->first();;
+        return view('admin.pages.student-report.student-progress.detail', ['data' => $studentProgress]);
     }
 
-    public function detail($id)
+    public function detail(Request $request)
     {
-
-
         $studentProgress = StudentProgress::join('tutored-students', 'tutored-students.id', '=', 'students_progress.tentored_student_id')  
         ->join('students','tutored-students.student_id','=','students.id')
         ->join('tentors','tutored-students.tentor_id','=','tentors.id')
-        ->where('students_progress.id','=', $id)
+        ->where('students_progress.id','=', $request->id)
         ->select('students_progress.created_at as date','students.*','students_progress.*','tutored-students.subject','students.id as stdId','students.first_name as stdFirstName', 'students.last_name as stdLastName','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName',(DB::raw('YEAR(month) year,MONTH(month) onlymonth')))
         ->get()->first();;
         $bulan = array (

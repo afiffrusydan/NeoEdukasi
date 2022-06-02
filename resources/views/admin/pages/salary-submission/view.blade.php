@@ -1,28 +1,23 @@
-<title>{{ 'Tentors Dashboard' }}</title>
+<title>Detail Pengajuan Gaji</title>
 @extends('admin.layouts.app')
 
 @section('content')
-    <!-- Hero -->
-    <title>Laravel Bootstrap Datepicker</title>
-    <!-- END Hero -->
-    <!-- Page Content -->
     <div class="content">
         <div class="bg-body-light">
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Student Progress Report Detail<small
+                        Detail Pengajuan Gaji<small
                             class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx"
-                                    href="{{ route('admin.submission.student-progress.index') }}">Student Progress
-                                    Report</a>
+                                    href="{{ route('admin.submission.salary-submission.index') }}">Pengajuan Gaji</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">Student Progress Report Detail</a>
+                                <a class="link-fx" href="">Detail Pengajuan Gaji</a>
                             </li>
                         </ol>
                     </nav>
@@ -34,12 +29,12 @@
                 <div class="block-content block-content-full">
                     <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                     <div class="row g-3 col-12-line1">
-                        <label class="form-label tittle">Tentor Salary</label>
+                        <label class="form-label tittle">Pengajuan Gaji Tentor</label>
                     </div>
                     <div class="row g-3 col-12">
 
                         <div class="col-12 col-md-12">
-                            <label class="form-label tittle-neo">Student Name</label>
+                            <label class="form-label tittle-neo">Nama Siswa</label>
                             <select class="form-control selectpicker" id="studentId" name="student_id"
                                 data-live-search="true" data-size="4" disabled>
                                 <option value="{{ $data->stdId }}" selected>
@@ -48,7 +43,7 @@
                             </select>
                         </div>
                         <div class="col-12 col-md-12">
-                            <label class="form-label tittle-neo">Month</label>
+                            <label class="form-label tittle-neo">Bulan</label>
                             <select class="form-control selectpicker" id="monthSelect" name="month" disabled>
                                 <option value="0" selected disabled>
                                     {{ date('F Y', strtotime($data->month)) }}
@@ -135,7 +130,7 @@
                                 <div class="row g-3">
                                     <div class="col-12 col-md-12">
                                         <div class="col-12 col-md-12">
-                                            <label class="form-label tittle-neo">Documentation</label>
+                                            <label class="form-label tittle-neo">Dokumentasi</label>
                                             <div class='embed-responsive'>
                                                 <img id="zoom1"
                                                     src="{{ route('admin.submission.salary-submission.get-documentation', ['id' => $data->id]) }}"
@@ -151,7 +146,7 @@
                                 <div class="row g-3">
                                     <div class="col-12 col-md-12">
                                         <div class="col-12 col-md-12">
-                                            <label class="form-label tittle-neo">Aditional Cost</label>
+                                            <label class="form-label tittle-neo">Tambahan Biaya</label>
                                             <div class="input-group">
                                                 <span class="input-group-text">Rp.</span>
                                                 <input type="number" class="form-control form-control-alt" name="add_cost"
@@ -279,15 +274,23 @@
             let add_cost = $("#add_cost").val();
             let total = document.getElementById("modal-total").value;
             Swal.fire({
-                title: 'Are You Sure?',
-                text: "You still can change this record",
+                title: 'Apakah anda yakin?',
+                text: "Anda masih bisa merubah data ini ",
                 icon: 'info',
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
                 confirmButtonColor: "#70b9eb"
             }).then((result) => {
                 if (result.value) {
+                    Swal.fire({
+                        title: "",
+                        text: "Please wait",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
                     $.ajax({
                         url: "{{ route('admin.submission.salary-submission.update') }}",
                         type: "POST",
@@ -315,7 +318,18 @@
                         },
 
                         error: function(error) {
-                            console.log(error);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
                         }
                     });
                 }
@@ -339,15 +353,23 @@
             event.preventDefault();
             let id = "{{ $data->id }}";
             Swal.fire({
-                title: 'Are You Sure?',
-                text: "You still can change this record",
+                title: 'Apakah anda yakin??',
+                text: "Anda masih bisa merubah data ini ",
                 icon: 'info',
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
                 confirmButtonColor: "#d26a5c"
             }).then((result) => {
                 if (result.value) {
+                    Swal.fire({
+                        title: "",
+                        text: "Please wait",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
                     $.ajax({
                         url: "{{ route('admin.submission.salary-submission.decline') }}",
                         type: "POST",
@@ -371,7 +393,18 @@
                         },
 
                         error: function(error) {
-                            console.log(error);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
                         }
                     });
                 }
@@ -381,19 +414,20 @@
             event.preventDefault();
             let id = "{{ $data->id }}";
             Swal.fire({
-                title: 'Are You Sure?',
-                text: "Approve Student Progress Report?",
+                title: 'Apakah anda yakin?',
+                text: "Anda masih bisa merubah data ini ?",
                 icon: 'info',
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Yes, I want',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
                 confirmButtonColor: "#6fa306"
             }).then((result) => {
                 if (result.value) {
                     Swal.fire({
                         title: "",
                         text: "Please wait",
-                        // imageUrl: "{{ asset('storage/tentors/tentor-photo-profile/30.jpg') }}",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
                         showConfirmButton: false,
                         allowOutsideClick: false
                     });
@@ -420,7 +454,18 @@
                         },
 
                         error: function(error) {
-                            console.log(error);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
                         }
                     });
                 }

@@ -30,7 +30,7 @@ class Admin_StudentProgressController extends Controller
         ->join('branchs', 'tentors.branch_id', '=', 'branchs.branch_id')
         ->where('students_progress.status','!=', 10)
         ->select('students_progress.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','tentors.first_name as tntrFirstName', 'tentors.last_name as tntrLastName','branchs.branch_name')
-        ->get()->sortByDesc("created_at")->sortByDesc("status");;
+        ->orderBy('students_progress.month', 'DESC')->get();
 
         return view('admin.pages.student-progress.index', ['datas' => $stdProgress]);
     }

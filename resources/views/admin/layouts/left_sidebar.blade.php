@@ -61,14 +61,14 @@ $admin_role = Auth::user()->getRoleNames()->first();
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ Request::routeIs('admin.tentor.index') ? 'active' : '' }}" href="{{ route('admin.tentor.index') }}">
-                            <span class="nav-main-link-name">Tentors</span>
+                            <span class="nav-main-link-name">Daftar Tentor</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ Request::routeIs('admin.tentor-verification.index') ? 'active' : '' }}" href="{{ route('admin.tentor-verification.index') }}">
-                            <span class="nav-main-link-name">Tentor Account Verification</span>
+                            <span class="nav-main-link-name">Verifikasi Akun Tentor</span>
                         </a>
                     </li>
                 </ul>
@@ -83,17 +83,17 @@ $admin_role = Auth::user()->getRoleNames()->first();
             <li class="nav-main-item   {{ (request()->is('admin/students/*')) ? 'open' : ''}} ">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                     <i class="nav-main-link-icon fa fa-users"></i>
-                    <span class="nav-main-link-name">Students Menu</span>
+                    <span class="nav-main-link-name">Menu Siswa</span>
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/students/all/*')) ? 'active' : ''}}" href="{{ route('admin.student.all.all') }}">
-                            <span class="nav-main-link-name">Student</span>
+                            <span class="nav-main-link-name">Daftar Siswa</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/students/tentored-students/*')) ? 'active' : '' }}" href="{{ route('admin.student.tentored-students.index') }}">
-                            <span class="nav-main-link-name">Tentored Students</span>
+                            <span class="nav-main-link-name">Siswa yang sudah dapat tentor</span>
                         </a>
                     </li>
                 </ul>
@@ -104,26 +104,26 @@ $admin_role = Auth::user()->getRoleNames()->first();
             <li class="nav-main-item   {{ (request()->is('admin/vacancy/*')) ? 'open' : ''}} ">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                     <i class="nav-main-link-icon fa fa-briefcase"></i>
-                    <span class="nav-main-link-name">Vacancy</span>
+                    <span class="nav-main-link-name">Lowongan Pekerjaan</span>
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/vacancy/job-vacancy/*')) ? 'active' : '' }}" href="{{ route('admin.vacancy.job-vacancy.index') }}">
-                            <span class="nav-main-link-name">Job Vacancy</span>
+                            <span class="nav-main-link-name">Lowongan Pekerjaan</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/vacancy/vacancy-application/*')) ? 'active' : '' }}" href="{{ route('admin.vacancy.vacancy-application.index') }}">
-                            <span class="nav-main-link-name">Vacancy Application</span>
+                            <span class="nav-main-link-name">Lamaran Pekerjaan</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/vacancy/interview/*')) ? 'active' : '' }}" href="{{ route('admin.vacancy.interview.index') }}">
-                            <span class="nav-main-link-name">Interview</span>
+                            <span class="nav-main-link-name">Interview Pekerjaan</span>
                         </a>
                     </li>
                 </ul>
@@ -133,19 +133,19 @@ $admin_role = Auth::user()->getRoleNames()->first();
             <li class="nav-main-item   {{ (request()->is('admin/submission/*')) ? 'open' : ''}} ">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                     <i class="nav-main-link-icon fa fa-file"></i>
-                    <span class="nav-main-link-name">Submission</span>
+                    <span class="nav-main-link-name">Pengajuan</span>
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/submission/student-progress/*')) ? 'active' : '' }}" href="{{ route('admin.submission.student-progress.index') }}">
-                            <span class="nav-main-link-name">Student Progress Report</span>
+                            <span class="nav-main-link-name">Pengajuan Laporan Perkembangan Siswa</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/submission/salary-submission/*')) ? 'active' : '' }}" href="{{ route('admin.submission.salary-submission.index') }}">
-                            <span class="nav-main-link-name">Salary Submission</span>
+                            <span class="nav-main-link-name">Pengajuan Gaji Tentor</span>
                         </a>
                     </li>
                 </ul>
@@ -156,12 +156,12 @@ $admin_role = Auth::user()->getRoleNames()->first();
             <li class="nav-main-item   {{ (request()->is('admin/student-report/*')) ? 'open' : ''}} ">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                     <i class="nav-main-link-icon fa fa-flag"></i>
-                    <span class="nav-main-link-name">Student Report</span>
+                    <span class="nav-main-link-name">Laporan</span>
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link {{ (request()->is('admin/student-report/student-progress/*')) ? 'active' : '' }}" href="{{ route('admin.student-report.student-progress.index') }}">
-                            <span class="nav-main-link-name">Student Progress Report</span>
+                            <span class="nav-main-link-name">Laporan Perkembangan Siswa</span>
                         </a>
                     </li>
                 </ul>

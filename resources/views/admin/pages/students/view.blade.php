@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-
+<title>Detail Siswa {{ $data->first_name.' '.$data->last_name }}</title>
 @section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
         rel="stylesheet">
@@ -18,7 +18,7 @@
             <div class="content content-boxed">
                 <div class="row items-push">
                     <div class="col-3 col-md-1">
-                        <img class="img-avatar" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="Header Avatar">
+                        <img class="img-avatar" src="{{ asset('asset/images/avatars/avatar.png') }}" alt="Header Avatar">
                     </div>
                     <div class="col-9 col-md-9">
                         <div class="font-size-h3 tittle-neo-header">
@@ -59,23 +59,23 @@
                             @csrf
                             <div class="invisible" data-toggle="appear">
                                 <div class="row g-3 col-12-line1">
-                                    <label class="form-label tittle">Personal Information</label>
+                                    <label class="form-label tittle">Informasi Siswa</label>
                                 </div>
                                 <div class="row g-3 col-12">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">First Name</label>
-                                        <input type="text" name="first_name" class="form-control" placeholder="First Name"
+                                        <label class="form-label tittle-neo">Nama Depan</label>
+                                        <input type="text" name="first_name" class="form-control" placeholder="Nama Depan"
                                             value="{{ $data->first_name }}" disabled required>
                                     </div>
                                     <input type="hidden" name="id" value="{{ $data->id }}" />
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Last Name</label>
-                                        <input type="text" name="last_name" class="form-control" placeholder="Last Name"
+                                        <label class="form-label tittle-neo">Nama Belakang</label>
+                                        <input type="text" name="last_name" class="form-control" placeholder="Nama Belakang"
                                             value="{{ $data->last_name }}" required disabled>
                                     </div>
                                     <div class="col-12 col-md-12">
-                                        <label class="form-label tittle-neo">Address</label>
-                                        <textarea id="address" name="address" class="form-control" placeholder="Address"
+                                        <label class="form-label tittle-neo">Alamat</label>
+                                        <textarea id="address" name="address" class="form-control" placeholder="Alamat"
                                             required disabled rows="2">{{ $data->address }}</textarea>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -84,31 +84,31 @@
                                             value="{{ $data->email }}" required disabled>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Gender</label>
+                                        <label class="form-label tittle-neo">Jenis Kelamin</label>
                                         <select class="form-select form-control" name="gender" required disabled>
-                                            <option selected disabled>Gender</option>
-                                            <option value="Male"
-                                                @if ($data->gender == 'Male') {{ 'selected' }}@else {{ '' }} @endif>
-                                                Male</option>
-                                            <option value="Female"
-                                                @if ($data->gender == 'Female') {{ 'selected' }}@else {{ '' }} @endif>
-                                                Female</option>
+                                            <option selected disabled>Jenis Kelamin</option>
+                                            <option value="Laki-Laki"
+                                                @if ($data->gender == 'Laki-Laki') {{ 'selected' }}@else {{ '' }} @endif>
+                                                Laki-Laki</option>
+                                            <option value="Perempuan"
+                                                @if ($data->gender == 'Perempuan') {{ 'selected' }}@else {{ '' }} @endif>
+                                                Perempuan</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Place Of Birth</label>
-                                        <input type="text" name="POB" class="form-control" placeholder="Place Of Birth"
+                                        <label class="form-label tittle-neo">Tempat Lahir</label>
+                                        <input type="text" name="POB" class="form-control" placeholder="Tempat Lahir"
                                             value="{{ $data->POB }}" required disabled>
                                     </div>
                                     <div class="col-12 col-md-6 datepick">
-                                        <label class="form-label tittle-neo">Date Of Birth</label>
+                                        <label class="form-label tittle-neo">Tanggal Lahir</label>
                                         <input class="date form-control" type="text" name="DOB" id="DOB"
                                             placeholder="YYYY-MM-DD" value="{{ $data->DOB }}" disabled>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Religion (Optional)</label>
+                                        <label class="form-label tittle-neo">Agama (Opsional)</label>
                                         <select class="form-select form-control" name="religion" id="religion" disabled>
-                                            <option value="Religion" disabled selected>Religion</option>
+                                            <option value="Religion" disabled selected>Agama</option>
                                             <option value="muslim"
                                                 @if ($data->religion == 'muslim') {{ 'selected' }}@else {{ '' }} @endif>
                                                 Muslim </option>
@@ -133,40 +133,47 @@
                             </div>
                             <div class="invisible" data-toggle="appear">
                                 <div class="row g-3 col-12-line">
-                                    <label class="form-label tittle">Contact Information</label>
+                                    <label class="form-label tittle">Informasi Kontak Siswa</label>
                                 </div>
                                 <div class="row g-3 col-12">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Phone Number</label>
+                                        <label class="form-label tittle-neo">Nomor Telepon Siswa</label>
                                         <input type="text" name="phone_number" class="form-control"
-                                            placeholder="Phone Number" value="{{ $data->phone_number }}" required
+                                            placeholder="Nomor Telepon Siswa" value="{{ $data->phone_number }}" required
                                             disabled>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Parent Phone Number</label>
+                                        <label class="form-label tittle-neo">Nomor Telepon Orang Tua Siswa</label>
                                         <input type="text" name="parent_phone_number" class="form-control"
-                                            placeholder="Parent Phone Number" value="{{ $data->parent_phone_number }}"
+                                            placeholder="Nomor Telepon Orang Tua Siswa" value="{{ $data->parent_phone_number }}"
                                             required disabled>
                                     </div>
                                 </div>
                                 <div class="row g-3 col-12-line">
-                                    <label class="form-label tittle">Education Information</label>
+                                    <label class="form-label tittle">Informasi Pendidikan Siswa</label>
                                 </div>
                                 <div class="row g-3 col-12">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Class</label>
-                                        <input type="text" name="class" class="form-control" placeholder="Class"
-                                            value="{{ $data->class }}" required disabled>
+                                        <label class="form-label tittle-neo">Kelas</label>
+                                        <select class="form-select form-control" name="class" id="class" disabled>
+                                            <option value="" disabled selected>Kelas</option>
+                                            @foreach ($class as $kelas)
+                                            <option value="{{ $kelas->id }}" 
+                                                    @if ($data->class_id == $kelas->id) {{ 'selected' }}@else {{ '' }} @endif
+                                                    @if (old('class') == '{{ $kelas->id }}') {{ 'selected' }}@else {{ '' }} @endif>
+                                                    {{ $kelas->class}} </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">School</label>
-                                        <input type="text" name="school" class="form-control" placeholder="School"
+                                        <label class="form-label tittle-neo">Asal Sekolah</label>
+                                        <input type="text" name="school" class="form-control" placeholder="Asal Sekolah"
                                             value="{{ $data->school }}" required disabled>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Curriculum</label>
+                                        <label class="form-label tittle-neo">Kurikulum</label>
                                         <select class="form-select form-control" name="curriculum" id="curriculum" disabled>
-                                            <option value="branch" disabled selected>Curriculum</option>
+                                            <option value="branch" disabled selected>Kurikulum</option>
                                             <option value="Nasional"
                                                 @if ($data->curriculum == 'Nasional') {{ 'selected' }}@else {{ '' }} @endif>
                                                 Nasional </option>
@@ -179,9 +186,9 @@
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label tittle-neo">Branch</label>
+                                        <label class="form-label tittle-neo">Cabang</label>
                                         <select class="form-select form-control" name="branch" id="branch" disabled>
-                                            <option value="branch" disabled selected>Branch</option>
+                                            <option value="branch" disabled selected>Cabang</option>
                                             @foreach ($branchs as $branch)
                                                 <option value="{{ $branch->branch_id }}"
                                                     @if ($data->branch_id == $branch->branch_id) {{ 'selected' }}@else {{ '' }} @endif>
@@ -191,23 +198,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="invisible" id="saveChanges" data-toggle="appear" style="display: none">
+                        </form>
+                            <div class="invisible pt-4 mt-4" id="saveChanges" data-toggle="appear" style="display: none">
                                 <div class="block-content block-content-full">
-                                    <div class="mb-4 col-12 text-center">
+                                    <div class="mb-2 col-12 text-center">
                                         <div class="row d-flex justify-content-center">
                                             <div class="col-12 col-md-2 mb-3">
                                                 <button type="button" id="removeButton"
                                                     class="btn btn-sm btn-danger btn-block">
-                                                    Delete Record
+                                                    Hapus Data
                                                 </button>
                                             </div>
                                             <div class="col-12 col-md-2">
                                                 <button type="submit" name="submit" class="btn btn-sm btn-neo btn-block">
-                                                    Save Changes
+                                                    Simpan
                                                 </button>
                                             </div>
                                             <div class="col-12 col-sm-1">
-                                                <a href="#" id="cancelButton" class="btn btn-sm btn-secondary">Cancel</a>
+                                                <a href="#" id="cancelButton" class="btn btn-sm btn-secondary">Batal</a>
                                             </div>
 
                                         </div>
@@ -215,7 +223,6 @@
                                 </div>
 
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<title>Add Student Progress Report</title>
+<title>Tambah Laporan Perkembangan Siswa</title>
 @extends('admin.layouts.app')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -15,16 +15,16 @@
             <div class="content content-full  border-right-neo">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Student Progress Report<small
+                        Laporan Perkembangan Siswa<small
                             class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
-                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Student Progress Report</a>
+                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Laporan Perkembangan Siswa</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="">Add New</a>
+                                <a class="link-fx" href="">Tambah</a>
                             </li>
                         </ol>
                     </nav>
@@ -52,11 +52,11 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Tentor Name</label>
+                                <label class="form-label tittle-neo">Nama Tentor</label>
                                 <select class="form-control selectpicker" id="tentorId" name="tentor_id"
                                     data-live-search="true">
                                     <option value="0" selected disabled>
-                                        Please Select
+                                        Silahkan Pilih
                                     </option>
                                     @foreach ($tentorList as $tentor)
                                         <option value="{{ $tentor->id }}">
@@ -66,7 +66,7 @@
                                 </select>
                             </div>
                             <div class="col-12 col-md-12">
-                                <label class="form-label tittle-neo">Nama Siswa (Mata Pelajaran)</label>
+                                <label class="form-label tittle-neo">Nama Siswa ( Mata Pelajaran )</label>
                                 <select class="form-control" id="studentId" name="tentored_id" data-live-search="true">
                                     <option value="0" selected disabled>
                                         Silahkan Pilih

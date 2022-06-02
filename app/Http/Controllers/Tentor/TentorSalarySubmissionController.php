@@ -46,9 +46,9 @@ class TentorSalarySubmissionController extends Controller
 
         $leng = count($response);
         if($leng == 0 ){
-            return view('tentor.pages.salary-submission.index2', ['stdProgress' => $studentProgress, 'history'=>$history]);
+            return view('tentor.pages.salary-submission.index', ['stdProgress' => $studentProgress, 'history'=>$history]);
         }else{
-            return view('tentor.pages.salary-submission.index2', ['stdProgress' => $studentProgress, 'history'=>$history])->withErrors(
+            return view('tentor.pages.salary-submission.index', ['stdProgress' => $studentProgress, 'history'=>$history])->withErrors(
                 [
                     'errors' => 'You have a student progress report that has not been filled out, Please check it in the student progress report menu'
                 ]

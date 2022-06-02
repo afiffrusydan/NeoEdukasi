@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Branch;
 use App\Models\ClassModel;
+use App\Models\ModelClass;
 use App\Models\Tentor;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class Admin_StudentController extends Controller
     public function index()
     {
         $student = Student::join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
-        ->get([ 'students.*','branchs.branch_name'])->sortByDesc("id");;
+        ->orderBy('students.first_name', 'ASC')->get([ 'students.*','branchs.branch_name']);;
         return view('admin.pages.students.index', ['students' => $student]);
     }
 
@@ -90,7 +91,7 @@ class Admin_StudentController extends Controller
             'account_status'=> "-10",
           ]);
 
-        Alert::success('Success', 'Student successfully added!');
+        Alert::success('Success', 'Siswa Berhasil Ditambahkan!');
         return redirect()->route('admin.student.all.all');
     }
 
@@ -102,14 +103,15 @@ class Admin_StudentController extends Controller
         ->get([ 'students.*','branchs.branch_name','class.class'])->first();;
 
         $branchs = Branch::all();
+        $class = ModelClass::all();
         
-        return view('admin.pages.students.view', ['data' => $data, 'branchs'=>$branchs]);
+        return view('admin.pages.students.view', ['data' => $data, 'branchs'=>$branchs, 'class'=>$class]);
     }
 
     public function remove(Request $request)
     {
         $id = $request->id; 
-        //Student::where('id', $id)->delete();
+        Student::where('id', $id)->delete();
         $response="Student Record Successfully Deleted ";
         return $response;
     }
@@ -144,23 +146,23 @@ class Admin_StudentController extends Controller
         }else{
           $parent_phone_number = $request->parent_phone_number;
         }
-          $tentor=Student::find($request->id);
+          $student=Student::find($request->id);
           
-          $tentor->first_name=$request->first_name;
-          $tentor->last_name=$request->last_name;
-          $tentor->address=$request->address;
-          $tentor->email=$request->email;
-          $tentor->gender=$request->gender;
-          $tentor->POB=$request->POB;
-          $tentor->DOB=$request->DOB;
-          $tentor->phone_number=$phone_number;
-          $tentor->parent_phone_number=$parent_phone_number;
-          $tentor->religion=$request->religion;
-          $tentor->school=$request->school;
-          $tentor->class=$request->class;
-          $tentor->curriculum=$request->curriculum;
-          $tentor->branch_id=$request->branch;
-          $tentor->save();
+          $student->first_name=$request->first_name;
+          $student->last_name=$request->last_name;
+          $student->address=$request->address;
+          $student->email=$request->email;
+          $student->gender=$request->gender;
+          $student->POB=$request->POB;
+          $student->DOB=$request->DOB;
+          $student->phone_number=$phone_number;
+          $student->parent_phone_number=$parent_phone_number;
+          $student->religion=$request->religion;
+          $student->school=$request->school;
+          $student->class_id=$request->class;
+          $student->curriculum=$request->curriculum;
+          $student->branch_id=$request->branch;
+          $student->save();
 
 
         Alert::success('Success', 'Student Data successfully updated!');
