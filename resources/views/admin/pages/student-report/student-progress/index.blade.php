@@ -87,7 +87,7 @@
                                         <td class="d-none d-sm-table-cell fs-sm text-center">
                                             <a href="{{ route('admin.student-report.student-progress.view', ['id' => $studentProgress->id]) }}"
                                                 class="btn btn-sm btn-neo">Detail</a>
-                                            <button type="button" id="sendreport" class="btn btn-sm btn-neo">
+                                            <button type="button" value="{{ $studentProgress->id }}" id="sendreport" class="btn btn-sm btn-neo">
                                                 Kirim Ke Wa
                                             </button>
                                         </td>
@@ -107,7 +107,7 @@
     <script>
         $("#sendreport").click(function(event) {
         event.preventDefault();
-        let id = "{{ $studentProgress->id }}";
+        let id = $(this).val();
         Swal.fire({
             title: "",
             text: "Please wait",
