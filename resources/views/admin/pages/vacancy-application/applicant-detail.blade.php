@@ -2,12 +2,11 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
     <!-- Page Content -->
     <div class="content">
         <div class="block bg-body-light shadow-sm">
             <div class="content content-full bg-header-tentor" style="
-            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
@@ -18,7 +17,8 @@
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
                                 <a class="link-fx"
-                                    href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Daftar Pelamar</a>
+                                    href="{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}">Daftar
+                                    Pelamar</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
                                 {{ $studentData->first_name . ' ' . $studentData->last_name }}
@@ -38,10 +38,11 @@
                         <div class="row">
                             <div class="col-xl-12 order-xl-0">
                                 <div class="col-12-line1">
-                                    @if($interviewStatus == 1)
-                                    <div class="items-push float-sm-right">
-                                        <i class="fa fa-check-circle text-info" aria-hidden="true" style="font-size: 20px;"></i>
-                                    </div>
+                                    @if ($interviewStatus == 1)
+                                        <div class="items-push float-sm-right">
+                                            <i class="fa fa-check-circle text-info" aria-hidden="true"
+                                                style="font-size: 20px;"></i>
+                                        </div>
                                     @endif
                                     <label class="form-label tittle">Detail Lowongan Pekerjaan</label>
 
@@ -131,8 +132,8 @@
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-12 col-sm-3 mb-3">
                                             <button type="button" id="declinedButton"
-                                                class="btn btn-sm btn-danger btn-block" disabled>
-                                                Tolak
+                                                class="btn btn-sm btn-danger btn-block">
+                                                Tidak Sesuai
                                             </button>
                                         </div>
                                         <div class="col-12 col-sm-3">
@@ -143,14 +144,20 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($data->status == 10 or $data->status == 0 or $data->status == 50)
+                        @elseif ($data->status == 50)
                             <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
                                 <div class="mb-4 col-12 text-center">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-12 col-sm-3 mb-3">
                                             <button type="button" id="declinedButton"
-                                                class="btn btn-sm btn-neo btn-block disabled">
-                                                Proses Interview
+                                                class="btn btn-sm btn-danger btn-block">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                        <div class="col-12 col-sm-3 mb-3">
+                                            <button type="button" id="removeShortlist"
+                                                class="btn btn-sm btn-neo btn-block">
+                                                Hapus Dari Shortlist
                                             </button>
                                         </div>
                                     </div>
@@ -166,14 +173,14 @@
                                                 Tidak Sesuai
                                             </button>
                                         </div>
-                                        <div class="col-12 col-sm-3">
+                                        {{-- <div class="col-12 col-sm-3">
                                             <button type="button" id="acceptButton" class="btn btn-sm btn-neo btn-block">
                                                 Terima
                                             </button>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-12 col-sm-3">
                                             <button type="button" id="inviteButton" class="btn btn-sm btn-info btn-block">
-                                                Undang Interview
+                                                Tambahkan ke Shortlist
                                             </button>
                                         </div>
                                     </div>
@@ -202,6 +209,13 @@
                 confirmButtonColor: "#d26a5c"
             }).then((result) => {
                 if (result.value) {
+                    Swal.fire({
+                        title: "",
+                        text: "Please wait",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
                     $.ajax({
                         url: "{{ route('admin.vacancy.vacancy-application.decline') }}",
                         type: "POST",
@@ -225,7 +239,18 @@
                         },
 
                         error: function(error) {
-                            console.log(error);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
                         }
                     });
                 }
@@ -235,8 +260,8 @@
             event.preventDefault();
             let id = "{{ $data->id }}";
             Swal.fire({
-                title: 'Are You Sure?',
-                text: "invite the applicant to interview process?",
+                title: 'Anda Yakin?',
+                text: "Menambahkan Pelamar ke daftar shortlist?",
                 icon: 'info',
                 showCloseButton: true,
                 showCancelButton: true,
@@ -247,12 +272,12 @@
                     Swal.fire({
                         title: "",
                         text: "Please wait",
-                        imageUrl: "{{ asset('storage/tentors/tentor-photo-profile/30.jpg') }}",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
                         showConfirmButton: false,
                         allowOutsideClick: false
                     });
                     $.ajax({
-                        url: "{{ route('admin.vacancy.vacancy-application.invite') }}",
+                        url: "{{ route('admin.vacancy.vacancy-application.add-to-shortlist') }}",
                         type: "POST",
                         data: {
                             id: id,
@@ -274,7 +299,78 @@
                         },
 
                         error: function(error) {
-                            console.log(error);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
+                        }
+                    });
+                }
+            });
+        });
+        $("#removeShortlist").click(function(event) {
+            event.preventDefault();
+            let id = "{{ $data->id }}";
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: "Hapus Pemalamar dari daftar shortlist?",
+                icon: 'info',
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Yes, I want',
+                confirmButtonColor: "#6fa306"
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: "",
+                        text: "Please wait",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                    $.ajax({
+                        url: "{{ route('admin.vacancy.vacancy-application.remove-from-shortlist') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: data,
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
+                                );
+                            }, 1000);
+                        },
+
+                        error: function(error) {
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
                         }
                     });
                 }
@@ -296,7 +392,7 @@
                     Swal.fire({
                         title: "",
                         text: "Please wait",
-                        imageUrl: "{{ asset('storage/tentors/tentor-photo-profile/30.jpg') }}",
+                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
                         showConfirmButton: false,
                         allowOutsideClick: false
                     });
@@ -323,7 +419,18 @@
                         },
 
                         error: function(error) {
-                            console.log(error);
+                            Swal.fire({
+                                title: 'Update Status :',
+                                text: error,
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                            setTimeout(function() {
+                                window.location.href = (
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                );
+                            }, 1000);
                         }
                     });
                 }

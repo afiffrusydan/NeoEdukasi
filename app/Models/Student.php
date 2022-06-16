@@ -34,7 +34,7 @@ class Student extends Authenticatable
         'curriculum',
         'branch_id',
         'token',
-        'account_status',
+        'status',
 
     ];
 

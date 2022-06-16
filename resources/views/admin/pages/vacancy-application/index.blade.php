@@ -40,8 +40,11 @@
             background-image:url({{ asset('images/Asset/header-tentors-detail-big-2.png') }});">
                     <div class="row">
                         <div class="col-xl-9 order-xl-0">
-                            <div class="mb-1 h4 text-black-75 py-2" style="color: #6fa306">
+                            <div class="mb-1 h4 text-black-75 py-1" style="color: #6fa306">
                                 <label class="neo">{{ $vacancy->first_name.' '.$vacancy->last_name }}</label>
+                            </div>
+                            <div class="mb-1 h5 text-black-75" style="color: #6fa306">
+                                <label class="neo">{{ $vacancy->subject }}</label>
                             </div>
                             <div class="mb-0 h6 text-black-50">
                                 @if ($vacancy->status == -10)

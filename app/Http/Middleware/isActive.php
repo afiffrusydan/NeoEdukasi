@@ -17,7 +17,7 @@ class IsActive
      */
     public function handle(Request $request, Closure $next)
     {
-        if ((Auth::user()->account_status) == -10 OR (Auth::user()->account_status) == 0 OR (Auth::user()->account_status) == -5) {
+        if ((Auth::user()->account_status) < 0 ) {
             
             return redirect()->route('tentor.dashboard')
                     ->with('errormsg', 'Anda harus mengaktifkan akun Anda terlebih dahulu. Harap verifikasi akun anda.');

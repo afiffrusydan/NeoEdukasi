@@ -86,6 +86,7 @@ class TentorSalarySubmissionController extends Controller
     {
         $students = Student::join('tutored-students', 'tutored-students.student_id', '=', 'students.id')
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
+        ->where('tutored-students.status','=','100')
         ->get(['tutored-students.id as stdId','students.*', 'tutored-students.subject'])->sortBy('month');
         return view('tentor.pages.salary-submission.create',['students'=>$students]);
     }

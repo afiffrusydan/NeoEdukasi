@@ -35,28 +35,22 @@ class TentorController extends Controller
 
     public function dashboard()
     {
-        $tentor_status = Auth::user()->account_status;
+        $tentor_status = Auth::user()->account_verif_status;
         $tentor_id = Auth::user()->id;
         
-        if($tentor_status == -10){
-            $files = Storage::files('public/files');
-            $file=array();
-            foreach ($files as $key => $value) {
-                $value= basename($value);
-                array_push($file,$value);
-            }
+        if($tentor_status == 0){
             return view('tentor.pages.dashboard')->withErrors(
                 [
                     'inactive' => 'Akun anda belum diverifikasi silahkan verifikasi akun anda terlebih dahulu.'
                 ]
             );;
-        }elseif($tentor_status == 0 OR $tentor_status == 5){
+        }elseif($tentor_status == 10 OR $tentor_status == 5){
             return view('tentor.pages.dashboard')->withErrors(
                 [
                     'msg' => 'Verifikasi akun anda sedang diproses oleh admin kami, silahkan tunggu'
                 ]
             );;
-        }elseif($tentor_status == -5){
+        }elseif($tentor_status == -10){
             $status=TentorVerification::find($tentor_id);
             return view('tentor.pages.dashboard', ['reasons'=> $status])->withErrors(
                 [
@@ -64,7 +58,7 @@ class TentorController extends Controller
                     'declinemsg' => 'Alasan'
                 ]
             );;
-        }else{
+        }elseif($tentor_status == 100){
             $files = Storage::files('public/files');
             $file=array();
             foreach ($files as $key => $value) {
@@ -101,19 +95,20 @@ class TentorController extends Controller
             $ktp_filename = Auth::user()->token.".".$ktp_file->getClientOriginalExtension();
             $filename = Auth::user()->token.".pdf";
 
-            $fileverification=FileVerification::find($id);
-            if($fileverification){
-                $fileverification->ktp_file = $KTP_destinationPath.'/'.$ktp_filename;
-                $fileverification->ijazah_file = $ijazah_destinationPath.'/'.$filename;
-                $fileverification->transkip_file = $transkip_destinationPath.'/'.$filename;
-                $fileverification->status = -10;
+            $verification=TentorVerification::find($id);
+            if($verification){
+                $verification->ktp_file = $KTP_destinationPath.'/'.$ktp_filename;
+                $verification->ijazah_file = $ijazah_destinationPath.'/'.$filename;
+                $verification->transkip_file = $transkip_destinationPath.'/'.$filename;
+                $verification->verification_status = 5;
+                $verification->save();
             }else{
-                FileVerification::create([
+                TentorVerification::create([
                     'id' => $id,
                     'ktp_file' => $KTP_destinationPath.'/'.$ktp_filename,
                     'ijazah_file' => $ijazah_destinationPath.'/'.$filename,
                     'transkip_file' => $transkip_destinationPath.'/'.$filename,
-                    'status' => -10,
+                    'verification_status' => 10,
                 ]);
             }
   
@@ -127,10 +122,10 @@ class TentorController extends Controller
             
             $tentor = Tentor::find($id);
             $tentor->NIK = $request->get('nik');
-            if(Auth::user()->account_status == -5){
-                $tentor->account_status = 5;
+            if(Auth::user()->account_status == -10){
+                $tentor->account_verif_status = 5;
             }else{
-                $tentor->account_status = 0;
+                $tentor->account_verif_status = 10;
             }
             $tentor->save();
             return response()->json(['success'=>'Data is successfully added ']);

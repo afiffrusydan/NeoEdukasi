@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models\admin;
+namespace App\Models\tentor;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class TentorVerification extends Model
+class TentorVerification extends Authenticatable
 {
     protected $table = 'tentor-verification';
     /**
@@ -19,11 +18,14 @@ class TentorVerification extends Model
      */
     protected $fillable = [
         'id',
+        'ktp_file',
+        'ijazah_file',
+        'transkip_file',
         'ktp_status',
-        'ktp_decline_reason',
         'ijazah_status',
-        'ijazah_decline_reason',
         'transkip_status',
+        'ktp_decline_reason',
+        'ijazah_decline_reason',
         'transkip_decline_reason',
         'verification_status',
     ];

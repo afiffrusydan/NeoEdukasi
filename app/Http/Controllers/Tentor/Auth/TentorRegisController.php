@@ -106,7 +106,8 @@ class TentorRegisController extends Controller
         'job_status' => $data['job_status'],
         'token'=>$token,
         'last_education' => $data['last_education']." - ".$data['education_major'],
-        'account_status'=> "-10",
+        'account_status'=> "-50",
+        'account_verif_status'=> "0",
       ]);
     }
 

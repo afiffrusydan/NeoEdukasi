@@ -26,7 +26,7 @@
         <!-- Hero -->
         <div class="bg-body-light block shadow-sm">
             <div class="content content-full bg-header-tentor" style="
-            background-image:url({{ asset('images/Asset/header-tentors.png') }});">
+                        background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
                         Daftar Tentor
@@ -58,9 +58,9 @@
                                 <th class="text-center" style="width: 1%;">#</th>
                                 <th style="width: 15%;">Nama Lengkap</th>
                                 <th style="width: 10%;">Cabang</th>
-                                <th style="width: 10%;">Email</th>
-                                <th style="width: 5%;">Status</th>
-                                <th class="text-center" style="width: 10%;">Action</th>
+                                <th style="width: 5%;">Email</th>
+                                <th style="width: 10%;">Status</th>
+                                <th class="text-center" style="width: 5%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,15 +80,28 @@
                                     </td>
                                     <td class="fs-sm"><em class="text-muted">{{ $tentor->email }}</em></td>
                                     <td class="fs-sm text-center">
-                                        @if ($tentor->status == 0)
-                                            <span
-                                                class="d-inline-block py-1 px-3 rounded-pill bg-warning text-white fs-sm">Inactive</span>
-                                        @elseif ($tentor->status == -10)
+                                        @if ($tentor->account_status == -100)
                                             <span
                                                 class="d-inline-block py-1 px-3 rounded-pill bg-danger text-white fs-sm">Blacklist</span>
-                                        @elseif ($tentor->status == 10)
+                                        @elseif ($tentor->account_status == 10)
                                             <span
-                                                class="d-inline-block py-1 px-3 rounded-pill bg-success text-white fs-sm">Active</span>
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-info text-white fs-sm">Sudah
+                                                Interview</span>
+                                        @elseif ($tentor->account_status == 0)
+                                            <span
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-success text-white fs-sm">Sudah
+                                                Verifikasi</span>
+                                        @elseif ($tentor->account_status == 100)
+                                            <span
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-neo text-white fs-sm">Aktif
+                                                Mengajar</span>
+                                        @elseif ($tentor->account_status == -50)
+                                            <span
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-secondary text-white fs-sm">Inactive</span>
+                                        @else
+                                            <span
+                                                class="d-inline-block py-1 px-3 rounded-pill bg-warning text-white fs-sm">Belum
+                                                Verifikasi</span>
                                         @endif
                                     </td>
                                     <td class="text-center">

@@ -32,6 +32,7 @@ Route::group([
           Route::get('{id}/view', 'Customer\Admin_StudentController@show')->name('view');
           Route::post('delete', 'Customer\Admin_StudentController@remove')->name('delete');
           Route::post('update', 'Customer\Admin_StudentController@update')->name('update');
+          Route::post('update-status', 'Customer\Admin_StudentController@updatestatus')->name('update_status');
       });
           
 
@@ -79,6 +80,8 @@ Route::group([
         Route::get('{id}/view/detail/', 'Admin_VacancyApplicationController@detail')->name('.detail');
         Route::post('/view/detail/decline', 'Admin_VacancyApplicationController@decline')->name('.decline');
         Route::post('/view/detail/invite', 'Admin_VacancyApplicationController@inviteInterview')->name('.invite');
+        Route::post('/view/detail/addtoshortlist', 'Admin_VacancyApplicationController@addToShortlist')->name('.add-to-shortlist');
+        Route::post('/view/detail/removefromshortlist', 'Admin_VacancyApplicationController@removeFromShortlist')->name('.remove-from-shortlist');
         Route::post('/view/detail/accept', 'Admin_VacancyApplicationController@accept')->name('.accept');
     });
     Route::group(['prefix' => '/interview', 'as' => '.interview'], function () {

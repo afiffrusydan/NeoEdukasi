@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\TentorVerification;
 use App\Models\Student;
 use App\Models\Branch;
 use App\Models\ClassModel;
@@ -88,7 +89,7 @@ class Admin_StudentController extends Controller
             'curriculum' => $request->curriculum,
             'branch_id' => $request->branch,
             'token'=>$token,
-            'account_status'=> "-10",
+            'account_status'=> "0",
           ]);
 
         Alert::success('Success', 'Siswa Berhasil Ditambahkan!');
@@ -167,5 +168,17 @@ class Admin_StudentController extends Controller
 
         Alert::success('Success', 'Student Data successfully updated!');
         return redirect()->route('admin.student.all.all');
+    }
+
+    public function updatestatus(Request $request)
+    {
+        $id = $request->id; 
+        $stdData = Student::where('id','=',$id)->get()->first();;
+        if($stdData){
+            $stdData->status = $request->status;
+            $stdData->save();
+        }
+        $response="Status Siswa Berhasil Diupdate.";
+        return $response;
     }
 }

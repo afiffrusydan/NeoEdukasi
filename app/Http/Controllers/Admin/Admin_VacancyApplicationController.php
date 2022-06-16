@@ -34,8 +34,15 @@ class Admin_VacancyApplicationController extends Controller
         $vacancy = TentorApplication::join('tentors', 'tentors-application.tentor_id', '=', 'tentors.id')
         ->join('branchs', 'branchs.branch_id', '=', 'tentors.branch_id')
         ->where('tentors-application.vacancy_id','=', $id)
+        ->where('tentors-application.status','!=',50)
         ->get([ 'tentors-application.id as appId','tentors-application.status', 'tentors-application.tentor_id as tentorId','tentors.first_name', 'tentors.last_name', 'tentors.last_education','tentors.job_status','branchs.branch_name']);;
-        return view('admin.pages.vacancy-application.application-list', ['vacancy' => $vacancy]);
+
+        $shortlistvacancy = TentorApplication::join('tentors', 'tentors-application.tentor_id', '=', 'tentors.id')
+        ->join('branchs', 'branchs.branch_id', '=', 'tentors.branch_id')
+        ->where('tentors-application.vacancy_id','=', $id)
+        ->where('tentors-application.status','=', 50)
+        ->get([ 'tentors-application.id as appId','tentors-application.status', 'tentors-application.tentor_id as tentorId','tentors.first_name', 'tentors.last_name', 'tentors.last_education','tentors.job_status','branchs.branch_name','tentors.phone_number']);;
+        return view('admin.pages.vacancy-application.application-list', ['vacancy' => $vacancy, 'shortlist' => $shortlistvacancy]);
     }
 
     public function detail($appId)
@@ -64,6 +71,30 @@ class Admin_VacancyApplicationController extends Controller
         $appData = TentorApplication::find($id);
         if($appData){
             $appData->status = -100;
+            $appData->save();
+        }
+
+        $response="Application Status Successfully Updated ";
+        return $response;
+    }
+    public function addToShortlist(Request $request)
+    {
+        $id = $request->id; 
+        $appData = TentorApplication::find($id);
+        if($appData){
+            $appData->status = 50;
+            $appData->save();
+        }
+
+        $response="Application Status Successfully Updated ";
+        return $response;
+    }
+    public function removeFromShortlist(Request $request)
+    {
+        $id = $request->id; 
+        $appData = TentorApplication::find($id);
+        if($appData){
+            $appData->status = -10;
             $appData->save();
         }
 

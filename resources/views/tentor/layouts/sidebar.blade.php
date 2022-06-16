@@ -53,7 +53,7 @@ $account_status = Auth::user()->account_status;
                 </a>
             </li>
             <li class="nav-main-heading">Menu</li>
-            @if ($account_status >= 10)
+            @if ($account_status >= 0)
             <li class="nav-main-item">
                 <a class="nav-main-link{{ request()->is('tentor/vacancy/*') ? ' active' : '' }}" href="{{ route('tentor.vacancy.index') }}">
                     <i class="nav-main-link-icon fa fa-briefcase"></i>

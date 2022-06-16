@@ -25,7 +25,7 @@ class Admin_TentorController extends Controller
     public function tentor_verification()
     {
         $tentor = Tentor::join('branchs', 'tentors.branch_id', '=', 'branchs.branch_id')
-        ->get(['tentors.id','tentors.status','tentors.first_name' ,'tentors.last_name','tentors.last_education','tentors.email', 'branchs.branch_name']);
+        ->get(['tentors.id','tentors.account_status','tentors.first_name' ,'tentors.last_name','tentors.last_education','tentors.email', 'branchs.branch_name']);
         return view('admin.pages.tentors.index', ['tentors' => $tentor]);
     }
 
