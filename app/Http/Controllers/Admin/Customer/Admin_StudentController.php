@@ -3,19 +3,15 @@
 namespace App\Http\Controllers\Admin\Customer;
 
 use App\Http\Controllers\Controller;
-use App\Models\admin\TentorVerification;
 use App\Models\Student;
 use App\Models\Branch;
 use App\Models\ClassModel;
 use App\Models\ModelClass;
-use App\Models\Tentor;
-use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use PHPUnit\Framework\MockObject\Builder\Stub;
 use RealRashid\SweetAlert\Facades\Alert;
+use DataTables;
 
 class Admin_StudentController extends Controller
 {
@@ -23,13 +19,65 @@ class Admin_StudentController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
-    public function index()
+        public function index(Request $request)
     {
-        $student = Student::join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
-        ->orderBy('students.first_name', 'ASC')->get([ 'students.*','branchs.branch_name']);;
-        return view('admin.pages.students.index', ['students' => $student]);
+        $branchs = Branch::all();
+        if ($request->ajax()) {
+            $data = Student::join('branchs', 'students.branch_id', '=', 'branchs.branch_id');;
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('full_name', function($row){
+     
+                        $btn = '<a href="'.route("admin.student.all.view", ['id' => $row->id]) .'">'.$row->first_name.' '.$row->last_name.'</a>';
+    
+                        return $btn;
+                    })
+                    ->addColumn('action', function($row){
+     
+                           $btn = '<a href="'.route("admin.student.all.view", ['id' => $row->id]) .'" class="btn btn-sm btn-neo ">Detail</a>';
+    
+                            return $btn;
+                    })
+                    ->addColumn('status', function($row){
+     
+                        if ($row->status == -100){
+                        return '<span class="d-inline-block py-1 px-3 bg-danger text-white fs-sm">Blacklist</span>';
+                    }elseif ($row->status == 0){
+                        return '<span class="d-inline-block py-1 px-3 bg-info text-white fs-sm">Belum Bayar</span>';
+                    }elseif ($row->status == 100){
+                        return '<span class="d-inline-block py-1 px-3 bg-success text-white fs-sm">Sudah Bayar</span>';
+                    }
+                    })
+                    ->filter(function ($instance) use ($request) {
+                        if ($request->get('status') == '0' || $request->get('status') == '100' || $request->get('status') == '-100') {
+                            $instance->where('status','=',$request->get('status'));
+                        }
+                        if (!empty($request->get('branch'))) {
+                            $instance->where('students.branch_id', '=',$request->get('branch'));
+                        }
+                        if (!empty($request->get('search'))) {
+                            $instance->where(function($w) use($request){
+                               $search = $request->get('search');
+                               $w->orWhere('first_name', 'LIKE', "%$search%")
+                               ->orWhere('last_name', 'LIKE', "%$search%")
+                               ->orWhere('branch_name', 'LIKE', "%$search%")
+                               ->orWhere('address', 'LIKE', "%$search%");
+                           });
+                       }
+                    })
+
+                    ->rawColumns(['action','status','full_name'])
+                    ->make(true);
+        }
+        
+        return view('admin.pages.students.index2',['branchs'=>$branchs]);
     }
+    // public function index()
+    // {
+    //     $student = Student::join('branchs', 'students.branch_id', '=', 'branchs.branch_id')
+    //     ->orderBy('students.first_name', 'ASC')->get([ 'students.*','branchs.branch_name']);;
+    //     return view('admin.pages.students.index', ['students' => $student]);
+    // }
 
     public function addnew()
     {

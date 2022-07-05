@@ -46,7 +46,7 @@ Route::group([
     'middleware' => ['role:administrator|academic'],
 ], function () {
       Route::group(['prefix' => '/tentor', 'as' => 'admin.tentor'], function () {
-        Route::get('index', 'Academic\Admin_TentorController@tentor_verification')->name('.index');
+        Route::get('index', 'Academic\Admin_TentorController@index')->name('.index');
         Route::get('detail/{id}', 'Academic\Admin_TentorController@detail')->name('.detail');
         Route::post('/update-status', 'Academic\Admin_TentorController@updateStatus')->name('.status_update');
     });
@@ -58,6 +58,16 @@ Route::group([
         Route::get('get-transkip/{id}', 'Academic\Admin_TentorVerificationController@tentor_transkip_get')->name('.get-transkip');
         Route::post('submit', 'Academic\Admin_TentorVerificationController@verificationSubmit')->name('.submit');
     });
+    Route::group(['prefix' => '/tentor/tentor-interview', 'as' => 'admin.tentor-interview'], function () {
+      Route::get('index', 'Admin_VacancyInterview@index')->name('.index');
+      Route::get('{id}/show', 'Admin_VacancyInterview@show')->name('.show');
+      Route::get('{id}/detail', 'Admin_VacancyInterview@detail')->name('.detail');
+      Route::get('get-ktp/{id}', 'Admin_VacancyInterview@tentor_ijazah_get')->name('.get-ijazah');
+      Route::get('get-transkip/{id}', 'Admin_VacancyInterview@tentor_transkip_get')->name('.get-transkip');
+      Route::post('/show/decline', 'Admin_VacancyInterview@decline')->name('.decline');
+      Route::post('/show/accept', 'Admin_VacancyInterview@accept')->name('.accept');
+      Route::post('/show/addtoShortlist', 'Admin_VacancyInterview@shortlist')->name('.shortlist');
+  });
   });
 
   Route::group([
@@ -84,15 +94,10 @@ Route::group([
         Route::post('/view/detail/removefromshortlist', 'Admin_VacancyApplicationController@removeFromShortlist')->name('.remove-from-shortlist');
         Route::post('/view/detail/accept', 'Admin_VacancyApplicationController@accept')->name('.accept');
     });
-    Route::group(['prefix' => '/interview', 'as' => '.interview'], function () {
-      Route::get('index', 'Admin_VacancyInterview@index')->name('.index');
-      Route::get('{id}/show', 'Admin_VacancyInterview@show')->name('.show');
-      Route::get('{appId}/detail', 'Admin_VacancyInterview@detail')->name('.detail');
-      Route::get('get-ktp/{id}', 'Admin_VacancyInterview@tentor_ijazah_get')->name('.get-ijazah');
-      Route::get('get-transkip/{id}', 'Admin_VacancyInterview@tentor_transkip_get')->name('.get-transkip');
-      Route::post('/show/decline', 'Admin_VacancyInterview@decline')->name('.decline');
-      Route::post('/show/accept', 'Admin_VacancyInterview@accept')->name('.accept');
-      Route::post('/show/addtoShortlist', 'Admin_VacancyInterview@shortlist')->name('.shortlist');
+    Route::group(['prefix' => '/selected-vacancy-application', 'as' => '.vacancy-application.selected'], function () {
+      Route::get('index', 'Admin_VacancyApplicationController@cs_index')->name('.index');
+      Route::get('{id}/view', 'Admin_VacancyApplicationController@cs_show')->name('.show');
+      Route::get('{id}/view/detail/', 'Admin_VacancyApplicationController@cs_detail')->name('.detail');
   });
     });
 

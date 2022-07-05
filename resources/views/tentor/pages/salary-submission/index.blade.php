@@ -80,7 +80,7 @@
                         </div>
                         
                         <div class="table-responsive py-1">
-                            <table id="example"
+                            <table id="table"
                                 class="table table-bordered table-striped table-vcenter no-footer dtr-inline collapsed  display nowrap"
                                 cellspacing="0" width="100%">
                                 <thead>
@@ -108,13 +108,13 @@
                                             <td class="d-none d-sm-table-cell fs-sm text-center">
                                                 @if ($studentProgress->status == 0)
                                                     <span
-                                                        class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Processed</span>
+                                                        class="span1 fs-xs fw-semibold d-inline-block py-1 px-3 btn-block bg-info-light text-info">Sedang Diproses</span>
                                                 @elseif ($studentProgress->status == -10)
                                                     <span
-                                                        class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                                        class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-danger-light text-danger">Ditolak</span>
                                                 @else
                                                     <span
-                                                        class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                                        class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-success-light text-success">Diterima</span>
                                                 @endif
                                             </td>
                                             <td class="d-none d-sm-table-cell fs-sm text-center">
@@ -175,11 +175,13 @@
     <!-- END Page Content -->
     <script>
         $(document).ready(function() {
-            $('#example').DataTable({
-                responsive: true
+            $('#table').DataTable({
+                responsive: true,
+                order: [] 
             });
             $('#history').DataTable({
-                responsive: true
+                responsive: true,
+                order: [] 
             });
         });
     </script>

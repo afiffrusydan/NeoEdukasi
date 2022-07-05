@@ -126,67 +126,24 @@
                                     value=" {{ ucwords($tentorData->last_education) }}" disabled>
                             </div>
                         </div>
-                        @if ($data->status == -100)
-                            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                                <div class="mb-4 col-12 text-center">
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-12 col-sm-3 mb-3">
-                                            <button type="button" id="declinedButton"
-                                                class="btn btn-sm btn-danger btn-block">
-                                                Tidak Sesuai
-                                            </button>
-                                        </div>
-                                        <div class="col-12 col-sm-3">
-                                            <button type="button" id="inviteButton" class="inviteButton btn btn-sm btn-neo btn-block">
-                                                Tambahkan ke Shortlist
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($data->status == 50)
-                            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                                <div class="mb-4 col-12 text-center">
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-12 col-sm-3 mb-3">
-                                            <button type="button" id="declinedButton"
-                                                class="btn btn-sm btn-danger btn-block">
-                                                Tolak
-                                            </button>
-                                        </div>
-                                        <div class="col-12 col-sm-3 mb-3">
-                                            <button type="button" id="removeShortlist"
-                                                class="btn btn-sm btn-neo btn-block">
-                                                Hapus Dari Shortlist
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @else
                             <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
                                 <div class="mb-4 col-12 text-center">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-12 col-sm-3 mb-3">
                                             <button type="button" id="declineButton"
                                                 class="btn btn-sm btn-danger btn-block">
-                                                Tidak Sesuai
+                                                Tolak
                                             </button>
                                         </div>
-                                        {{-- <div class="col-12 col-sm-3">
-                                            <button type="button" id="acceptButton" class="btn btn-sm btn-neo btn-block">
+                                        <div class="col-12 col-sm-3 mb-3">
+                                            <button type="button" id="acceptButton"
+                                                class="btn btn-sm btn-neo btn-block">
                                                 Terima
-                                            </button>
-                                        </div> --}}
-                                        <div class="col-12 col-sm-3">
-                                            <button type="button" id="inviteButton" class="inviteButton btn btn-sm btn-info btn-block">
-                                                Tambahkan ke Shortlist
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endif
                     </div>
                 </div>
 
@@ -233,7 +190,7 @@
                             });
                             setTimeout(function() {
                                 window.location.href = (
-                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
+                                    "{{ route('admin.vacancy.vacancy-application.selected.show', ['id' => $vacancyData->id]) }}"
                                 );
                             }, 1000);
                         },
@@ -246,131 +203,6 @@
                                 showConfirmButton: false,
                                 timer: 3000
                             });
-                            setTimeout(function() {
-                                window.location.href = (
-                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
-                                );
-                            }, 1000);
-                        }
-                    });
-                }
-            });
-        });
-        $(".inviteButton").click(function(event) {
-            event.preventDefault();
-            let id = "{{ $data->id }}";
-            Swal.fire({
-                title: 'Anda Yakin?',
-                text: "Menambahkan Pelamar ke daftar shortlist?",
-                icon: 'info',
-                showCloseButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Yes, I want',
-                confirmButtonColor: "#6fa306"
-            }).then((result) => {
-                if (result.value) {
-                    Swal.fire({
-                        title: "",
-                        text: "Please wait",
-                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    });
-                    $.ajax({
-                        url: "{{ route('admin.vacancy.vacancy-application.add-to-shortlist') }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(data) {
-                            Swal.fire({
-                                title: 'Update Status :',
-                                text: data,
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                            setTimeout(function() {
-                                window.location.href = (
-                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
-                                );
-                            }, 1000);
-                        },
-
-                        error: function(error) {
-                            Swal.fire({
-                                title: 'Update Status :',
-                                text: error,
-                                icon: 'error',
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                            setTimeout(function() {
-                                window.location.href = (
-                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
-                                );
-                            }, 1000);
-                        }
-                    });
-                }
-            });
-        });
-        $("#removeShortlist").click(function(event) {
-            event.preventDefault();
-            let id = "{{ $data->id }}";
-            Swal.fire({
-                title: 'Anda Yakin?',
-                text: "Hapus Pemalamar dari daftar shortlist?",
-                icon: 'info',
-                showCloseButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Yes, I want',
-                confirmButtonColor: "#6fa306"
-            }).then((result) => {
-                if (result.value) {
-                    Swal.fire({
-                        title: "",
-                        text: "Please wait",
-                        imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif",
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    });
-                    $.ajax({
-                        url: "{{ route('admin.vacancy.vacancy-application.remove-from-shortlist') }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(data) {
-                            Swal.fire({
-                                title: 'Update Status :',
-                                text: data,
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                            setTimeout(function() {
-                                window.location.href = (
-                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
-                                );
-                            }, 1000);
-                        },
-
-                        error: function(error) {
-                            Swal.fire({
-                                title: 'Update Status :',
-                                text: error,
-                                icon: 'error',
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                            setTimeout(function() {
-                                window.location.href = (
-                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
-                                );
-                            }, 1000);
                         }
                     });
                 }
@@ -413,7 +245,7 @@
                             });
                             setTimeout(function() {
                                 window.location.href = (
-                                    "{{ route('admin.vacancy.vacancy-application.show', ['id' => $vacancyData->id]) }}"
+                                    "{{ route('admin.vacancy.vacancy-application.selected.show', ['id' => $vacancyData->id]) }}"
                                 );
                             }, 1000);
                         },
@@ -426,11 +258,6 @@
                                 showConfirmButton: false,
                                 timer: 3000
                             });
-                            setTimeout(function() {
-                                window.location.href = (
-                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
-                                );
-                            }, 1000);
                         }
                     });
                 }

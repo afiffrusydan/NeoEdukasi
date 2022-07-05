@@ -28,6 +28,7 @@ Route::group([
 });
 
 Route::get('home', 'Student\\StudentHomeController@index')->name('home');
+Route::get('tentor-list/{id}', 'Student\\TentorListController@index')->name('home');
 
 /*
 |--------------------------------------------------------------------------

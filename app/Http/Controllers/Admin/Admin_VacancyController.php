@@ -134,4 +134,10 @@ class Admin_VacancyController extends Controller
         $sum=count($applicant);
         return $sum;
     }
+    public static function getSelectedApplicant($id)
+    {
+        $applicant=TentorApplication::where('vacancy_id','=',$id)->where('status','=',50)->get();
+        $sum=count($applicant);
+        return $sum;
+    }
 }

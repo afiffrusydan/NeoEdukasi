@@ -28,7 +28,8 @@
     <!-- Page Content -->
     <div class="content">
         <div class="block bg-body-light shadow-sm">
-            <div class="content content-full bg-header-tentor" style="
+            <div class="content content-full bg-header-tentor"
+                style="
                 background-image:url({{ asset('images/Asset/header-tentors.png') }});">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
@@ -38,11 +39,15 @@
                     </div>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">{{ ucwords(
-                                Auth::user()->getRoleNames()->first(),
-                            ) }}</li>
+                            <li class="breadcrumb-item">
+                                {{ ucwords(
+                                    Auth::user()->getRoleNames()->first(),
+                                ) }}
+                            </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{ route('admin.submission.student-progress.index') }}">Pengajuan Laporan Perkembangan Siswa</a>
+                                <a class="link-fx"
+                                    href="{{ route('admin.submission.student-progress.index') }}">Pengajuan Laporan
+                                    Perkembangan Siswa</a>
                             </li>
                         </ol>
                     </nav>
@@ -61,7 +66,8 @@
                             </div>
                         </div>
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
+                        <table
+                            class="table table-bordered table-striped table-vcenter js-dataTable-full no-footer dtr-inline collapsed">
                             <thead>
                                 <tr>
                                     <th class="d-none d-md-table-cell fs-sm text-center" style="width: 1%;">#</th>
@@ -70,7 +76,7 @@
                                     <th style="width: 10%;">Mata Pelajaran</th>
                                     <th class="d-sm-table-cell fs-sm" style="width: 5%;">Bulan</th>
                                     <th class="d-none d-sm-table-cell fs-sm" style="width: 5%;">Status</th>
-                                    <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Action</th>
+                                    <th class="d-none d-sm-table-cell fs-sm" style="width: 5%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,18 +99,19 @@
                                         </td>
                                         <td class="d-none d-sm-table-cell fs-sm text-center">
                                             @if ($studentProgress->status == 0)
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Diajukan</span>
+                                                <span
+                                                    class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-success-light text-success">Diajukan</span>
                                             @elseif ($studentProgress->status == -10)
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Ditolak</span>
+                                                <span
+                                                    class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-danger-light text-danger">Ditolak</span>
                                             @else
-                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Diterima</span>
+                                                <span
+                                                    class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-success-light text-success">Diterima</span>
                                             @endif
                                         </td>
                                         <td class="d-none d-sm-table-cell fs-sm text-center">
-                                            
-                                                    <a href="{{ route('admin.submission.student-progress.detail', ['id' => $studentProgress->id]) }}"
-                                                        class="btn btn-sm btn-neo">Detail</a>
-        
+                                            <a href="{{ route('admin.submission.student-progress.detail', ['id' => $studentProgress->id]) }}"
+                                                class="btn btn-sm btn-neo">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach

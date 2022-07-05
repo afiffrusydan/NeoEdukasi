@@ -176,7 +176,7 @@
                             });
                             setTimeout(function() {
                                 window.location.href = (
-                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $data->id]) }}"
+                                    "{{ route('admin.submission.salary-submission.detail', ['id' => $tentorData->id]) }}"
                                 );
                             }, 1000);
                         }

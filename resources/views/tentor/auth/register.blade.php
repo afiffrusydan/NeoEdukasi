@@ -252,8 +252,8 @@
                                         <label class="special-label">Jenis Kelamin</label>
                                         <select name="gender" id="gender">
                                             <option value="Gender" disabled selected>Jenis Kelamin</option>
-                                            <option value="Male" @if (old("gender") == 'Male') {{  "selected" }}@else {{ "" }} @endif > Male </option>
-                                            <option value="Female" @if (old("gender") == 'Female') {{  "selected" }}@else {{ "" }} @endif > Female </option>
+                                            <option value="Laki-Laki" @if (old("gender") == 'Laki-Laki') {{  "selected" }}@else {{ "" }} @endif > Laki-Laki </option>
+                                            <option value="Perempuan" @if (old("gender") == 'Perempuan') {{  "selected" }}@else {{ "" }} @endif > Perempuan </option>
                                         </select>
                                     </div>
                                 </div>

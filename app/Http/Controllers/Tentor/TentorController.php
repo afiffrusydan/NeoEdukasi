@@ -2,22 +2,15 @@
 
 namespace App\Http\Controllers\Tentor;
 
-use App\Http\Requests;
-use Illuminate\Http\Response;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\admin\TentorVerification;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use App\Models\Tentor;
-use App\Models\admin\Vacancy;
 use App\Models\Bank;
-use App\Models\tentor\FileVerification;
-// use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class TentorController extends Controller
 {
@@ -38,19 +31,19 @@ class TentorController extends Controller
         $tentor_status = Auth::user()->account_verif_status;
         $tentor_id = Auth::user()->id;
         
-        if($tentor_status == 0){
+        if($tentor_status == null){
             return view('tentor.pages.dashboard')->withErrors(
                 [
                     'inactive' => 'Akun anda belum diverifikasi silahkan verifikasi akun anda terlebih dahulu.'
                 ]
             );;
-        }elseif($tentor_status == 10 OR $tentor_status == 5){
+        }elseif($tentor_status == 0){
             return view('tentor.pages.dashboard')->withErrors(
                 [
                     'msg' => 'Verifikasi akun anda sedang diproses oleh admin kami, silahkan tunggu'
                 ]
             );;
-        }elseif($tentor_status == -10){
+        }elseif($tentor_status == -100){
             $status=TentorVerification::find($tentor_id);
             return view('tentor.pages.dashboard', ['reasons'=> $status])->withErrors(
                 [
@@ -100,7 +93,7 @@ class TentorController extends Controller
                 $verification->ktp_file = $KTP_destinationPath.'/'.$ktp_filename;
                 $verification->ijazah_file = $ijazah_destinationPath.'/'.$filename;
                 $verification->transkip_file = $transkip_destinationPath.'/'.$filename;
-                $verification->verification_status = 5;
+                $verification->verification_status = 0;
                 $verification->save();
             }else{
                 TentorVerification::create([
@@ -108,7 +101,7 @@ class TentorController extends Controller
                     'ktp_file' => $KTP_destinationPath.'/'.$ktp_filename,
                     'ijazah_file' => $ijazah_destinationPath.'/'.$filename,
                     'transkip_file' => $transkip_destinationPath.'/'.$filename,
-                    'verification_status' => 10,
+                    'verification_status' => 0,
                 ]);
             }
   
@@ -122,11 +115,7 @@ class TentorController extends Controller
             
             $tentor = Tentor::find($id);
             $tentor->NIK = $request->get('nik');
-            if(Auth::user()->account_status == -10){
-                $tentor->account_verif_status = 5;
-            }else{
-                $tentor->account_verif_status = 10;
-            }
+            $tentor->account_verif_status = 0;
             $tentor->save();
             return response()->json(['success'=>'Data is successfully added ']);
           }

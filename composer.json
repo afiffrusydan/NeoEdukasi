@@ -9,7 +9,6 @@
         "barryvdh/laravel-dompdf": "^1.0",
         "boolfalse/clearcaches": "^1.1",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
         "kartik-v/bootstrap-fileinput": "dev-master",
         "laravel/framework": "^8.65",
@@ -18,7 +17,8 @@
         "laravel/ui": "^3.3",
         "realrashid/sweet-alert": "^4.1",
         "spatie/laravel-permission": "^5.3",
-        "twilio/sdk": "^6.35"
+        "twilio/sdk": "^6.35",
+        "yajra/laravel-datatables-oracle": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

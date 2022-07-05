@@ -64,7 +64,7 @@
                                     <th style="width: 10%;">Mata Pelajaran</th>
                                     <th class="d-sm-table-cell fs-sm" style="width: 5%;">Bulan</th>
                                     <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;">Status</th>
-                                    <th class="d-none d-sm-table-cell fs-sm" style="width: 10%;"></th>
+                                    <th class="d-none d-sm-table-cell fs-sm" style="width: 5%;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,13 +84,13 @@
                                         <td class="d-none d-sm-table-cell fs-sm text-center">
                                             @if ($studentProgress->status == 0)
                                                 <span
-                                                    class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Submitted</span>
+                                                    class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-success-light text-success">Diajukan</span>
                                             @elseif ($studentProgress->status == -10)
                                                 <span
-                                                    class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                                    class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-danger-light text-danger">Ditolak</span>
                                             @else
                                                 <span
-                                                    class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Approved</span>
+                                                    class="span1 btn-block fs-xs fw-semibold d-inline-block py-1 px-3 bg-success-light text-success">Diterima</span>
                                             @endif
                                         </td>
                                         <td class="d-none d-sm-table-cell fs-sm text-center">

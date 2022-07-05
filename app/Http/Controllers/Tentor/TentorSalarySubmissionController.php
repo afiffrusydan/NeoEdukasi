@@ -33,7 +33,7 @@ class TentorSalarySubmissionController extends Controller
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
         ->where('salary-submission.status','!=', 10)
         ->select('salary-submission.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
-        ->get()->sortByDesc("month");;
+        ->orderBy('salary-submission.status', 'ASC')->orderBy('salary-submission.month', 'DESC')->get();;
 
         $history = SalarySubmission::join('tutored-students', 'tutored-students.id', '=', 'salary-submission.tentored_student_id') 
         ->join('students', 'tutored-students.student_id', '=', 'students.id') 
@@ -42,7 +42,7 @@ class TentorSalarySubmissionController extends Controller
         ->where('tutored-students.tentor_id','=', Auth::user()->id)
         ->where('salary-submission.status','=', 10)
         ->select('salary-submission.*','tutored-students.subject','students.first_name as stdFirstName', 'students.last_name as stdLastName','branchs.branch_name')
-        ->orderBy('students.id')->orderBy('month')->get()->sortByDesc("month");;
+        ->orderBy('students.id')->orderBy('month')->get()->sortBy("month");;
 
         $leng = count($response);
         if($leng == 0 ){
@@ -177,7 +177,7 @@ class TentorSalarySubmissionController extends Controller
 
         $id = Auth::user()->id;
         $data = TutoredStudents::select('id')
-        ->where('tentor_id','=',$id)->get();
+        ->where('tentor_id','=',$id)->where('status','=',100)->get();
         $response = array();
         foreach($data as $check){
             $timedata = TutoredStudents::select('created_at as month')

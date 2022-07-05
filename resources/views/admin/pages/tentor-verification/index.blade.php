@@ -34,41 +34,6 @@
         <!-- END Hero -->
         <!-- Dynamic Table Full -->
         <div class="block block-rounded tab-content py-3 px-sm-0" id="nav-tabContent">
-            <div class="bg-white p-2 push col-12-line mx-0">
-                <div class="d-lg-none">
-                    <button type="button" class="btn w-100 btn-alt-secondary d-flex justify-content-between align-items-center"
-                        data-toggle="class-toggle" data-target="#horizontal-navigation-hover-centered"
-                        data-class="d-none">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </div>
-                <nav>
-                    <div id="horizontal-navigation-hover-centered" class="d-none d-lg-block mt-2 mt-lg-0">
-                        <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link link-fx active" id="nav-interview-tab" data-toggle="tab"
-                                    href="#nav-interview" role="tab" aria-controls="nav-home" aria-selected="true">
-                                    <i class="nav-main-link-icon fa fa-file"></i>
-                                    <span class="nav-main-link-name">Pengajuan verifikasi Baru &nbsp</span>
-                                    @if ($tentors)
-                                        <span class="badge badge-pill badge-info">{{ count($tentors) }}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link link-fx" id="nav-shortlist-tab" data-toggle="tab" href="#nav-shortlist"
-                                    role="tab" aria-controls="nav-home" aria-selected="true">
-                                    <i class="nav-main-link-icon fa fa-file"></i>
-                                    <span class="nav-main-link-name">Pengajuan verifikasi yang ditolak &nbsp</span>
-                                    @isset($oldtentors)
-                                        <span class="badge badge-pill badge-info">{{ count($oldtentors) }}</span>
-                                    @endisset
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
             <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-interview" role="tabpanel"
             aria-labelledby="nav-vacancyInformation-tab">
                 <div class="block">
@@ -80,10 +45,10 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 1%;">#</th>
-                                        <th style="width: 15%;">Nama Lengkap</th>
-                                        <th style="width: 15%;">Pendidikan Terakhir</th>
+                                        <th style="width: 20%;">Nama Lengkap</th>
                                         <th style="width: 10%;">Cabang</th>
                                         <th style="width: 10%;">Email</th>
+                                        <th class="text-center" style="width: 15%;">Tanggal</th>
                                         <th class="text-center" style="width: 10%;">Action</th>
                                     </tr>
                                 </thead>
@@ -100,13 +65,13 @@
                                                     href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}">{{ $tentor->first_name . ' ' . $tentor->last_name }}</a>
                                             </td>
                                             <td class="fs-sm">
-                                                {{ $tentor->last_education }}
-                                            </td>
-                                            <td class="fs-sm">
                                                 {{ $tentor->branch_name }}
                                             </td>
                                             <td class="fs-sm"><em
-                                                    class="text-muted">{{ $tentor->email }}</em></td>
+                                                class="text-muted">{{ $tentor->email }}</em></td>
+                                                <td class="fs-sm">
+                                                    {{ date('d F Y', strtotime($tentor->updated_at)) }}
+                                                </td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-alt-secondary"
@@ -125,65 +90,6 @@
                     </div>
                 </div>
         </div>
-            <div class="col-xl-12 order-xl-0 tab-pane fade " id="nav-shortlist" role="tabpanel"
-                aria-labelledby="nav-shortlist-tab">
-                <!-- Dynamic Table Full -->
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row g-3 col-12 ">
-                            <div class="table-responsive py-1">
-                                <table
-                                    class="table table-bordered table-striped table-vcenter js-dataTable-full dataTable no-footer">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center" style="width: 1%;">#</th>
-                                            <th style="width: 15%;">Nama Lengkap</th>
-                                            <th style="width: 20%;">Pendidikan Terakhir</th>
-                                            <th style="width: 10%;">Cabang</th>
-                                            <th style="width: 10%;">Email</th>
-                                            <th class="text-center" style="width: 10%;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($oldtentors as $tentor)
-                                            <tr>
-                                                <td class="text-center">
-                                                    {{ $loop->iteration }}
-                                                </td>
-
-                                                <td class="fw-semibold fs-sm">
-                                                    <a
-                                                        href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}">{{ $tentor->first_name . ' ' . $tentor->last_name }}</a>
-                                                </td>
-                                                <td class="fs-sm">
-                                                    {{ $tentor->last_education }}
-                                                </td>
-                                                <td class="fs-sm">
-                                                    {{ $tentor->branch_name }}
-                                                </td>
-                                                <td class="fs-sm"><em
-                                                        class="text-muted">{{ $tentor->email }}</em></td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-alt-secondary"
-                                                            onclick="" data-bs-toggle="tooltip" title="Detail">
-                                                            <a href="{{ route('admin.tentor-verification.detail', ['id' => $tentor->id]) }}"
-                                                                class="btn btn-sm btn-neo pull-right">Detail</a>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
         <!-- END Dynamic Table Full -->
     </div>

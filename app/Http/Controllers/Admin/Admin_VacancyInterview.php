@@ -25,11 +25,24 @@ class Admin_VacancyInterview extends Controller
 
     public function index()
     {
-        $vacancy = Vacancy::join('students', 'vacancy.student_id', '=', 'students.id')
-        ->where('vacancy.status','=', -10)
-        ->Orwhere('vacancy.status','=', 10)
-        ->get(['vacancy.*', 'students.first_name','students.last_name'])->sortByDesc("created_at");;
-        return view('admin.pages.interview.index', ['vacancys' => $vacancy]);
+        $interview_list = TutoredStudents::join('tentors','tutored-students.tentor_id','=','tentors.id')
+        ->join('branchs', 'branchs.branch_id', '=', 'tentors.branch_id')
+        ->where('tentors.account_status','=',0)
+        ->get(['tentors.id','tentors.first_name', 'tentors.last_name', 'tentors.last_education','tentors.job_status','branchs.branch_name','tentors.phone_number']);;
+        // $vacancy = TentorApplication::join('tentors', 'tentors-application.tentor_id', '=', 'tentors.id')
+        // ->join('branchs', 'branchs.branch_id', '=', 'tentors.branch_id')
+        // ->where('tentors-application.vacancy_id','=', $id)
+        // ->where('tentors-application.status','=', 10)
+        // ->orWhere('tentors-application.status','=', 0)
+        // ->get([ 'tentors-application.id as appId','tentors-application.status', 'tentors-application.tentor_id as tentorId','tentors.first_name', 'tentors.last_name', 'tentors.last_education','tentors.job_status','branchs.branch_name','tentors.phone_number']);;
+
+        // $shortlistvacancy = TentorApplication::join('tentors', 'tentors-application.tentor_id', '=', 'tentors.id')
+        // ->join('branchs', 'branchs.branch_id', '=', 'tentors.branch_id')
+        // ->where('tentors-application.vacancy_id','=', $id)
+        // ->where('tentors-application.status','=', 50)
+        // ->get([ 'tentors-application.id as appId','tentors-application. nstatus', 'tentors-application.tentor_id as tentorId','tentors.first_name', 'tentors.last_name', 'tentors.last_education','tentors.job_status','branchs.branch_name','tentors.phone_number']);;
+
+        return view('admin.pages.interview.index', ['listInterview' => $interview_list]);
     }
 
     public function show($id)
@@ -50,18 +63,14 @@ class Admin_VacancyInterview extends Controller
         return view('admin.pages.interview.interview-list', ['vacancy' => $vacancy, 'shortlist' => $shortlistvacancy]);
     }
 
-    public function detail($appId)
+    public function detail($id)
     {
-        $data = TentorApplication::find($appId);
-        
+      
         $tentorDetail = Tentor::join('branchs','branchs.branch_id','=','tentors.branch_id')
         // ->join('banks', 'banks.id','=','tentors.bank_id')
-        ->where('tentors.id','=', $data->tentor_id)
+        ->where('tentors.id','=', $id)
         ->get([ 'tentors.*','branchs.branch_name'])->first();;
-        $interviewStatus = $this->interviewCheck($data->tentor_id);
-        $vacancyDetail = Vacancy::find($data->vacancy_id);
-        $studentDetail = Student::find($vacancyDetail->student_id);
-        return view('admin.pages.interview.show', ['data' => $data,'tentorData' => $tentorDetail,'vacancyData' => $vacancyDetail,'studentData' => $studentDetail,'interviewStatus'=>$interviewStatus]);
+        return view('admin.pages.interview.show', ['tentorData' => $tentorDetail]);
     }
 
     private function interviewCheck($id){

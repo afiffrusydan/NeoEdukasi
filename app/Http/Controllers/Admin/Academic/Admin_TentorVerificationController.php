@@ -26,13 +26,9 @@ class Admin_TentorVerificationController extends Controller
     {
         $tentor = TentorVerification::join('tentors','tentor-verification.id','=','tentors.id')
         ->join('branchs', 'tentors.branch_id', '=', 'branchs.branch_id')
-        ->where('verification_status','=', 10)->get(['tentors.id','tentors.first_name' ,'tentors.last_name','tentors.last_education','tentors.email', 'branchs.branch_name']);
+        ->where('tentor-verification.verification_status','=', 0)->get(['tentors.id','tentors.first_name' ,'tentors.last_name','tentor-verification.updated_at','tentors.email', 'branchs.branch_name']);
 
-        $tentor1 = TentorVerification::join('tentors','tentor-verification.id','=','tentors.id')
-        ->join('branchs', 'tentors.branch_id', '=', 'branchs.branch_id')
-        ->where('verification_status','=', 5)->get(['tentors.id','tentors.first_name' ,'tentors.last_name','tentors.last_education','tentors.email', 'branchs.branch_name']);
-
-        return view('admin.pages.tentor-verification.index', ['tentors' => $tentor, 'oldtentors' => $tentor1]);
+        return view('admin.pages.tentor-verification.index', ['tentors' => $tentor]);
     }
 
     public function tentor_verification_detail($id)
@@ -108,12 +104,12 @@ class Admin_TentorVerificationController extends Controller
                 $tentorverif->ktp_decline_reason=$request->ktp_declinereason;
                 $tentorverif->ijazah_decline_reason=$request->ijazah_declinereason;
                 $tentorverif->transkip_decline_reason=$request->transkip_declinereason;
-                $tentorverif->verification_status= -10;
+                $tentorverif->verification_status= -100;
                 $tentorverif->save();
 
 
                 $tentor = Tentor::find($request->id);
-                $tentor->account_verif_status = "-10";
+                $tentor->account_verif_status = "-100";
                 $tentor->save();
             }
         }

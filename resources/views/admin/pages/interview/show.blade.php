@@ -10,14 +10,14 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <div class="flex-grow-1">
                         <h1 class="h3 fw-bold mb-2">
-                            Detail Interview Lowongan Pekerjaan
+                            Detail Interview Tentor
                         </h1>
                     </div>
                     <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
                             <li class="breadcrumb-item">
                                 <a class="link-fx"
-                                    href="{{ route('admin.vacancy.interview.show', ['id' => $vacancyData->id]) }}">Daftar Interview</a>
+                                    href="{{ route('admin.tentor-interview.index') }}">Daftar Interview</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
                                 {{ $tentorData->first_name . ' ' . $tentorData->last_name }}
@@ -41,13 +41,6 @@
                         <ul class="nav nav-main nav-main-horizontal nav-main-hover nav-main-horizontal-center">
                             <li class="nav-main-item">
                                 <a class="nav-main-link link-fx active" id="nav-home-tab" data-toggle="tab"
-                                    href="#nav-vacancyInformation" role="tab" aria-controls="nav-home" aria-selected="true">
-                                    <i class="nav-main-link-icon fa fa-briefcase"></i>
-                                    <span class="nav-main-link-name">Informasi Lowongan Pekerjaan</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link link-fx" id="nav-home-tab" data-toggle="tab"
                                     href="#nav-tentorInformation" role="tab" aria-controls="nav-home" aria-selected="true">
                                     <i class="nav-main-link-icon fa fa-address-card"></i>
                                     <span class="nav-main-link-name">Informasi Pelamar ( Tentor )</span>
@@ -71,64 +64,7 @@
                     </div>
                 </nav>
             </div>
-            <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-vacancyInformation" role="tabpanel"
-                aria-labelledby="nav-vacancyInformation-tab">
-                <!-- Dynamic Table Full -->
-                <div class="block">
-                    <div class="block-content block-content-full">
-                        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                        <div class="row">
-                            <div class="col-xl-12 order-xl-0">
-                                <div class="col-12-line1">
-                                    @if($interviewStatus == 1)
-                                    <div class="items-push float-lg-right">
-                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
-                                    </div>
-                                    @endif
-                                    <label class="form-label tittle">Detail Lowongan Pekerjaan</label>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-3 col-12 ">
-                            <div class="col-12">
-                                <label class="form-label tittle-neo">Nama Lengkap Siswa</label>
-                                <input type="text" name="first_name" class="form-control" placeholder="First Name"
-                                    value="{{ $studentData->first_name . ' ' . $studentData->last_name }}" disabled>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label tittle-neo">Alamat</label>
-                                <input type="text" name="first_name" class="form-control"
-                                    value="{{ $studentData->address }}" disabled>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label tittle-neo">Kelas</label>
-                                <input type="text" name="first_name" class="form-control"
-                                    value="{{ $studentData->class }}" disabled>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label tittle-neo">Kurikulum</label>
-                                <input type="text" name="first_name" class="form-control"
-                                    value="{{ $studentData->curriculum }}" disabled>
-                            </div>
-                            <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Mata Pelajaran</label>
-                                <input type="text" name="first_name" class="form-control "
-                                    value="{{ $vacancyData->subject }}" disabled>
-                            </div>
-                            <div class="col-6 py-1">
-                                <label class="form-label tittle-neo">Criteria</label>
-                                @foreach (explode('~', $vacancyData->criteria) as $info)
-                                    <input type="text" name="first_name" class="form-control mb-2"
-                                        value="{{ $info }}" disabled>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-xl-12 order-xl-0 tab-pane fade show" id="nav-tentorInformation" role="tabpanel"
+            <div class="col-xl-12 order-xl-0 tab-pane fade show active" id="nav-tentorInformation" role="tabpanel"
                 aria-labelledby="nav-tentorInformation-tab">
                 <!-- Dynamic Table Full -->
                 <div class="block">
@@ -138,11 +74,6 @@
                         <div class="row">
                             <div class="col-xl-12 order-xl-0">
                                 <div class="col-12-line1">
-                                    @if($interviewStatus == 1)
-                                    <div class="items-push float-lg-right">
-                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
-                                    </div>
-                                    @endif
                                     <label class="form-label tittle">Detail Tentor</label>
 
                                 </div>
@@ -219,11 +150,6 @@
                         <div class="row">
                             <div class="col-xl-12 order-xl-0">
                                 <div class="col-12-line1">
-                                    @if($interviewStatus == 1)
-                                    <div class="items-push float-lg-right">
-                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
-                                    </div>
-                                    @endif
                                     <label class="form-label tittle">File Ijazah Tentor</label>
                                 </div>
                             </div>
@@ -233,7 +159,7 @@
                                 <label class="form-label tittle-neo">File Ijazah</label>
                                 <div class='embed-responsive'>
                                     <object
-                                        data="{{ route('admin.vacancy.interview.get-ijazah', ['id' => $tentorData->id]) }}"
+                                        data="{{ route('admin.tentor-interview.get-ijazah', ['id' => $tentorData->id]) }}"
                                         type='application/pdf' width='100%' height='100%'></object>
                                 </div>
                             </div>
@@ -251,11 +177,6 @@
                         <div class="row">
                             <div class="col-xl-12 order-xl-0">
                                 <div class="col-12-line1">
-                                    @if($interviewStatus == 1)
-                                    <div class="items-push float-lg-right">
-                                        <i class="fa fa-check-circle text-info text-center" aria-hidden="true" style="font-size: 20px;"></i>
-                                    </div>
-                                    @endif
                                     <label class="form-label tittle">File Transkip Nilai Tentor</label>
                                 </div>
                             </div>
@@ -265,7 +186,7 @@
                                 <label class="form-label tittle-neo">File Transkip Nilai</label>
                                 <div class='embed-responsive'>
                                     <object
-                                        data="{{ route('admin.vacancy.interview.get-transkip', ['id' => $tentorData->id]) }}"
+                                        data="{{ route('admin.tentor-interview.get-transkip', ['id' => $tentorData->id]) }}"
                                         type='application/pdf' width='100%' height='100%'></object>
                                 </div>
                             </div>
@@ -275,50 +196,10 @@
 
             </div>
         </div>
-        @if ($data->status == 10 or $data->status == 0)
-            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                <div class="mb-4 pb-4 col-12 text-center">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-sm-2">
-                            <button type="button" id="declineButton" class="btn btn-sm btn-danger btn-block">
-                                Tolak
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-3">
-                            <button type="button" id="shortlistButton" class="btn btn-sm btn-info btn-block">
-                                Tambahkan ke Shortlist
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-2">
-                            <button type="button" id="acceptButton" class="btn btn-sm btn-neo btn-block">
-                                Terima
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @elseif ($data->status == 50)
-            <div class="invisible pt-6" id="saveChanges" data-toggle="appear">
-                <div class="mb-4 col-12 text-center">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-sm-2 mb-3">
-                            <button type="button" id="declineButton" class="btn btn-sm btn-danger btn-block">
-                                Tolak
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-2">
-                            <button type="button" id="acceptButton" class="btn btn-sm btn-neo btn-block">
-                                Terima
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
     <!-- END Page Content -->
 
-    <script>
+    {{-- <script>
         $("#declineButton").click(function(event) {
             event.preventDefault();
             let id = "{{ $data->id }}";
@@ -492,5 +373,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endsection
